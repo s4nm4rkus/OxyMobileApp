@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+    
+    <style name="colored_checkBox" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/tealsecondary</item>
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
+    <style name="login_btn" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@color/tealsecondary</item>
+    </style>
+</resources>

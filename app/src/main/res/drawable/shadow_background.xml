@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFFFFF" /> <!-- Set the background color of the layout -->
+    <corners android:radius="40dp" /> <!-- Adjust the radius value to control the roundness of corners -->
+    <padding android:left="8dp" android:top="8dp" android:right="8dp" android:bottom="8dp" /> <!-- Adjust the padding values to control the shadow offset -->
+    <gradient
+        android:startColor="#20000000"
+        android:endColor="#00000000"
+        android:angle="270" />
+</shape>

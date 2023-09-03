@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rounded_background"
+    tools:context=".activity_select_classroom">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:fontFamily="@font/outfitblack"
+        android:gravity="center"
+        android:letterSpacing="0.1"
+        android:text="@string/select_classroom"
+        android:textColor="@color/oxyblack"
+        android:textSize="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/room101"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ripple_hover_otherbtn"
+        android:elevation="5dp"
+        android:fontFamily="@font/outfitbold"
+        android:textAllCaps="false"
+        android:paddingStart="25dp"
+        android:paddingTop="11dp"
+        android:paddingBottom="9dp"
+        android:paddingEnd="25dp"
+        android:drawableEnd="@drawable/ic_enter_room2"
+        android:pointerIcon="hand"
+        android:text="@string/room101"
+        android:textColor="@color/oxyblack"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/room102"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/ripple_hover_otherbtn"
+        android:elevation="5dp"
+        android:fontFamily="@font/outfitbold"
+        android:paddingStart="25dp"
+        android:paddingTop="11dp"
+        android:paddingBottom="9dp"
+        android:paddingEnd="25dp"
+        android:drawableEnd="@drawable/ic_enter_room2"
+        android:text="@string/room102"
+        android:textColor="@color/oxyblack"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/room101" />
+
+    <TextView
+        android:id="@+id/btn_logout"
+        style="@style/login_btn"
+        android:layout_width="100dp"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="248dp"
+        android:background="@drawable/ripple_hover_logoutbtn"
+        android:elevation="4dp"
+        android:fontFamily="@font/outfitbold"
+        android:paddingLeft="13pt"
+        android:paddingTop="8dp"
+        android:text="@string/log_out"
+        android:textAllCaps="false"
+        android:textColor="@color/oxywhite"
+        android:textSize="16sp"
+        android:onClick="logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/room102">
+
+    </TextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

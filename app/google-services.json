@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "991485575715",
+    "project_id": "oxy-accounts",
+    "storage_bucket": "oxy-accounts.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991485575715:android:f29cfc0fb7a603b34a2796",
+        "android_client_info": {
+          "package_name": "com.capstone.oxy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "991485575715-oocas5hfoeig5eqn8ot5b1o11ns8n2g6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkfkN_dCP35KseoO-SO13Tozm2z6qwyC8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "991485575715-oocas5hfoeig5eqn8ot5b1o11ns8n2g6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

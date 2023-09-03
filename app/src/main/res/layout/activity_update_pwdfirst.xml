@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rounded_background"
+    tools:context=".update_pwdfirst">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/oxylogo1" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/outfitsemibold"
+        android:gravity="center"
+        android:text="@string/signUptitle"
+        android:textColor="@color/oxyblack"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/outfitsemibold"
+        android:gravity="center"
+        android:text="@string/signUptitle2"
+        android:textColor="@color/oxyblack"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textviewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:fontFamily="@font/outfitsemibold"
+        android:gravity="center"
+        android:text="@string/enter_name"
+        android:textColor="@color/oxyblack"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.215"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textviewName">
+
+        <EditText
+            android:id="@+id/firstname"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:background="@drawable/edittext_login"
+            android:elevation="3dp"
+            android:fontFamily="@font/outfitlight"
+            android:hint="@string/first_name"
+            android:paddingStart="10pt"
+            android:paddingEnd="10pt"
+            android:textColor="@color/oxyblack"
+            android:textColorHint="@color/grey"
+            android:textSize="15sp">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/lastname"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edittext_login"
+            android:elevation="3dp"
+            android:fontFamily="@font/outfitlight"
+            android:hint="@string/last_name"
+            android:paddingStart="10pt"
+            android:paddingEnd="10pt"
+            android:textColor="@color/oxyblack"
+            android:textColorHint="@color/grey"
+            android:textSize="15sp">
+        </EditText>
+
+        <LinearLayout
+            android:layout_width="154dp"
+            android:layout_height="10dp"
+            android:baselineAligned="false"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp">
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textviewSignupPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/outfitsemibold"
+        android:gravity="center"
+        android:text="@string/signup_password"
+        android:textColor="@color/oxyblack"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:elevation="3dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textviewSignupPassword">
+
+        <EditText
+            android:id="@+id/signupPassword"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:background="@drawable/edittext_login"
+            android:elevation="3dp"
+            android:fontFamily="@font/outfitlight"
+            android:hint="@string/new_password"
+            android:inputType="textPassword"
+            android:paddingStart="10pt"
+            android:paddingEnd="10pt"
+            android:textColor="@color/oxyblack"
+            android:textColorHint="@color/grey"
+            android:textSize="15sp">
+
+        </EditText>
+
+        <LinearLayout
+            android:layout_width="154dp"
+            android:layout_height="10dp"
+            android:baselineAligned="false"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp"></LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textviewSignupConfirmPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/outfitsemibold"
+        android:gravity="center"
+        android:text="@string/confirm_password"
+        android:textColor="@color/oxyblack"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutPass" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayoutConfirmPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:elevation="3dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/textviewSignupConfirmPass"
+        tools:layout_editor_absoluteX="0dp">
+
+        <EditText
+            android:id="@+id/signupConfirmPassword"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:background="@drawable/edittext_login"
+            android:elevation="3dp"
+            android:fontFamily="@font/outfitlight"
+            android:hint="Confirm password"
+            android:inputType="textPassword"
+            android:paddingStart="10pt"
+            android:paddingEnd="10pt"
+            android:textColor="@color/oxyblack"
+            android:textColorHint="@color/grey"
+            android:textSize="16sp">
+        </EditText>
+
+        <LinearLayout
+            android:layout_width="154dp"
+            android:layout_height="10dp"
+            android:baselineAligned="false"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp">
+
+        </LinearLayout>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/signupConfirmPassword"
+            app:layout_constraintBottom_toTopOf="@+id/btn_save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="NotSibling" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btn_save"
+        android:layout_width="100dp"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/ripple_hover_otherbtn"
+        android:elevation="5dp"
+        android:fontFamily="@font/outfitbold"
+        android:paddingLeft="18pt"
+        android:paddingTop="9dp"
+        android:paddingRight="0dp"
+        android:text="@string/save"
+        android:textColor="@color/oxyblack"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutConfirmPass"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

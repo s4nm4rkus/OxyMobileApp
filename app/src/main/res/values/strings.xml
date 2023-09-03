@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Oxy</string>
+    <string name="check_box">Stay logged in</string>
+    <string name="login">Login</string>
+    <string name="log_in">Log In</string>
+    <string name="user_name">User name</string>
+    <string name="password">Password</string>
+    <string name="signUptitle">Set-up your Name and Password </string>
+    <string name="signUptitle2">for the first time.</string>
+    <string name="first_name">First name</string>
+    <string name="enter_name">Please Enter your Name:</string>
+    <string name="last_name">Last name</string>
+    <string name="signup_password">Password:</string>
+    <string name="new_password">Set-up new password</string>
+    <string name="confirm_password">Confirm password:</string>
+    <string name="save">Save</string>
+    <string name="select_classroom">SELECT CLASSROOM</string>
+    <string name="room101">ROOM101</string>
+    <string name="room102">ROOM102</string>
+    <string name="log_out">Log out</string>
+    <string name="sanitize">SANITIZE</string>
+
+
+    <string name="Aqi_lvl_num">0</string>
+    <string name="Aqi_label_indoor_air">Indoor Air</string>
+    <string name="Aqi_label_aqi">AQI</string>
+
+    <string name="Aqi_lvl_desc">Good</string>
+    <string name="Aqi_lvl_desc_moderate">Moderate</string>
+    <string name="Aqi_lvl_desc_unhealthy1">Unhealthy</string>
+    <string name="Aqi_lvl_desc_unhealthy2">Unhealthy</string>
+    <string name="Aqi_lvl_desc_veryunhealthy">Very Unhealthy</string>
+    <string name="Aqi_lvl_desc_hazardous">Hazardous</string>
+    <string name="aqi_level_subdesc">for sensitive groups</string>
+
+    <string name="Co_label_co">CO</string>
+    <string name="Co_lvl_num">0</string>
+
+    <string name="Voc_Label_voc">VOC</string>
+    <string name="Voc_lvl_num">0</string>
+</resources>
