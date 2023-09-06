@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/rounded_background"
     android:orientation="vertical"
-    tools:context=".dashboard_room101">
+    tools:context=".dashboard_room101_home">
 
     <TextView
         android:id="@+id/textView5"

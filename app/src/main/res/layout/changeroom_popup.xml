@@ -7,8 +7,14 @@
     android:layout_gravity="center">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Oxy"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Switch Classroom"
+        android:paddingTop="3dp"
+        android:paddingStart="10dp"
+        android:fontFamily="@font/outfitsemibold"
+        android:textColor="@color/oxyblack"
+        android:background="@drawable/bg_popup"
+        android:textSize="14sp"/>
 
 </LinearLayout>

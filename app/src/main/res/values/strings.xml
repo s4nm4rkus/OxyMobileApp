@@ -38,4 +38,8 @@
 
     <string name="Voc_Label_voc">VOC</string>
     <string name="Voc_lvl_num">0</string>
+    <string name="connecting">Connecting</string>
+    <string name="connecting1">Connecting.</string>
+    <string name="connecting2">Connecting..</string>
+    <string name="connecting3">Connecting...</string>
 </resources>

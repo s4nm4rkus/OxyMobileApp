@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
@@ -27,7 +28,7 @@ public class Login extends AppCompatActivity {
     EditText editTextUsername, editTextPassword;
     TextView login_btn;
     FirebaseAuth mAuth;
-    ProgressBar progressBar;
+    CircularProgressIndicator progressBar;
     Drawable drawableEnd;
     TextView errorTextView;
 

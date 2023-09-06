@@ -220,13 +220,19 @@
             tools:layout_editor_absoluteY="1dp">
 
         </LinearLayout>
-        <ProgressBar
+        <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
+            app:trackColor="@color/oxywhite"
+            app:indicatorColor="@color/tealmain"
+            android:progress="60"
+            app:trackThickness="5dp"
+            app:trackCornerRadius="10dp"
             android:visibility="gone"
+            android:indeterminate="true"
             app:layout_constraintTop_toBottomOf="@+id/signupConfirmPassword"
             app:layout_constraintBottom_toTopOf="@+id/btn_save"
             app:layout_constraintEnd_toEndOf="parent"

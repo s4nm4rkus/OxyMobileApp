@@ -15,14 +15,14 @@
         android:theme="@style/Theme.Oxy"
         tools:targetApi="33">
         <activity
-            android:name=".dashboard_room101"
+            android:name=".dashboard_room101_home"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity_home"
+            android:name=".connecting_screen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

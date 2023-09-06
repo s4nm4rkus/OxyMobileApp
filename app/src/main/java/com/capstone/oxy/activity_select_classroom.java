@@ -29,7 +29,7 @@ public class activity_select_classroom extends AppCompatActivity {
         room101_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (activity_select_classroom.this, dashboard_room101.class);
+                Intent intent = new Intent (activity_select_classroom.this, connecting_screen.class);
                 startActivity(intent);
             }
         });

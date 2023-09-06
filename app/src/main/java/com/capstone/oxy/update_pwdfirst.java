@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -24,7 +25,7 @@ public class update_pwdfirst extends AppCompatActivity {
     FirebaseUser firebaseChangePass;
     EditText editTextFname, editTextLname, editTextPassword, editTextConfirm;
     TextView btn_save;
-    ProgressBar progressBar;
+    CircularProgressIndicator progressBar;
 
     @SuppressLint("MissingInflatedId")
     @Override

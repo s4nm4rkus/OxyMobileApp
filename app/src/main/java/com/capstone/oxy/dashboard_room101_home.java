@@ -8,15 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
-public class dashboard_room101 extends AppCompatActivity {
+public class dashboard_room101_home extends AppCompatActivity {
 
         private int CurrentProgress = 0;
         private CircularProgressIndicator progressIndicator,progressIndicator_voc;
@@ -28,7 +24,7 @@ public class dashboard_room101 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard_room101);
+        setContentView(R.layout.activity_dashboard_room101_home);
 
         progressIndicator_voc_bg = findViewById(R.id.cardView_Voc_bg);
         progressIndicator_co_bg = findViewById(R.id.cardView_Co_bg);
@@ -97,7 +93,7 @@ public class dashboard_room101 extends AppCompatActivity {
                     Aqi_lvl_desc.setTextColor(getResources().getColor(R.color.oxybrown));
                 }
                 else if (CurrentProgress == 500){
-                    Intent intent = new Intent(dashboard_room101.this, dashboard_room101.class);
+                    Intent intent = new Intent(dashboard_room101_home.this, dashboard_room101_home.class);
                     startActivity(intent);
                 }
 
