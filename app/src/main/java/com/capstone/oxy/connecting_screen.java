@@ -1,6 +1,7 @@
 package com.capstone.oxy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -21,6 +22,7 @@ public class connecting_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.connecting_screen);
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.tealsecondary));
 
         connectingprogress = findViewById(R.id.connecting_progress);
         connectinglbl = findViewById(R.id.connecting_label);
