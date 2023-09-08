@@ -2,6 +2,7 @@ package com.capstone.oxy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -32,6 +33,7 @@ public class update_pwdfirst extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_pwdfirst);
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.tealsecondary));
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         firebaseChangePass = mAuth.getCurrentUser();
         editTextFname = findViewById(R.id.firstname);

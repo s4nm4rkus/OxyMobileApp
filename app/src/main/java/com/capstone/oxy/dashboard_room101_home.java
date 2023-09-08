@@ -2,12 +2,15 @@ package com.capstone.oxy;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
@@ -19,12 +22,15 @@ public class dashboard_room101_home extends AppCompatActivity {
         private CardView progressIndicator_co_bg, progressIndicator_voc_bg;
         private TextView SanitizeBtn;
         private TextView Aqi_lvl_desc, Aqi_lvl_subdesc, Aqi_num, Co_num, Voc_num;
+        ImageButton switch_room_btn;
+        Dialog switchpopupDialog;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_room101_home);
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.tealsecondary));
 
         progressIndicator_voc_bg = findViewById(R.id.cardView_Voc_bg);
         progressIndicator_co_bg = findViewById(R.id.cardView_Co_bg);
@@ -111,5 +117,23 @@ public class dashboard_room101_home extends AppCompatActivity {
 
             }
         });
+
+        switchpopupDialog = new Dialog(this);
+    }
+    public void switch_room_btn (View v){
+        TextView textClose;
+        TextView switchRoomBtn;
+        switchpopupDialog.setContentView(R.layout.changeroom_popup);
+
+        textClose = (TextView) switchpopupDialog.findViewById(R.id.closePopup);
+        switchRoomBtn = (TextView) switchpopupDialog.findViewById(R.id.leaveRoom);
+
+        textClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchpopupDialog.dismiss();
+            }
+        });
+        switchpopupDialog.show();
     }
 }

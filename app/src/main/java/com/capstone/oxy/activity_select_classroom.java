@@ -1,6 +1,7 @@
 package com.capstone.oxy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ public class activity_select_classroom extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.tealsecondary));
         setContentView(R.layout.activity_select_classroom);
 
         logout_btn = findViewById(R.id.btn_logout);
