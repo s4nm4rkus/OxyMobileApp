@@ -200,7 +200,7 @@
         android:background="@drawable/ripple_hover_otherbtn"
         android:foregroundGravity="center"
         app:cardCornerRadius="100dp"
-        app:cardElevation="8dp"
+        app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/aqi_progress_indicator"
         app:layout_constraintEnd_toEndOf="@+id/aqi_progress_indicator"
         app:layout_constraintStart_toStartOf="@+id/aqi_progress_indicator"
@@ -289,13 +289,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aqi_progress_indicator">
 
-        <TextView
+        <Button
             android:id="@+id/btn_sanitize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
             android:layout_margin="8dp"
             android:background="@drawable/ripple_hover_otherbtn"
-            android:elevation="5dp"
+            android:elevation="8dp"
             android:fontFamily="@font/outfitbold"
             android:paddingStart="20dp"
             android:paddingTop="10dp"

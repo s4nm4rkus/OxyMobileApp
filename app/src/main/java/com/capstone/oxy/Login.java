@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -39,6 +41,7 @@ public class Login extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.tealsecondary));
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         setContentView(R.layout.activity_login);
+
 
         mAuth = FirebaseAuth.getInstance();
         editTextUsername = findViewById(R.id.Username);
@@ -71,7 +74,7 @@ public class Login extends AppCompatActivity {
                     return;
                 }
 
-                if (TextUtils.isEmpty(email)) {
+                else if (TextUtils.isEmpty(email)) {
                     Toast.makeText(Login.this, "Oops! Your password is missing. Please enter your username to log in.", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                     editTextUsername.setBackgroundResource(R.drawable.error_login_background);
@@ -79,7 +82,7 @@ public class Login extends AppCompatActivity {
                     login_btn.setVisibility(View.VISIBLE);
                     return;
                 }
-                if (TextUtils.isEmpty(password)) {
+                else if (TextUtils.isEmpty(password)) {
                     Toast.makeText(Login.this, "Oops! Your password is missing. Please enter your password to log in.", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                     editTextPassword.setBackgroundResource(R.drawable.error_login_background);
@@ -100,8 +103,9 @@ public class Login extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(), update_pwdfirst.class);
                                     startActivity(intent);
                                     finish();
-                                } else {
-                                    Toast.makeText(Login.this, "Your Username or Password that you've entered doesn't match at any account.", Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    Toast.makeText(Login.this, "Login Failed.", Toast.LENGTH_SHORT).show();
                                     progressBar.setVisibility(View.GONE);
                                     editTextUsername.setBackgroundResource(R.drawable.error_login_background);
                                     editTextPassword.setBackgroundResource(R.drawable.error_login_background);
