@@ -145,7 +145,6 @@ public class dashboard_room101_home extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent =  new Intent(dashboard_room101_home.this, activity_select_classroom.class);
                 startActivity(intent);
-                finish();
             }
         });
         icClose.setOnClickListener(new View.OnClickListener() {

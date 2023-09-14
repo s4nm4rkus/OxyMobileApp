@@ -25,7 +25,6 @@
 
     <ImageButton
         android:id="@+id/switch_room_btn"
-        android:onClick="switch_room_btn"
         android:layout_width="21dp"
         android:layout_height="20dp"
         android:layout_alignParentStart="true"
@@ -36,6 +35,7 @@
         android:contentDescription="Change Room"
         android:elevation="5dp"
         android:gravity="center"
+        android:onClick="switch_room_btn"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_switch_room"
         app:layout_constraintStart_toStartOf="parent"
@@ -190,7 +190,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:trackColor="@color/oxywhite"
+        app:trackColor="#5CD1D1D1"
         app:trackThickness="25dp" />
 
     <androidx.cardview.widget.CardView

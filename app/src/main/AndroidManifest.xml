@@ -15,6 +15,13 @@
         android:theme="@style/Theme.Oxy"
         tools:targetApi="33">
         <activity
+            android:name=".activity_start_sanitation"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".account_prof_settings_activity"
             android:exported="false">
             <meta-data
