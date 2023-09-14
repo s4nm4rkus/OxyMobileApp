@@ -5,6 +5,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +25,7 @@ public class dashboard_room101_home extends AppCompatActivity {
         private CardView progressIndicator_co_bg, progressIndicator_voc_bg;
         private Button SanitizeBtn;
         private TextView Aqi_lvl_desc, Aqi_lvl_subdesc, Aqi_num, Co_num, Voc_num;
-        ImageButton switch_room_btn;
+        ImageButton accountSetting;
         LinearLayout btn_sanitize_back;
         Dialog switchpopupDialog;
 
@@ -39,12 +40,21 @@ public class dashboard_room101_home extends AppCompatActivity {
 
         progressIndicator = findViewById(R.id.aqi_progress_indicator);
         SanitizeBtn = findViewById(R.id.btn_sanitize);
+        accountSetting = findViewById(R.id.accountSetting);
         Aqi_lvl_desc = findViewById(R.id.aqiLevel_Description);
         Aqi_lvl_subdesc = findViewById(R.id.aqiLevel_sub_Description);
 
         Aqi_num = findViewById(R.id.aqiNum);
         Co_num = findViewById(R.id.coNum);
         Voc_num = findViewById(R.id.vocNum);
+
+        accountSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(dashboard_room101_home.this, account_prof_settings_activity.class);
+                startActivity(intent);
+            }
+        });
 
         CountDownTimer countDownTimer = new CountDownTimer(100*1000,100) {
             @Override
@@ -130,6 +140,14 @@ public class dashboard_room101_home extends AppCompatActivity {
         icClose = (ImageButton) switchpopupDialog.findViewById(R.id.closePopup);
         switchRoomBtn = (TextView) switchpopupDialog.findViewById(R.id.leaveRoom);
 
+        switchRoomBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(dashboard_room101_home.this, activity_select_classroom.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         icClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

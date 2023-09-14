@@ -1,54 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="300dp"
-    android:layout_height="250dp"
-    android:background="@drawable/bg_popup"
-    android:layout_gravity="center">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_popup">
 
-    <ImageButton
-        android:id="@+id/closePopup"
-        android:layout_width="21dp"
-        android:layout_height="21dp"
-        android:background="@drawable/bg_icon"
-        android:scaleType="fitCenter"
-        android:layout_marginStart="273dp"
-        android:elevation="5dp"
-        android:gravity="right"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/ic_close"
-        android:textColor="@color/oxyblack"
-        android:textSize="25sp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/outfitregular"
-        android:gravity="center"
-        android:text="Do you want to leave this room now?"
-        android:textColor="@color/oxyblack"
-        android:textSize="20sp" />
+        <ImageButton
+            android:id="@+id/closePopup"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="14dp"
+            android:background="@drawable/bg_icon"
+            android:elevation="5dp"
+            android:gravity="right"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_back"
+            android:textColor="@color/oxyblack"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="45dp">
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/outfitregular"
+                android:gravity="center"
+                android:text="Do you want to leave this room now?"
+                android:textColor="@color/oxyblack"
+                android:textSize="20sp" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/leaveRoom"
             android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="75dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="36dp"
             android:background="@drawable/btn_leave_main_bg"
             android:fontFamily="@font/outfitsemibold"
             android:gravity="center"
             android:text="Leave"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="16sp" />
-    </LinearLayout>
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
