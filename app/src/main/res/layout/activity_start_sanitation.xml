@@ -8,11 +8,11 @@
     tools:context=".activity_start_sanitation">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/warning_sign"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_gravity="center"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="76dp"
         android:elevation="10dp"
         android:scaleType="fitCenter"
         android:src="@drawable/warnig_orange"
@@ -21,79 +21,114 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/description_lvl"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:fontFamily="@font/outfitbold"
         android:gravity="center"
-        android:orientation="vertical"
+        android:text="@string/Aqi_lvl_desc_unhealthy1"
+        android:textAllCaps="true"
+        android:textColor="@color/orangeoxy"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4">
+        app:layout_constraintTop_toBottomOf="@+id/warning_sign" />
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/outfitbold"
-            android:text="@string/Aqi_lvl_desc_unhealthy1"
-            android:textAllCaps="true"
-            android:textColor="@color/orangeoxy"
-            android:textSize="40sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/outfitbold"
-            android:text="@string/Aqi_label_indoor_air"
-            android:textColor="@color/orangeoxy"
-            android:textSize="25sp" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/sub_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/outfitbold"
+        android:text="@string/Aqi_label_indoor_air"
+        android:textColor="@color/orangeoxy"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description_lvl" />
 
     <LinearLayout
         android:id="@+id/linearLayout6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="24dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+        app:layout_constraintTop_toBottomOf="@+id/sub_description">
 
         <TextView
             android:layout_width="260dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:fontFamily="@font/outfitregular"
             android:gravity="center"
             android:text="The sanitation process will begin in five (5) minutes."
             android:textColor="@color/oxyblack"
             android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/outfitextrabold"
-            android:gravity="center"
-            android:text="0.00s"
-            android:textColor="@color/redoxy"
-            android:textSize="40sp" />
-
-        <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/outfitregular"
-            android:gravity="center"
-            android:text="or"
-            android:textColor="@color/oxyblack"
-            android:textSize="14sp" />
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linear_timer_before_sanitation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_timer"
+        android:elevation="10dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/circular_timer_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorColor="@color/redoxy"
+            app:indicatorSize="135dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:trackColor="#32BFBFBF"
+            app:trackThickness="5dp" />
+
+        <TextView
+            android:id="@+id/time_interval_before"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/outfitbold"
+            android:gravity="center"
+            android:text="00:00"
+            android:textColor="@color/redoxy"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toBottomOf="@+id/circular_timer_indicator"
+            app:layout_constraintEnd_toEndOf="@+id/circular_timer_indicator"
+            app:layout_constraintStart_toStartOf="@+id/circular_timer_indicator"
+            app:layout_constraintTop_toTopOf="@+id/circular_timer_indicator" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/outfitregular"
+        android:gravity="center"
+        android:text="or"
+        android:textColor="@color/oxyblack"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_timer_before_sanitation" />
 
     <Button
         android:id="@+id/proceed_sanitation_btn"
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:layout_margin="8dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/ripple_hover_otherbtn"
         android:elevation="10dp"
         android:fontFamily="@font/outfitbold"
@@ -106,14 +141,15 @@
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <LinearLayout
+        android:id="@+id/linearLayout7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal"
+        android:layout_marginTop="32dp"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/proceed_sanitation_btn">
@@ -121,12 +157,13 @@
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/ic_info"/>
+            android:src="@drawable/ic_info" />
+
         <TextView
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/outfitregular"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/outfitregular"
             android:gravity="left"
             android:text="Make sure that there is no person inside the classroom."
             android:textColor="@color/oxyblack"

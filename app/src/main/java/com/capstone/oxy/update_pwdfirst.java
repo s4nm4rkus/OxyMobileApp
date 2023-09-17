@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -34,6 +35,8 @@ public class update_pwdfirst extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_pwdfirst);
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.tealsecondary));
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         firebaseChangePass = mAuth.getCurrentUser();
         editTextFname = findViewById(R.id.firstname);

@@ -42,4 +42,9 @@
     <string name="connecting1">Connecting.</string>
     <string name="connecting2">Connecting..</string>
     <string name="connecting3">Connecting...</string>
+
+    <string name="misting_text" > Misting</string>
+    <string name="misting_text1" > Misting.</string>
+    <string name="misting_text2" > Misting..</string>
+    <string name="misting_text3" > Misting...</string>
 </resources>

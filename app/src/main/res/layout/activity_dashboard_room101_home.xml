@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="24dp"
     android:background="@drawable/rounded_background"
     android:orientation="vertical"
     tools:context=".dashboard_room101_home">
@@ -197,7 +198,9 @@
         android:id="@+id/cardView_Aqi"
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:background="@drawable/ripple_hover_otherbtn"
+        android:background="@drawable/linear_ripple"
+        android:clickable="true"
+        android:focusable="true"
         android:foregroundGravity="center"
         app:cardCornerRadius="100dp"
         app:cardElevation="10dp"

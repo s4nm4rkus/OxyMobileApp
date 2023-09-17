@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
@@ -23,6 +24,8 @@ public class connecting_screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.connecting_screen);
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.tealsecondary));
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+
 
         connectingprogress = findViewById(R.id.connecting_progress);
         connectinglbl = findViewById(R.id.connecting_label);

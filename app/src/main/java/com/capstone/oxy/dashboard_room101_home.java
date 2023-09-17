@@ -11,10 +11,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
@@ -22,7 +24,7 @@ public class dashboard_room101_home extends AppCompatActivity {
 
         private int CurrentProgress = 0;
         private CircularProgressIndicator progressIndicator,progressIndicator_voc;
-        private CardView progressIndicator_co_bg, progressIndicator_voc_bg;
+        private CardView progressIndicator_co_bg, progressIndicator_voc_bg, cardView_Aqi;
         private Button SanitizeBtn;
         private TextView Aqi_lvl_desc, Aqi_lvl_subdesc, Aqi_num, Co_num, Voc_num;
         ImageButton accountSetting;
@@ -35,6 +37,8 @@ public class dashboard_room101_home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_room101_home);
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.tealsecondary));
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+
         progressIndicator_voc_bg = findViewById(R.id.cardView_Voc_bg);
         progressIndicator_co_bg = findViewById(R.id.cardView_Co_bg);
 
@@ -43,20 +47,14 @@ public class dashboard_room101_home extends AppCompatActivity {
         accountSetting = findViewById(R.id.accountSetting);
         Aqi_lvl_desc = findViewById(R.id.aqiLevel_Description);
         Aqi_lvl_subdesc = findViewById(R.id.aqiLevel_sub_Description);
+        cardView_Aqi = findViewById(R.id.cardView_Aqi);
 
         Aqi_num = findViewById(R.id.aqiNum);
         Co_num = findViewById(R.id.coNum);
         Voc_num = findViewById(R.id.vocNum);
 
-        accountSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(dashboard_room101_home.this, account_prof_settings_activity.class);
-                startActivity(intent);
-            }
-        });
 
-        CountDownTimer countDownTimer = new CountDownTimer(100*1000,100) {
+        CountDownTimer countDownTimer = new CountDownTimer(30*1000,100)  {
             @Override
             public void onTick(long millisUntilFinished) {
                 CurrentProgress = CurrentProgress + 1;
@@ -83,6 +81,16 @@ public class dashboard_room101_home extends AppCompatActivity {
                     Aqi_lvl_subdesc.setVisibility(View.VISIBLE);
                     Aqi_lvl_desc.setText(getString(R.string.Aqi_lvl_desc_unhealthy1));
                     Aqi_lvl_desc.setTextColor(getResources().getColor(R.color.orangeoxy));
+
+
+
+                    Toast.makeText(dashboard_room101_home.this, "Warning: Indoor air quality is currently unhealthy.", Toast.LENGTH_SHORT).show();
+
+                    Intent intent =  new Intent(dashboard_room101_home.this, activity_start_sanitation.class);
+                    intent.putExtra("progressValue", CurrentProgress);
+                    startActivity(intent);
+                    finish();
+
                 }
                 else if (CurrentProgress == 151 ){
                     progressIndicator_co_bg.setCardBackgroundColor(getResources().getColor(R.color.redoxy));
@@ -111,22 +119,42 @@ public class dashboard_room101_home extends AppCompatActivity {
                     Aqi_lvl_desc.setTextColor(getResources().getColor(R.color.oxybrown));
                 }
                 else if (CurrentProgress == 500){
-                    Intent intent = new Intent(dashboard_room101_home.this, dashboard_room101_home.class);
-                    startActivity(intent);
+                    CurrentProgress = 0;
                 }
-
             }
+
+
             @Override
             public void onFinish() {
 
             }
         };
 
+        countDownTimer.start();
+
         SanitizeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                countDownTimer.start();
+                Intent intent =  new Intent(dashboard_room101_home.this, activity_start_sanitation.class);
+                intent.putExtra("progressValue", CurrentProgress);
+                startActivity(intent);
+                countDownTimer.cancel();
+            }
+        });
 
+        cardView_Aqi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                countDownTimer.cancel();
+            }
+        });
+
+        accountSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(dashboard_room101_home.this, account_prof_settings_activity.class);
+                startActivity(intent);
+                countDownTimer.cancel();
             }
         });
 
@@ -155,4 +183,5 @@ public class dashboard_room101_home extends AppCompatActivity {
         });
         switchpopupDialog.show();
     }
+
 }
