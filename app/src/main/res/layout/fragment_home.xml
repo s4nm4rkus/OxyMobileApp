@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="44dp"
+    android:id="@+id/home_framelayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/rounded_background"
+    tools:context=".HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_Co_bg"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/ripple_hover_otherbtn"
+            android:foregroundGravity="center"
+            app:cardBackgroundColor="@color/tealmain"
+            app:cardCornerRadius="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_Co"
+            android:layout_width="101dp"
+            android:layout_height="101dp"
+            android:background="@drawable/ripple_hover_otherbtn"
+            android:foregroundGravity="center"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView_Co_bg"
+            app:layout_constraintEnd_toEndOf="@+id/cardView_Co_bg"
+            app:layout_constraintStart_toStartOf="@+id/cardView_Co_bg"
+            app:layout_constraintTop_toTopOf="@+id/cardView_Co_bg">
+
+            <TextView
+                android:id="@+id/coLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/outfitbold"
+                android:text="@string/Co_label_co"
+                android:textColor="@color/oxyblack"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/coNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/outfitsemibold"
+                android:text="@string/Co_lvl_num"
+                android:textColor="@color/oxyblack"
+                android:textSize="48sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/outfitsemibold"
+                android:text="ppm"
+                android:textColor="@color/oxyblack"
+                android:textSize="12sp" />
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_Voc_bg"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/ripple_hover_otherbtn"
+            android:foregroundGravity="center"
+            app:cardBackgroundColor="@color/tealmain"
+            app:cardCornerRadius="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_Voc"
+            android:layout_width="101dp"
+            android:layout_height="101dp"
+            android:background="@drawable/ripple_hover_otherbtn"
+            android:foregroundGravity="center"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView_Voc_bg"
+            app:layout_constraintEnd_toEndOf="@+id/cardView_Voc_bg"
+            app:layout_constraintStart_toStartOf="@+id/cardView_Voc_bg"
+            app:layout_constraintTop_toTopOf="@+id/cardView_Voc_bg">
+
+            <TextView
+                android:id="@+id/vocLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/outfitbold"
+                android:text="@string/Voc_Label_voc"
+                android:textColor="@color/oxyblack"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/vocNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/outfitsemibold"
+                android:text="@string/Voc_lvl_num"
+                android:textColor="@color/oxyblack"
+                android:textSize="48sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/outfitsemibold"
+                android:text="ppm"
+                android:textColor="@color/oxyblack"
+                android:textSize="12sp" />
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/aqi_progress_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:indeterminateOnly="false"
+            android:rotation="180"
+            app:indicatorColor="@color/tealmain"
+            app:indicatorSize="231dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:trackColor="#5CD1D1D1"
+            app:trackThickness="25dp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_Aqi"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:background="@drawable/linear_ripple"
+            android:clickable="true"
+            android:focusable="true"
+            android:foregroundGravity="center"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/aqi_progress_indicator"
+            app:layout_constraintEnd_toEndOf="@+id/aqi_progress_indicator"
+            app:layout_constraintStart_toStartOf="@+id/aqi_progress_indicator"
+            app:layout_constraintTop_toTopOf="@+id/aqi_progress_indicator">
+
+            <TextView
+                android:id="@+id/aqiLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/outfitbold"
+                android:text="@string/Aqi_label_aqi"
+                android:textColor="@color/oxyblack"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/aqiNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/outfitsemibold"
+                android:text="@string/Aqi_lvl_num"
+                android:textColor="@color/oxyblack"
+                android:textSize="65sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="62dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/outfitsemibold"
+                android:text="ppm"
+                android:textColor="@color/oxyblack"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/aqiLevel_Description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="38dp"
+                android:fontFamily="@font/outfitblack"
+                android:text="@string/Aqi_lvl_desc"
+                android:textAlignment="center"
+                android:textColor="@color/tealmain"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/aqiLevel_sub_Description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="36dp"
+                android:fontFamily="@font/outfitblack"
+                android:text="@string/aqi_level_subdesc"
+                android:textAlignment="center"
+                android:textColor="@color/orangeoxy"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="23dp"
+                android:fontFamily="@font/outfitsemibold"
+                android:text="@string/Aqi_label_indoor_air"
+                android:textColor="@color/oxyblack"
+                android:textSize="13sp"
+                android:textStyle="italic" />
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/btn_sanitize_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/sanitize_btn_back"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/aqi_progress_indicator">
+
+            <Button
+                android:id="@+id/btn_sanitize"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/ripple_hover_otherbtn"
+                android:elevation="8dp"
+                android:fontFamily="@font/outfitbold"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+                android:text="@string/sanitize"
+                android:textColor="@color/oxyblack"
+                android:textSize="17sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/circularProgress" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

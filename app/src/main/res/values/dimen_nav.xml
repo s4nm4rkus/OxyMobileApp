@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="nav_button_width_active">50dp</dimen>
+    <dimen name="nav_button_height_active">50dp</dimen>
+    <dimen name="nav_button_width_default">33dp</dimen>
+    <dimen name="nav_button_height_default">33dp</dimen>
+
+
+</resources>

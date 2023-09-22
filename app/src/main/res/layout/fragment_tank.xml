@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rounded_background"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="44dp"
+    tools:context=".TankFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/outfitextrabold"
+            android:gravity="center"
+            android:text="SANITIZER LEVEL"
+            android:textColor="@color/oxyblack"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sanitizer_percentage_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/outfitextrabold"
+            android:gravity="center"
+            android:text="0%"
+            android:textColor="@color/sanitizer_lvl_blue"
+            android:textSize="60sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <RelativeLayout
+            android:id="@+id/liquid_sanitizer"
+            android:layout_width="130dp"
+            android:layout_height="210dp"
+            android:layout_marginBottom="46dp"
+            android:alpha="0.9"
+            android:background="@drawable/liquid_sanitizer"
+            android:elevation="1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tank"
+            app:layout_constraintEnd_toEndOf="@+id/imageView6"
+            app:layout_constraintStart_toStartOf="@+id/imageView6" />
+
+        <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="205dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="130dp"
+        android:elevation="1dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/lines_tank_ui"
+        app:layout_constraintBottom_toBottomOf="@+id/liquid_sanitizer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tank" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/tank"
+            android:layout_width="wrap_content"
+            android:layout_height="430dp"
+            android:src="@drawable/tank"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sanitizer_percentage_label" />
+
+    <ImageView
+        android:id="@+id/shadow_logo"
+        android:layout_width="160dp"
+        android:layout_height="30sp"
+        android:layout_marginTop="40dp"
+        android:alpha="0.7"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo_shadow_eleipse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/liquid_sanitizer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
