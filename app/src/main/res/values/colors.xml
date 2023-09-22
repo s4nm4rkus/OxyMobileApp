@@ -20,9 +20,11 @@
     <color name="yellow">#FFED4A</color>
     <color name="teal3rd">#62FBA9</color>
     <color name="oxyblack">#111414</color>
-    <color name="dirtyblue2">#B5F3F3</color>
+    <color name="notifbar_color">#B5F3F3</color>
     <color name="lightblue">#15DBDB</color>
     <color name="oxywhite">#F1FAFB</color>
     <color name="white">#FFFFFF</color>
     <color name="oxybrown">#8F2A2A</color>
+    <color name="sanitizer_lvl_blue">#15DBDB</color>
+
 </resources>

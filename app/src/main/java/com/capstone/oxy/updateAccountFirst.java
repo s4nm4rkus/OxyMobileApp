@@ -10,9 +10,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +20,9 @@ import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class update_pwdfirst extends AppCompatActivity {
+public class updateAccountFirst extends AppCompatActivity {
+
+    //Only when the app used by the user for the first time
 
     FirebaseUser firebaseChangePass;
     EditText editTextFname, editTextLname, editTextPassword, editTextConfirm;
@@ -33,10 +33,11 @@ public class update_pwdfirst extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_pwdfirst);
-        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.tealsecondary));
+        setContentView(R.layout.activity_update_account_first);
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.tealmain));
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
+        // Declare Firebase user and UI elements
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         firebaseChangePass = mAuth.getCurrentUser();
         editTextFname = findViewById(R.id.firstname);
@@ -60,7 +61,7 @@ public class update_pwdfirst extends AppCompatActivity {
                 conpass = String.valueOf(editTextConfirm.getText());
 
                 if (TextUtils.isEmpty(conpass) && TextUtils.isEmpty(newpass) && TextUtils.isEmpty(fname) && TextUtils.isEmpty(lname)) {
-                    Toast.makeText(update_pwdfirst.this, "Hold on! All fields are required. Don't forget to fill them in.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(updateAccountFirst.this, "Hold on! All fields are required. Don't forget to fill them in.", Toast.LENGTH_SHORT).show();
                     editTextFname.setBackgroundResource(R.drawable.error_login_background);
                     editTextFname.setHintTextColor(getResources().getColor(R.color.redoxy));
                     editTextLname.setBackgroundResource(R.drawable.error_login_background);
@@ -74,7 +75,7 @@ public class update_pwdfirst extends AppCompatActivity {
                     return;
 
                 } else if (TextUtils.isEmpty(fname) && TextUtils.isEmpty(lname)) {
-                    Toast.makeText(update_pwdfirst.this, "Hold on! Your name is required to proceed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(updateAccountFirst.this, "Hold on! Your name is required to proceed", Toast.LENGTH_SHORT).show();
                     editTextFname.setBackgroundResource(R.drawable.error_login_background);
                     editTextFname.setHintTextColor(getResources().getColor(R.color.redoxy));
                     editTextLname.setBackgroundResource(R.drawable.error_login_background);
@@ -84,7 +85,7 @@ public class update_pwdfirst extends AppCompatActivity {
                     return;
 
                 } else if (TextUtils.isEmpty(fname)) {
-                    Toast.makeText(update_pwdfirst.this, "Oops! It looks like you forgot to provide your first name.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(updateAccountFirst.this, "Oops! It looks like you forgot to provide your first name.", Toast.LENGTH_SHORT).show();
                     editTextFname.setBackgroundResource(R.drawable.error_login_background);
                     editTextFname.setHintTextColor(getResources().getColor(R.color.redoxy));
                     progressBar.setVisibility(View.GONE);
@@ -92,7 +93,7 @@ public class update_pwdfirst extends AppCompatActivity {
                     return;
 
                 } else if (TextUtils.isEmpty(lname)) {
-                    Toast.makeText(update_pwdfirst.this, "Oops! It looks like you forgot to provide your last name.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(updateAccountFirst.this, "Oops! It looks like you forgot to provide your last name.", Toast.LENGTH_SHORT).show();
                     editTextLname.setBackgroundResource(R.drawable.error_login_background);
                     editTextLname.setHintTextColor(getResources().getColor(R.color.redoxy));
                     progressBar.setVisibility(View.GONE);
@@ -102,7 +103,7 @@ public class update_pwdfirst extends AppCompatActivity {
                 }
 
                     else if (TextUtils.isEmpty(newpass) && TextUtils.isEmpty(conpass)) {
-                        Toast.makeText(update_pwdfirst.this, "Please set-up your own password to proceed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(updateAccountFirst.this, "Please set-up your own password to proceed", Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.GONE);
                         editTextPassword.setBackgroundResource(R.drawable.error_login_background);
                         editTextPassword.setHintTextColor(getResources().getColor(R.color.redoxy));
@@ -113,21 +114,21 @@ public class update_pwdfirst extends AppCompatActivity {
                         btn_save.setVisibility(View.VISIBLE);
                         return;
                     } else if (TextUtils.isEmpty(newpass)) {
-                        Toast.makeText(update_pwdfirst.this, "Please set-up your own password to proceed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(updateAccountFirst.this, "Please set-up your own password to proceed", Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.GONE);
                         editTextPassword.setBackgroundResource(R.drawable.error_login_background);
                         editTextPassword.setHintTextColor(getResources().getColor(R.color.redoxy));
                         btn_save.setVisibility(View.VISIBLE);
                         return;
                     } else if (TextUtils.isEmpty(conpass)) {
-                        Toast.makeText(update_pwdfirst.this, "Oops! Passwords do not match. Please try again.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(updateAccountFirst.this, "Oops! Passwords do not match. Please try again.", Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.GONE);
                         editTextConfirm.setBackgroundResource(R.drawable.error_login_background);
                         editTextConfirm.setHintTextColor(getResources().getColor(R.color.redoxy));
                         btn_save.setVisibility(View.VISIBLE);
                         return;
                     }else if (!newpass.matches(conpass)) {
-                        Toast.makeText(update_pwdfirst.this, "Oops! Passwords do not match. Please try again.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(updateAccountFirst.this, "Oops! Passwords do not match. Please try again.", Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.GONE);
                         editTextConfirm.setBackgroundResource(R.drawable.error_login_background);
                         editTextConfirm.setHintTextColor(getResources().getColor(R.color.redoxy));
@@ -137,8 +138,8 @@ public class update_pwdfirst extends AppCompatActivity {
                         firebaseChangePass.updatePassword(newpass).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(update_pwdfirst.this, "You've successfully changed your password", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(update_pwdfirst.this, activity_select_classroom.class);
+                                Toast.makeText(updateAccountFirst.this, "You've successfully changed your password", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(updateAccountFirst.this, activityRoomSelection.class);
                                 startActivity(intent);
                                 progressBar.setVisibility(View.GONE);
                                 return;

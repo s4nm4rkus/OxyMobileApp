@@ -83,6 +83,7 @@
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/circular_timer_indicator"
             android:layout_width="wrap_content"
+            app:trackCornerRadius="50dp"
             android:layout_height="wrap_content"
             app:indicatorColor="@color/redoxy"
             app:indicatorSize="135dp"

@@ -43,8 +43,20 @@
     <string name="connecting2">Connecting..</string>
     <string name="connecting3">Connecting...</string>
 
-    <string name="misting_text" > Misting</string>
-    <string name="misting_text1" > Misting.</string>
-    <string name="misting_text2" > Misting..</string>
-    <string name="misting_text3" > Misting...</string>
+    <string name="misting_text"> Misting</string>
+    <string name="misting_text1"> Misting.</string>
+    <string name="misting_text2"> Misting..</string>
+    <string name="misting_text3"> Misting...</string>
+
+    <string name="soaking_text"> Soaking</string>
+    <string name="soaking_text1"> Soaking.</string>
+    <string name="soaking_text2"> Soaking..</string>
+    <string name="soaking_text3"> Soaking...</string>
+
+    <string name="exhausting_text"> Exhausting</string>
+    <string name="exhausting_text1"> Exhausting.</string>
+    <string name="exhausting_text2"> Exhausting..</string>
+    <string name="exhausting_text3"> Exhausting...</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
-public class connecting_screen extends AppCompatActivity {
+public class roomLoadingConnecting extends AppCompatActivity {
 
     private int CurrentProgress = 0;
     private CircularProgressIndicator connectingprogress;
@@ -22,63 +22,69 @@ public class connecting_screen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Set the layout for this activity
         setContentView(R.layout.connecting_screen);
-        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.tealsecondary));
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
+        // Set the status bar color to teal
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.tealmain));
 
+        // Make the navigation bar translucent
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
+        );
+
+        // Initialize UI elements
         connectingprogress = findViewById(R.id.connecting_progress);
         connectinglbl = findViewById(R.id.connecting_label);
 
-        CountDownTimer countDownTimer = new CountDownTimer(8*1000, 1000) {
+        // Create a countdown timer with a 8-second duration and 1-second intervals
+        CountDownTimer countDownTimer = new CountDownTimer(8 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
+                // Update the current progress and set the maximum progress
                 CurrentProgress = CurrentProgress + 10;
-                connectingprogress.setMax(100);
+                connectingprogress.setMax(500);
 
+                // Update the label text based on the current progress
+                // Note: You can consider using an array of string resources for cleaner code
                 if (CurrentProgress == 10) {
                     connectinglbl.setText(R.string.connecting);
-                }
-                else if (CurrentProgress == 20) {
+                } else if (CurrentProgress == 20) {
                     connectinglbl.setText(R.string.connecting1);
-                }
-                else if (CurrentProgress == 30) {
+                } else if (CurrentProgress == 30) {
                     connectinglbl.setText(R.string.connecting2);
-                }
-                else if (CurrentProgress == 40) {
+                } else if (CurrentProgress == 40) {
                     connectinglbl.setText(R.string.connecting3);
-                }
-                else if (CurrentProgress == 50) {
+                } else if (CurrentProgress == 50) {
                     connectinglbl.setText(R.string.connecting);
-                }
-                else if (CurrentProgress == 60) {
+                } else if (CurrentProgress == 60) {
                     connectinglbl.setText(R.string.connecting1);
-                }
-                else if (CurrentProgress == 70) {
+                } else if (CurrentProgress == 70) {
                     connectinglbl.setText(R.string.connecting2);
-                }
-                else if (CurrentProgress == 80) {
+                } else if (CurrentProgress == 80) {
                     connectinglbl.setText(R.string.connecting3);
-                }
-                else if (CurrentProgress == 90) {
+                } else if (CurrentProgress == 90) {
                     connectinglbl.setText(R.string.connecting);
-                }
-                else if (CurrentProgress == 100) {
+                } else if (CurrentProgress == 100) {
                     connectinglbl.setText(R.string.connecting1);
-                }
-                else {
-                    Intent intent = new Intent(connecting_screen.this, dashboard_room101_home.class);
+                } else {
+                    // If the progress reaches 110, start the main_dashboard activity
+                    Intent intent = new Intent(roomLoadingConnecting.this, mainDashboard.class);
                     startActivity(intent);
                 }
-
             }
 
             @Override
             public void onFinish() {
-                Intent intent = new Intent(connecting_screen.this, dashboard_room101_home.class);
+                // When the timer finishes, start the main_dashboard activity
+                Intent intent = new Intent(roomLoadingConnecting.this, mainDashboard.class);
                 startActivity(intent);
             }
         };
+
+        // Start the countdown timer
         countDownTimer.start();
     }
 }

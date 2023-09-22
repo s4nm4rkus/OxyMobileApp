@@ -19,9 +19,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class activity_misting extends AppCompatActivity {
+public class activityMistingProcess extends AppCompatActivity {
 
-
+    // Array of bubble view IDs to animate
     private static final int[] bubbleIds = {
             R.id.mist_bubble, R.id.mist_bubble9, R.id.mist_bubble10,
             R.id.mist_bubble11, R.id.mist_bubble12, R.id.mist_bubble13,
@@ -44,10 +44,21 @@ public class activity_misting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_misting);
 
+        // Set the status bar color to teal
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.tealmain));
+
+        // Make the navigation bar translucent
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
+        );
+
+        // Initialize UI elements
         mistingLogoLayout = findViewById(R.id.misting_logo);
         misting_duration = findViewById(R.id.misting_time);
         mistingText = findViewById(R.id.misting_text);
 
+        // Define phrases for text animation
         mistingPhrases = new String[] {
                 getString(R.string.misting_text),
                 getString(R.string.misting_text1),
@@ -55,11 +66,14 @@ public class activity_misting extends AppCompatActivity {
                 getString(R.string.misting_text3)
         };
 
+        // Start bubble animation
         startBubbleAnimation();
+
+        // Show misting logo animation
         showMistingLogo();
 
+        // Initialize a scale animation for a shadow logo
         ImageView shadowLogo = findViewById(R.id.shadow_logo);
-
         ObjectAnimator scaleAnimator = ObjectAnimator.ofPropertyValuesHolder(
                 shadowLogo,
                 PropertyValuesHolder.ofFloat("scaleX", 1.0f, 0.8f),
@@ -69,7 +83,8 @@ public class activity_misting extends AppCompatActivity {
         scaleAnimator.setRepeatCount(ObjectAnimator.INFINITE);
         scaleAnimator.setRepeatMode(ObjectAnimator.REVERSE);
 
-        countDownTimer = new CountDownTimer(1 * 60 * 1000, 1000) {
+        // Initialize and start a countdown timer
+        countDownTimer = new CountDownTimer(10 * 60 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateTimerUI(millisUntilFinished);
@@ -78,18 +93,18 @@ public class activity_misting extends AppCompatActivity {
             @Override
             public void onFinish() {
                 stopTimer();
-                Toast.makeText(activity_misting.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(activity_misting.this, activity_misting.class);
+                // Show a toast message when the timer finishes
+                Toast.makeText(activityMistingProcess.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
+                // Navigate to the activity_soaking activity
+                Intent intent = new Intent(activityMistingProcess.this, activity_soaking.class);
                 startActivity(intent);
             }
         };
 
+        // Start the timer, scale animation, and text animation
         startTimer();
-
         scaleAnimator.start();
-
         startTextAnimation();
-
     }
 
     private void updateTimerUI(long millisUntilFinished) {
@@ -100,7 +115,9 @@ public class activity_misting extends AppCompatActivity {
         misting_duration.setText(timeLeftFormatted);
     }
 
-    private void startTimer() {countDownTimer.start();}
+    private void startTimer() {
+        countDownTimer.start();
+    }
 
     private void stopTimer() {
         countDownTimer.cancel();
@@ -131,6 +148,7 @@ public class activity_misting extends AppCompatActivity {
     }
 
     private void showMistingLogo() {
+        // Load and start an animation for the misting logo
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_up);
         mistingLogoLayout.startAnimation(animation);
         mistingLogoLayout.setVisibility(View.VISIBLE);
@@ -154,5 +172,11 @@ public class activity_misting extends AppCompatActivity {
         super.onDestroy();
         animationRunning = false;
         handler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }

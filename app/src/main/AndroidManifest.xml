@@ -15,7 +15,35 @@
         android:theme="@style/Theme.Oxy"
         tools:targetApi="33">
         <activity
-            android:name=".activity_misting"
+            android:name=".mainDashboard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".doneSanitation"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activityExhaustProcess"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity_soaking"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activityMistingProcess"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -29,35 +57,28 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".account_prof_settings_activity"
+            android:name=".accountProfileSetting"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".dashboard_room101_home"
+            android:name=".roomLoadingConnecting"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".connecting_screen"
+            android:name=".activityRoomSelection"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity_select_classroom"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".update_pwdfirst"
+            android:name=".updateAccountFirst"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -71,7 +92,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".splashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

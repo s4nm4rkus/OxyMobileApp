@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/rounded_background"
-    tools:context=".update_pwdfirst">
+    tools:context=".updateAccountFirst">
 
     <ImageView
         android:id="@+id/imageView2"
