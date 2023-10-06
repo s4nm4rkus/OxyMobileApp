@@ -76,7 +76,7 @@ public class activityExhaustProcess extends AppCompatActivity {
         scaleAnimator.setRepeatMode(ObjectAnimator.REVERSE);
 
         // Initialize and start a countdown timer
-        countDownTimer = new CountDownTimer(10 * 60 * 1000, 1000) {
+        countDownTimer = new CountDownTimer(1 * 60 * 100, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateTimerUI(millisUntilFinished);

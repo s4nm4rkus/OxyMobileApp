@@ -72,7 +72,7 @@ public class TankFragment extends Fragment {
                 long currentTimeMillis = System.currentTimeMillis();
                 long elapsedTimeMillis = currentTimeMillis - startTimeMillis;
 
-                int newSanitizerPercentage = (int) (((float) elapsedTimeMillis / totalTimeMillis) * 100);
+                int newSanitizerPercentage = (int) (((float) elapsedTimeMillis / totalTimeMillis) * 1000);
 
                 // Ensure the percentage does not exceed 100%
                 if (newSanitizerPercentage > 100) {
@@ -96,5 +96,6 @@ public class TankFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         handler.removeCallbacksAndMessages(null);
+
     }
 }

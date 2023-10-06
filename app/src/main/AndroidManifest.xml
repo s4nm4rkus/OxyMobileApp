@@ -15,6 +15,13 @@
         android:theme="@style/Theme.Oxy"
         tools:targetApi="33">
         <activity
+            android:name=".activity_register_newuser"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".mainDashboard"
             android:exported="false">
             <meta-data

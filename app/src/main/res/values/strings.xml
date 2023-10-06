@@ -59,4 +59,11 @@
     <string name="exhausting_text3"> Exhausting...</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reports">Reports</string>
+    <string name="account_email">user@sample.com</string>
+    <string name="account_user_name">Administrator</string>
+    <string name="rooms">Rooms</string>
+
+    <string name="navigation_drawer_open"> Open navigation drawer</string>
+    <string name="navigation_drawer_close"> Close navigation drawer</string>
 </resources>

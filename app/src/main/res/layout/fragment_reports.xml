@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/rounded_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="24dp"
     tools:context=".ReportsFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/outfitextrabold"
+            android:gravity="center_horizontal"
+            android:text="@string/reports"
+            android:textAllCaps="true"
+            android:textColor="@color/oxyblack"
+            android:textSize="20sp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_ic_profile"
+                android:elevation="8dp"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:orientation="vertical">
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/line_chart_report"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"/>
+                         </LinearLayout>
+
+
+
+        </ScrollView>
+    </RelativeLayout>
+
 
 </FrameLayout>

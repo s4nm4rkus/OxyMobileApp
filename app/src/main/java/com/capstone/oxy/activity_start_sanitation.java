@@ -91,7 +91,7 @@ public class activity_start_sanitation extends AppCompatActivity {
         }
 
         // Initialize and start a countdown timer
-        countDownTimer = new CountDownTimer(5 * 60 * 1000, 1000) {
+        countDownTimer = new CountDownTimer(1 * 60 * 100, 100) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateTimerUI(millisUntilFinished);

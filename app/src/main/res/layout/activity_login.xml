@@ -9,13 +9,10 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="125dp"
-        android:layout_height="153dp"
-        android:layout_marginStart="145dp"
+        android:layout_width="203dp"
+        android:layout_height="203dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="145dp"
-        android:layout_marginBottom="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,8 +22,7 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="520dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_background"
+        android:layout_marginTop="34dp"
         app:cardCornerRadius="35dp"
         app:cardElevation="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -64,10 +60,10 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:orientation="vertical"
+                app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textviewName"
-                app:hintEnabled="false">
+                app:layout_constraintTop_toBottomOf="@+id/textviewName">
 
                 <EditText
                     android:id="@+id/Username"
@@ -86,16 +82,15 @@
                     android:textColor="@color/oxyblack"
                     android:textColorHint="@color/grey"
                     android:textSize="15sp"
-                    app:boxBackgroundMode="none">
-                </EditText>
+                    app:boxBackgroundMode="none"></EditText>
+
                 <LinearLayout
                     android:layout_width="154dp"
                     android:layout_height="10dp"
                     android:baselineAligned="false"
                     android:orientation="vertical"
                     tools:layout_editor_absoluteX="1dp"
-                    tools:layout_editor_absoluteY="1dp">
-                </LinearLayout>
+                    tools:layout_editor_absoluteY="1dp"></LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -103,10 +98,10 @@
                 android:layout_width="310dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical"
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="vertical"
                 app:hintEnabled="false">
 
                 <EditText
@@ -116,8 +111,8 @@
                     android:layout_gravity="center"
                     android:background="@drawable/edittext_login"
                     android:drawableStart="@drawable/ic_password"
-                    android:fontFamily="@font/outfitlight"
                     android:elevation="3dp"
+                    android:fontFamily="@font/outfitlight"
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:paddingLeft="18dp"
@@ -127,16 +122,15 @@
                     android:textColor="@color/oxyblack"
                     android:textColorHint="@color/grey"
                     android:textSize="15sp"
-                    app:boxBackgroundMode="none">
-                </EditText>
+                    app:boxBackgroundMode="none"></EditText>
+
                 <LinearLayout
                     android:layout_width="154dp"
                     android:layout_height="10dp"
                     android:baselineAligned="false"
                     android:orientation="vertical"
                     tools:layout_editor_absoluteX="1dp"
-                    tools:layout_editor_absoluteY="1dp">
-                </LinearLayout>
+                    tools:layout_editor_absoluteY="1dp"></LinearLayout>
             </LinearLayout>
 
             <TextView
@@ -172,16 +166,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:trackColor="@color/oxywhite"
-                app:indicatorColor="@color/tealmain"
+                android:indeterminate="true"
                 android:progress="60"
-                app:trackThickness="5dp"
-                app:trackCornerRadius="10dp"
                 android:visibility="gone"
-                android:indeterminate="true"/>
+                app:indicatorColor="@color/tealmain"
+                app:trackColor="@color/oxywhite"
+                app:trackCornerRadius="10dp"
+                app:trackThickness="5dp" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/btn_login"
                 android:layout_width="100dp"
                 android:layout_height="38dp"
@@ -195,7 +188,8 @@
                 android:text="@string/login"
                 android:textAllCaps="false"
                 android:textColor="@color/oxywhite"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:visibility="gone" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

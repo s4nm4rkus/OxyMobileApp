@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
@@ -148,5 +149,23 @@ public class updateAccountFirst extends AppCompatActivity {
                     }
                 }
         });
+    }
+    private boolean doubleBackToExitPressedOnce = false;
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        showToast("Press back again to exit");
+
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
