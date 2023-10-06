@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/rounded_background">
+
+    <ImageView
+        android:layout_width="245dp"
+        android:layout_height="245dp"
+        android:scaleType="fitCenter"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="34dp"
+        android:src="@drawable/oxylogo1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register new user"
+            android:layout_marginTop="34dp"
+            android:layout_marginStart="24dp"
+            android:textSize="22sp"
+            android:fontFamily="@font/outfitbold"
+            android:textColor="@color/oxyblack"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_marginBottom="18dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/edittext_login"
+            android:layout_marginTop="24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="278dp"
+                android:layout_height="37dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/outfitregular"
+                android:gravity="center_vertical"
+                android:hint="Username"
+                android:paddingBottom="12dp"
+                android:textColor="@color/oxyblack"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/edittext_login"
+            android:layout_marginBottom="18dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="278dp"
+                android:layout_height="37dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:paddingBottom="12dp"
+                android:textSize="16sp"
+                android:hint="Input password"
+                android:textColor="@color/oxyblack"
+                android:fontFamily="@font/outfitregular"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/edittext_login"
+            android:layout_marginBottom="14dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="278dp"
+                android:layout_height="37dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:hint="Re-enter password"
+                android:textSize="16sp"
+                android:textColor="@color/oxyblack"
+                android:fontFamily="@font/outfitregular"
+                android:paddingBottom="12dp"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/register_newuser"
+            android:layout_width="200dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="24dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_gravity="center_horizontal"
+            android:text="Register"
+            android:gravity="center"
+            android:textColor="@color/oxywhite"
+            android:textSize="16sp"
+            android:elevation="5dp"
+            android:fontFamily="@font/outfitbold"
+            android:background="@drawable/ripple_hover_loginbtn"/>
+
+        <TextView
+            android:id="@+id/cancel_registration"
+            android:layout_width="200dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_gravity="center_horizontal"
+            android:text="Cancel"
+            android:gravity="center"
+            android:textColor="@color/oxyblack"
+            android:textSize="16sp"
+            android:elevation="5dp"
+            android:fontFamily="@font/outfitbold"
+            android:background="@drawable/ripple_hover_otherbtn"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

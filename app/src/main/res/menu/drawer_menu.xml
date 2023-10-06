@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/room_name"
+            android:title="@string/rooms"
+            android:icon="@drawable/ic_rooms"/>
+
+        <item
+            android:id="@+id/accountSetting"
+            android:title="Account Settings"
+            android:icon="@drawable/ic_account_setting"/>
+
+        <item
+            android:id="@+id/userAccountsList"
+            android:title="User Account List"
+            android:icon="@drawable/ic_account_list"/>
+
+        <item
+            android:id="@+id/logout"
+            android:title="Logout"
+            android:icon="@drawable/ic_logout"/>
+    </group>
+
+
+
+</menu>
