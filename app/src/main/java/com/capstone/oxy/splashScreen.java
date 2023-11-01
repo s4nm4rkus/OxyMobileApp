@@ -3,6 +3,8 @@ package com.capstone.oxy;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,7 +15,8 @@ import android.widget.ImageView;
 
 public class splashScreen extends AppCompatActivity {
 
-    private static final long SPLASH_DELAY = 2000; // Splash screen delay in milliseconds
+    private AnimatorSet flipAnimation;
+    private static final long SPLASH_DELAY = 5000; // Splash screen delay in milliseconds
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +38,9 @@ public class splashScreen extends AppCompatActivity {
         ImageView logoImageView = findViewById(R.id.imageView);
 
         // Load and start the splash animation
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.splash_animation);
-        logoImageView.startAnimation(animation);
+        flipAnimation = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.splash);
+        flipAnimation.setTarget(logoImageView);
+        flipAnimation.start();
 
         // Create a delayed handler to navigate to the Login activity after the splash delay
         new Handler().postDelayed(new Runnable() {

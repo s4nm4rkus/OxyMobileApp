@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/rounded_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,6 +21,8 @@
             android:textColor="@color/oxyblack"
             android:textSize="20sp" />
 
+
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -36,6 +39,61 @@
                 android:layout_margin="10dp"
                 android:padding="10dp"
                 android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/outfitregular"
+                        android:layout_margin="3dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="4dp"
+                        android:elevation="1dp"
+                        android:paddingRight="8dp"
+                        android:paddingLeft="8dp"
+                        android:text="Hour"
+                        android:textColor="@color/grey"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/outfitregular"
+                        android:layout_margin="3dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="4dp"
+                        android:elevation="1dp"
+                        android:paddingRight="8dp"
+                        android:paddingLeft="8dp"
+                        android:text="Hour"
+                        android:textColor="@color/grey" />
+
+                <HorizontalScrollView
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/switchbg"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/outfitregular"
+                        android:layout_margin="3dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="4dp"
+                        android:paddingRight="8dp"
+                        android:paddingLeft="8dp"
+                        android:background="@drawable/switch_optionbg"
+                        android:elevation="3dp"
+                        android:text="Hour"
+                        android:textColor="@color/oxyblack"/>
+
+                </HorizontalScrollView>
+                </RelativeLayout>
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/line_chart_report"

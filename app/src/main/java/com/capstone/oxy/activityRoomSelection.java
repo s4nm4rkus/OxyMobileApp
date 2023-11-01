@@ -45,10 +45,21 @@ public class activityRoomSelection extends AppCompatActivity {
             public void onClick(View v) {
                 // Create an intent to navigate to the connecting_screen activity
                 Intent intent = new Intent(activityRoomSelection.this, roomLoadingConnecting.class);
+                intent.putExtra("selectedRoom", "Room01");
+                startActivity(intent);
+            }
+        });
+
+        room102_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an intent to navigate to the connecting_screen activity
+                Intent intent = new Intent(activityRoomSelection.this, roomLoadingConnecting.class);
                 startActivity(intent);
             }
         });
     }
+
 
     // Method to handle logout button click
     public void logout(View view) {

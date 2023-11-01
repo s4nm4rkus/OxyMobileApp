@@ -2,6 +2,7 @@ package com.capstone.oxy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
@@ -82,7 +83,7 @@ public class Login extends AppCompatActivity {
                 }
                 // Check if email is empty
                 else if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(Login.this, "Oops! Your email is missing. Please enter your username to log in.", Toast.LENGTH_SHORT).show();
+                    editTextUsername.setError("Oops! Your email is missing. Please enter your username to log in.");
                     progressBar.setVisibility(View.GONE);
                     editTextUsername.setBackgroundResource(R.drawable.error_login_background);
                     editTextUsername.setHintTextColor(getResources().getColor(R.color.redoxy));

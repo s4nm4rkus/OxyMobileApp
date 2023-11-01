@@ -5,6 +5,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.InsetDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
@@ -16,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -25,7 +29,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 public class mainDashboard extends AppCompatActivity {
 
@@ -35,6 +49,11 @@ public class mainDashboard extends AppCompatActivity {
     ImageButton navHome, navReport, navTank, navGuide, navAbout, switch_room_btn, accountSetting;
     ImageButton lastClickedButton;
     FrameLayout fragmentContainer;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser currentUser;
+    FirebaseFirestore db;
+    TextView roomLabel;
+
 
     private boolean doubleBackToExitPressedOnce = false;
     private static final int DOUBLE_BACK_EXIT_DELAY = 2000;
@@ -49,6 +68,13 @@ public class mainDashboard extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
                 WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
         );
+
+        String selectedRoom = getIntent().getStringExtra("selectedRoom");
+
+        roomLabel = findViewById(R.id.RoomLabel);
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
+        db = FirebaseFirestore.getInstance();
 
         drawerLayout = findViewById(R.id.main_dashboard_container2);
         navigationView = findViewById(R.id.drawer_nav);
@@ -75,24 +101,34 @@ public class mainDashboard extends AppCompatActivity {
 
         fragmentContainer = findViewById(R.id.home_framelayout);
 
-        // Check if savedInstanceState is null and initialize the HomeFragment
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(fragmentContainer.getId(), new HomeFragment())
-                    .commit();
-            lastClickedButton = navHome;
+        if (selectedRoom != null) {
+            roomLabel.setText(getString(R.string.room101));
+            if (savedInstanceState == null) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(fragmentContainer.getId(), new HomeFragment())
+                        .commit();
+                lastClickedButton = navHome;
+
+                // Set click listeners for navigation buttons
+                navHome.setOnClickListener(new ToggleClickListener(new HomeFragment(), navHome));
+                navReport.setOnClickListener(new ToggleClickListener(new ReportsFragment(), navReport));
+                navTank.setOnClickListener(new ToggleClickListener(new TankFragment(), navTank));
+                navGuide.setOnClickListener(new ToggleClickListener(new GuideFragment(), navGuide));
+                navAbout.setOnClickListener(new ToggleClickListener(new AboutFragment(), navAbout));
+            }
+        }else{
+            roomLabel.setText(getString(R.string.room102));
+            room2Selected();
+
+            navHome.setOnClickListener(new ToggleClickListener(new HomeFragmentRoom2(), navHome));
+            navReport.setOnClickListener(new ToggleClickListener(new ReportsFragment(), navReport));
+            navTank.setOnClickListener(new ToggleClickListener(new TankFragmentRoom2(), navTank));
+            navGuide.setOnClickListener(new ToggleClickListener(new GuideFragment(), navGuide));
+            navAbout.setOnClickListener(new ToggleClickListener(new AboutFragment(), navAbout));
         }
 
-        // Set click listeners for navigation buttons
-        navHome.setOnClickListener(new ToggleClickListener(new HomeFragment(), navHome));
-        navReport.setOnClickListener(new ToggleClickListener(new ReportsFragment(), navReport));
-        navTank.setOnClickListener(new ToggleClickListener(new TankFragment(), navTank));
-        navGuide.setOnClickListener(new ToggleClickListener(new GuideFragment(), navGuide));
-        navAbout.setOnClickListener(new ToggleClickListener(new AboutFragment(), navAbout));
 
-        // Click listener for the account setting button
 
-        // Click listener for the switch room button
         switch_room_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,8 +136,54 @@ public class mainDashboard extends AppCompatActivity {
             }
         });
 
+        updateNavHeader();
+
     }
 
+    private void room2Selected() {
+        HomeFragmentRoom2 fragmentRoom2 = new HomeFragmentRoom2();
+        getSupportFragmentManager().beginTransaction()
+                .replace(fragmentContainer.getId(), fragmentRoom2)
+                .commit();
+    }
+
+    public void updateNavHeader() {
+            navigationView = (NavigationView) findViewById(R.id.drawer_nav);
+            View headerView = navigationView.getHeaderView(0);
+            TextView userName = headerView.findViewById(R.id.user_name_drawerLabel);
+            TextView userEmail = headerView.findViewById(R.id.email_drawerLabel);
+
+            userEmail.setText(currentUser.getEmail());
+
+            String userID = firebaseAuth.getUid();
+
+            if (userID != null) {
+                CollectionReference collection = db.collection("users");
+                DocumentReference document = collection.document(userID);
+
+                document.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot documentSnapshot = task.getResult();
+                            if (documentSnapshot.exists()) {
+                                String text = documentSnapshot.getString("Username");
+                                userName.setText(text);
+                            } else {
+                                // Document doesn't exist
+                                // Handle this case if needed
+                            }
+                        } else {
+                            // Handle errors, e.g., network issues or permissions problems
+                            Exception exception = task.getException();
+                            if (exception != null) {
+                                exception.printStackTrace();
+                            }
+                        }
+                    }
+                });
+            }
+        }
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -122,7 +204,6 @@ public class mainDashboard extends AppCompatActivity {
     private boolean handleNavigationItemSelected(MenuItem menuItem){
         switch (menuItem.getItemId()) {
             case R.id.room_name:
-                // Handle the "room_name" item if needed
                 break;
             case R.id.userAccountsList:
                 Intent intent = new Intent(mainDashboard.this, activity_register_newuser.class);
@@ -143,7 +224,7 @@ public class mainDashboard extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // Clear user session and navigate to login
+                        FirebaseAuth.getInstance().signOut();
                         Intent intent = new Intent(mainDashboard.this, Login.class);
                         startActivity(intent);
                         finish();

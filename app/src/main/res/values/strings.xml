@@ -5,18 +5,18 @@
     <string name="log_in">Log In</string>
     <string name="user_name">Username</string>
     <string name="password">Password</string>
-    <string name="signUptitle">Set-up your Name and Password </string>
+    <string name="signUptitle">Set-up your Username and Password </string>
     <string name="signUptitle2">for the first time.</string>
-    <string name="first_name">First name</string>
-    <string name="enter_name">Please Enter your Name:</string>
+    <string name="username">Username</string>
+    <string name="enter_username">Please provide Username (e.g.:"J. Dela Cruz)</string>
     <string name="last_name">Last name</string>
     <string name="signup_password">Password:</string>
     <string name="new_password">Set-up new password</string>
     <string name="confirm_password">Confirm password:</string>
     <string name="save">Save</string>
     <string name="select_classroom">SELECT CLASSROOM</string>
-    <string name="room101">ROOM101</string>
-    <string name="room102">ROOM102</string>
+    <string name="room101">ROOM01</string>
+    <string name="room102">ROOM02</string>
     <string name="log_out">Log out</string>
     <string name="sanitize">SANITIZE</string>
 
@@ -38,10 +38,15 @@
 
     <string name="Voc_Label_voc">VOC</string>
     <string name="Voc_lvl_num">0</string>
-    <string name="connecting">Connecting</string>
-    <string name="connecting1">Connecting.</string>
-    <string name="connecting2">Connecting..</string>
-    <string name="connecting3">Connecting...</string>
+    <string name="connecting">Loading "Room 01"</string>
+    <string name="connecting1">Loading "Room 01".</string>
+    <string name="connecting2">Loading "Room 01"..</string>
+    <string name="connecting3">Loading "Room 01"...</string>
+
+    <string name="connectingr2">Loading "Room 02"</string>
+    <string name="connecting1r2">Loading "Room 02".</string>
+    <string name="connecting2r2">Loading "Room 02"..</string>
+    <string name="connecting3r2">Loading "Room 02"...</string>
 
     <string name="misting_text"> Misting</string>
     <string name="misting_text1"> Misting.</string>
@@ -66,4 +71,13 @@
 
     <string name="navigation_drawer_open"> Open navigation drawer</string>
     <string name="navigation_drawer_close"> Close navigation drawer</string>
+    <string name="title_activity_fetch_ui">fetch_ui</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="store_text">%1$s</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

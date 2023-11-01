@@ -8,6 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
+import android.widget.Switch;
+import android.widget.TextView;
+
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
@@ -16,6 +20,9 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,6 +46,7 @@ public class ReportsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reports, container, false);
+
         linechart_report = view.findViewById(R.id.line_chart_report);
 
         Description description = new Description();
@@ -65,34 +73,37 @@ public class ReportsFragment extends Fragment {
         yAxis.setAxisLineColor(getResources().getColor(R.color.lightgrey));
         yAxis.setLabelCount(8);
 
-        List<Entry> entries1 = new ArrayList<>();
-        entries1.add(new Entry(0, 50f));
-        entries1.add(new Entry(1, 10f));
-        entries1.add(new Entry(2, 30f));
-        entries1.add(new Entry(3, 40f));
-        entries1.add(new Entry(4, 30f));
-        entries1.add(new Entry(5, 400f));
-        entries1.add(new Entry(6, 50f));
+        // Firestore data retrieval
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("sensorData")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        List<Entry> coEntries = new ArrayList<>();
+                        List<Entry> vocEntries = new ArrayList<>();
 
-        List<Entry> entries2 = new ArrayList<>();
-        entries2.add(new Entry(0, 50f));
-        entries2.add(new Entry(1, 100f));
-        entries2.add(new Entry(2, 150f));
-        entries2.add(new Entry(3, 200f));
-        entries2.add(new Entry(4, 30f));
-        entries2.add(new Entry(5, 40f));
-        entries2.add(new Entry(6, 10f));
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            // Assuming your Firestore documents have fields 'co' and 'voc'
+                            float coValue = document.getDouble("CO").floatValue();
+                            float vocValue = document.getDouble("TVOC").floatValue();
 
-        LineDataSet dataSet1 = new LineDataSet(entries1, "CO");
-        dataSet1.setColor(Color.RED);
+                            coEntries.add(new Entry(coEntries.size(), coValue));
+                            vocEntries.add(new Entry(vocEntries.size(), vocValue));
+                        }
 
-        LineDataSet dataSet2 = new LineDataSet(entries2, "VOC");
-        dataSet2.setColor(Color.GREEN);
+                        LineDataSet dataSet1 = new LineDataSet(coEntries, "CO");
+                        dataSet1.setColor(Color.RED);
 
-        LineData lineData = new LineData(dataSet1, dataSet2);
-        linechart_report.setData(lineData);
-        linechart_report.invalidate();
+                        LineDataSet dataSet2 = new LineDataSet(vocEntries, "VOC");
+                        dataSet2.setColor(Color.GREEN);
 
+                        LineData lineData = new LineData(dataSet1, dataSet2);
+                        linechart_report.setData(lineData);
+                        linechart_report.invalidate();
+                    } else {
+                        // Handle errors here
+                    }
+                });
 
         return view;
     }

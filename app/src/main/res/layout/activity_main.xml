@@ -10,16 +10,12 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="159dp"
-        android:layout_height="189dp"
-        android:layout_marginStart="123dp"
-        android:layout_marginTop="210dp"
-        android:layout_marginEnd="123dp"
-        android:layout_marginBottom="301dp"
+        android:layout_width="248dp"
+        android:layout_height="335dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.463"
-        app:srcCompat="@drawable/oxylogo" />
+        app:layout_constraintVertical_bias="0.523"
+        app:srcCompat="@drawable/oxylogo3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

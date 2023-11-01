@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
@@ -11,7 +12,7 @@
         android:id="@+id/imageView2"
         android:layout_width="203dp"
         android:layout_height="203dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,8 +22,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="520dp"
-        android:layout_marginTop="34dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="40dp"
         app:cardCornerRadius="35dp"
         app:cardElevation="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -82,7 +83,8 @@
                     android:textColor="@color/oxyblack"
                     android:textColorHint="@color/grey"
                     android:textSize="15sp"
-                    app:boxBackgroundMode="none"></EditText>
+                    app:boxBackgroundMode="none"/>
+
 
                 <LinearLayout
                     android:layout_width="154dp"
@@ -90,7 +92,7 @@
                     android:baselineAligned="false"
                     android:orientation="vertical"
                     tools:layout_editor_absoluteX="1dp"
-                    tools:layout_editor_absoluteY="1dp"></LinearLayout>
+                    tools:layout_editor_absoluteY="1dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -122,7 +124,7 @@
                     android:textColor="@color/oxyblack"
                     android:textColorHint="@color/grey"
                     android:textSize="15sp"
-                    app:boxBackgroundMode="none"></EditText>
+                    app:boxBackgroundMode="none"/>
 
                 <LinearLayout
                     android:layout_width="154dp"
@@ -130,8 +132,19 @@
                     android:baselineAligned="false"
                     android:orientation="vertical"
                     tools:layout_editor_absoluteX="1dp"
-                    tools:layout_editor_absoluteY="1dp"></LinearLayout>
+                    tools:layout_editor_absoluteY="1dp"/>
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forgot password?"
+                android:gravity="center"
+                android:textColor="@color/tealmain"
+                android:fontFamily="@font/outfitregular"
+                android:textSize="14sp"
+                android:layout_marginTop="12dp"/>
+
 
             <TextView
                 android:id="@+id/errorTextView"
@@ -150,7 +163,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="118dp"
-                android:layout_marginTop="50pt"
+                android:layout_marginTop="38pt"
                 android:layout_marginRight="100dp"
                 android:button="@drawable/check_box"
                 android:fontFamily="@font/outfitregular"
@@ -187,7 +200,7 @@
                 android:paddingTop="8dp"
                 android:text="@string/login"
                 android:textAllCaps="false"
-                android:textColor="@color/oxywhite"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:visibility="gone" />
 

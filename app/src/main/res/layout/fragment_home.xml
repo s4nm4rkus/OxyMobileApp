@@ -20,7 +20,7 @@
             android:layout_marginStart="24dp"
             android:background="@drawable/ripple_hover_otherbtn"
             android:foregroundGravity="center"
-            app:cardBackgroundColor="@color/tealmain"
+            app:cardBackgroundColor="@color/lightgrey"
             app:cardCornerRadius="100dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -57,7 +57,7 @@
                 android:fontFamily="@font/outfitsemibold"
                 android:text="@string/Co_lvl_num"
                 android:textColor="@color/oxyblack"
-                android:textSize="48sp" />
+                android:textSize="43sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -78,7 +78,7 @@
             android:layout_marginEnd="24dp"
             android:background="@drawable/ripple_hover_otherbtn"
             android:foregroundGravity="center"
-            app:cardBackgroundColor="@color/tealmain"
+            app:cardBackgroundColor="@color/lightgrey"
             app:cardCornerRadius="100dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -115,7 +115,7 @@
                 android:fontFamily="@font/outfitsemibold"
                 android:text="@string/Voc_lvl_num"
                 android:textColor="@color/oxyblack"
-                android:textSize="48sp" />
+                android:textSize="43sp" />
 
             <TextView
                 android:layout_width="wrap_content"
