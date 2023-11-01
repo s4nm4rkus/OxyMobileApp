@@ -116,7 +116,7 @@ public class activity_register_newuser extends AppCompatActivity {
                                             Log.d("TAG", "onFailure: " + e);
                                         }
                                     });
-                                    startActivity(new Intent(getApplicationContext(), mainDashboard.class));
+                                    finish();
                                 } else {
                                     progressBar.setVisibility(View.VISIBLE);
                                     Toast.makeText(activity_register_newuser.this, "An error occurred while processing your request. Please check your input and try again. " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -129,8 +129,6 @@ public class activity_register_newuser extends AppCompatActivity {
         cancelRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity_register_newuser.this, mainDashboard.class);
-                startActivity(intent);
                 finish();
             }
         });

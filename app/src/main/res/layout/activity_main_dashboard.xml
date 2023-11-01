@@ -13,15 +13,16 @@
         android:layout_height="match_parent"
         android:id="@+id/main_dashboard_container2">
 
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/drawer_nav"
-        app:headerLayout="@layout/drawer_header"
-        app:menu="@menu/drawer_menu"
-        android:layout_gravity="start"
-        app:itemTextColor="@color/oxyblack"
-        app:itemIconSize="25sp"/>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/drawer_nav"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/drawer_header"
+            app:itemIconSize="25sp"
+            app:itemIconTint="@color/tealmain"
+            app:itemTextColor="@color/oxyblack"
+            app:menu="@menu/drawer_menu" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -40,12 +41,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_menu_ham">
+
             <TextView
                 android:id="@+id/RoomLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/outfitbold"
                 android:layout_marginStart="60dp"
+                android:fontFamily="@font/outfitbold"
                 android:text="@string/room101"
                 android:textColor="@color/oxyblack"
                 android:textSize="25sp"
@@ -58,7 +60,7 @@
                 android:layout_height="20dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="92dp"
                 android:background="@drawable/bg_transparent"
                 android:contentDescription="Change Room"
                 android:elevation="5dp"

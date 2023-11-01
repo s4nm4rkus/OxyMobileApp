@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.LayerDrawable;
@@ -24,6 +25,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -80,7 +82,7 @@ public class mainDashboard extends AppCompatActivity {
         navigationView = findViewById(R.id.drawer_nav);
         toolbar = findViewById(R.id.toolbar);
         navigationView.setNavigationItemSelectedListener(menuItem -> handleNavigationItemSelected(menuItem));
-
+        toolbar.setNavigationIcon(R.drawable.ic_menu_ham);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
 
