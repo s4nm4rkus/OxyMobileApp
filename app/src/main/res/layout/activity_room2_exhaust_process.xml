@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@drawable/background"
+tools:context=".activityRoom2ExhaustProcess">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/exhausting_logo"
+    android:layout_width="wrap_content"
+    android:layout_height="270dp"
+    android:layout_marginTop="160dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+
+    <ImageView
+        android:id="@+id/exhaust_fan"
+        android:layout_width="230dp"
+        android:layout_height="320dp"
+        android:layout_marginStart="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/exhaust_fan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="180dp"
+        android:layout_height="250dp"
+        android:layout_marginEnd="20dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/exhausting_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<ImageView
+    android:id="@+id/shadow_logo"
+    android:layout_width="130dp"
+    android:layout_height="20sp"
+    android:layout_marginTop="50dp"
+    android:alpha="0.8"
+    android:scaleType="fitCenter"
+    android:src="@drawable/logo_shadow_eleipse"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/exhausting_logo" />
+
+<TextView
+    android:id="@+id/exhausting_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:fontFamily="@font/outfitsemibold"
+    android:gravity="center"
+    android:text="@string/exhausting_text"
+    android:textColor="@color/white"
+    android:textSize="25sp"
+    android:textStyle="italic"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/shadow_logo" />
+
+<LinearLayout
+    android:id="@+id/linearLayout7"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="52dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/exhausting_text">
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/ic_info" />
+
+    <TextView
+        android:id="@+id/misting_text_note"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:fontFamily="@font/outfitregular"
+        android:gravity="left"
+        android:text="Please wait until the sanitation is done."
+        android:textColor="@color/oxyblack"
+        android:textSize="14sp"/>
+</LinearLayout>
+
+<TextView
+    android:id="@+id/exhausting_time"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="108dp"
+    android:layout_marginEnd="132dp"
+    android:elevation="5dp"
+    android:fontFamily="@font/outfitsemibold"
+    android:text="00:00"
+    android:textColor="@color/tealmain"
+    android:textSize="30sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+<com.google.android.material.progressindicator.CircularProgressIndicator
+    android:layout_width="23dp"
+    android:layout_height="25dp"
+    android:layout_marginStart="132dp"
+    android:layout_marginTop="113dp"
+    android:layout_marginEnd="3dp"
+    android:elevation="5dp"
+    android:indeterminate="true"
+    android:progress="50"
+    app:indicatorColor="@color/tealmain"
+    app:indicatorSize="20sp"
+    app:layout_constraintEnd_toStartOf="@+id/exhausting_time"
+    app:layout_constraintHorizontal_bias="0.769"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:trackColor="#C898F3E5"
+    app:trackThickness="10dp" />
+
+<ImageButton
+    android:id="@+id/home_btn_onprocess"
+    android:layout_width="33dp"
+    android:layout_height="33dp"
+    android:layout_marginTop="36dp"
+    android:background="?android:attr/selectableItemBackgroundBorderless"
+    android:scaleType="fitCenter"
+    android:src="@drawable/default_home_icon"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
