@@ -3,7 +3,6 @@ package com.capstone.oxy;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,12 +19,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 
 
 public class HomeFragmentRoom2 extends Fragment {
@@ -111,7 +105,7 @@ public class HomeFragmentRoom2 extends Fragment {
                         int tvocValue = Integer.parseInt(String.valueOf(sensorValue));
                         if (tvocValue >= 0 && tvocValue <= 50) {
                             progressIndicator_voc_bg.setCardBackgroundColor(getResources().getColor(R.color.tealmain));
-                        } else if (tvocValue > 50 && tvocValue < 100) {
+                        } else if (tvocValue > 50 && tvocValue <= 100) {
                             progressIndicator_voc_bg.setCardBackgroundColor(getResources().getColor(R.color.yellow));
                         } else if (tvocValue > 100 && tvocValue <= 200) {
                             progressIndicator_voc_bg.setCardBackgroundColor(getResources().getColor(R.color.orangeoxy));
@@ -139,12 +133,35 @@ public class HomeFragmentRoom2 extends Fragment {
 
         updateAQI();
 
-        //From Users decision, When the user needs to sanitize at any time
-        SanitizeBtn.setOnClickListener(new View.OnClickListener() {
+        homeViewModel.getGlobalProcessEstateLiveDataRoom2().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), activity_start_sanitation.class);
-                startActivity(intent);
+            public void onChanged(String globalState) {
+                if (globalState.equals("OFF")) {
+                    SanitizeBtn.setElevation(8);
+                    SanitizeBtn.setText("Sanitize");
+                    SanitizeBtn.setTextSize(17);
+                    SanitizeBtn.setTextColor(getResources().getColor(R.color.oxyblack));
+                    SanitizeBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            homeViewModel.setOnGoingProcessValueRoom2("YES");
+                            Intent intent = new Intent(getActivity(), Room2InitialDelay.class);
+                            startActivity(intent);
+                        }
+                    });
+                } else if (globalState.equals("ON")) {
+                    // Disable the button and display a message
+                    SanitizeBtn.setElevation(0);
+                    SanitizeBtn.setText("On Process...");
+                    SanitizeBtn.setTextSize(16);
+                    SanitizeBtn.setTextColor(getResources().getColor(R.color.grey));
+                    SanitizeBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(getActivity(), "The sanitation process is ongoing, please wait.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
 
@@ -195,7 +212,7 @@ public class HomeFragmentRoom2 extends Fragment {
             Aqi_lvl_desc.setPadding(0, 0, 0, 20);
             Aqi_lvl_subdesc.setVisibility(View.VISIBLE);
             Toast.makeText(getActivity(), "Warning: Indoor air quality is currently unhealthy.", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getActivity(), activity_start_sanitation.class);
+            Intent intent = new Intent(getActivity(), Room2InitialDelay.class);
             intent.putExtra("progressValue", value);
             startActivity(intent);
 

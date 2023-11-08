@@ -112,6 +112,7 @@ public class mainDashboard extends AppCompatActivity {
                 lastClickedButton = navHome;
 
                 // Set click listeners for navigation buttons
+
                 navHome.setOnClickListener(new ToggleClickListener(new HomeFragment(), navHome));
                 navReport.setOnClickListener(new ToggleClickListener(new ReportsFragment(), navReport));
                 navTank.setOnClickListener(new ToggleClickListener(new TankFragment(), navTank));
@@ -208,7 +209,7 @@ public class mainDashboard extends AppCompatActivity {
             case R.id.room_name:
                 break;
             case R.id.userAccountsList:
-                Intent intent = new Intent(mainDashboard.this, activity_register_newuser.class);
+                Intent intent = new Intent(mainDashboard.this, ListOfUserAccount.class);
                 startActivity(intent);
                 break;
             case R.id.logout:

@@ -47,7 +47,7 @@
                 android:layout_marginEnd="300dp"
                 android:layout_marginBottom="0dp"
                 android:fontFamily="@font/outfitextrabold"
-                android:text="@string/log_in"
+                android:text="@string/login"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/oxyblack"
@@ -73,17 +73,19 @@
                     android:layout_gravity="center"
                     android:background="@drawable/edittext_login"
                     android:drawableStart="@drawable/ic_user"
+                    android:drawablePadding="5dp"
                     android:elevation="5dp"
                     android:fontFamily="@font/outfitlight"
                     android:hint="@string/user_name"
-                    android:paddingLeft="18dp"
+                    android:paddingLeft="12dp"
                     android:paddingTop="10dp"
-                    android:paddingRight="18dp"
+                    android:paddingRight="12dp"
                     android:paddingBottom="10dp"
+                    android:singleLine="true"
                     android:textColor="@color/oxyblack"
                     android:textColorHint="@color/grey"
                     android:textSize="15sp"
-                    app:boxBackgroundMode="none"/>
+                    app:boxBackgroundMode="none" />
 
 
                 <LinearLayout
@@ -113,18 +115,20 @@
                     android:layout_gravity="center"
                     android:background="@drawable/edittext_login"
                     android:drawableStart="@drawable/ic_password"
+                    android:drawablePadding="5dp"
                     android:elevation="3dp"
                     android:fontFamily="@font/outfitlight"
                     android:hint="Password"
                     android:inputType="textPassword"
-                    android:paddingLeft="18dp"
+                    android:paddingLeft="12dp"
                     android:paddingTop="5dp"
-                    android:paddingRight="18dp"
+                    android:paddingRight="12dp"
                     android:paddingBottom="5dp"
+                    android:singleLine="true"
                     android:textColor="@color/oxyblack"
                     android:textColorHint="@color/grey"
                     android:textSize="15sp"
-                    app:boxBackgroundMode="none"/>
+                    app:boxBackgroundMode="none" />
 
                 <LinearLayout
                     android:layout_width="154dp"

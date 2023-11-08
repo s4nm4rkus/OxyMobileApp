@@ -2,6 +2,7 @@ package com.capstone.oxy;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -15,8 +16,9 @@ import android.widget.Toast;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
-public class activity_start_sanitation extends AppCompatActivity {
+public class activityInitialDelaySanitation extends AppCompatActivity {
 
+    private HomeViewModel homeViewModel;
     private CountDownTimer countDownTimer;
     CircularProgressIndicator timer_indicator;
     ImageView warning_sign;
@@ -27,8 +29,10 @@ public class activity_start_sanitation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
         // Set the layout for this activity
-        setContentView(R.layout.activity_start_sanitation);
+        setContentView(R.layout.activity_initial_delay_sanitation);
 
         // Set the status bar color to teal
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.tealmain));
@@ -91,24 +95,24 @@ public class activity_start_sanitation extends AppCompatActivity {
         }
 
         // Initialize and start a countdown timer
-        countDownTimer = new CountDownTimer(1 * 60 * 100, 100) {
+        countDownTimer = new CountDownTimer(5 * 60 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateTimerUI(millisUntilFinished);
 
-                int progress = (int) (millisUntilFinished / (5 * 60 * 1000.0) * 100.0);
+                int progress = (int) (100 * millisUntilFinished / (5 * 60 * 1000));
 
                 timer_indicator.setProgress(progress);
             }
 
             @Override
             public void onFinish() {
+                homeViewModel.setMistingSanitationValue("ON");
                 stopTimer();
-                // Show a toast message when the timer finishes
-                Toast.makeText(activity_start_sanitation.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
-                // Navigate to the activity_misting activity
-                Intent intent = new Intent(activity_start_sanitation.this, activityMistingProcess.class);
+                Toast.makeText(activityInitialDelaySanitation.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(activityInitialDelaySanitation.this, activityMistingProcess.class);
                 startActivity(intent);
+                finish();
             }
         };
 
@@ -116,13 +120,13 @@ public class activity_start_sanitation extends AppCompatActivity {
         proceed_sanitation_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Show a toast message
-                Toast.makeText(activity_start_sanitation.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
-                // Navigate to the activity_misting activity
-                Intent intent = new Intent(activity_start_sanitation.this, activityMistingProcess.class);
+                homeViewModel.setInitialDelayValue("OFF");
+                homeViewModel.setMistingSanitationValue("ON");
+                Toast.makeText(activityInitialDelaySanitation.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(activityInitialDelaySanitation.this, activityMistingProcess.class);
                 startActivity(intent);
-                // Cancel the countdown timer
                 countDownTimer.cancel();
+                finish();
             }
         });
 

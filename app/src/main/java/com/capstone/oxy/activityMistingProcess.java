@@ -3,9 +3,12 @@ package com.capstone.oxy;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -15,6 +18,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +42,8 @@ public class activityMistingProcess extends AppCompatActivity {
     private String[] mistingPhrases;
     private CountDownTimer countDownTimer;
     private int currentPhraseIndex = 0;
+    private ImageButton imageHomeButton;
+    HomeViewModel homeViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +59,10 @@ public class activityMistingProcess extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
         );
 
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
         // Initialize UI elements
+        imageHomeButton = findViewById(R.id.home_btn_onprocess);
         mistingLogoLayout = findViewById(R.id.misting_logo);
         misting_duration = findViewById(R.id.misting_time);
         mistingText = findViewById(R.id.misting_text);
@@ -83,8 +92,7 @@ public class activityMistingProcess extends AppCompatActivity {
         scaleAnimator.setRepeatCount(ObjectAnimator.INFINITE);
         scaleAnimator.setRepeatMode(ObjectAnimator.REVERSE);
 
-        // Initialize and start a countdown timer
-        countDownTimer = new CountDownTimer(1 * 60 * 100, 1000) {
+        countDownTimer = new CountDownTimer(10 * 60 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateTimerUI(millisUntilFinished);
@@ -96,8 +104,9 @@ public class activityMistingProcess extends AppCompatActivity {
                 // Show a toast message when the timer finishes
                 Toast.makeText(activityMistingProcess.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
                 // Navigate to the activity_soaking activity
-                Intent intent = new Intent(activityMistingProcess.this, activity_soaking.class);
+                Intent intent = new Intent(activityMistingProcess.this, activitySoakingProcess.class);
                 startActivity(intent);
+                finish();
             }
         };
 
@@ -105,7 +114,43 @@ public class activityMistingProcess extends AppCompatActivity {
         startTimer();
         scaleAnimator.start();
         startTextAnimation();
+
+        imageHomeButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               returnHome();
+           }
+        });
     }
+
+    @Override
+    public void onBackPressed() {
+        returnHome();
+    }
+
+    public void returnHome() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Exit Confirmation")
+                .setMessage("Would you like the sanitization process to continue in the background?")
+                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(activityMistingProcess.this, mainDashboard.class);
+                        intent.putExtra("selectedRoom", "Room01");
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
+
 
     private void updateTimerUI(long millisUntilFinished) {
         int seconds = (int) (millisUntilFinished / 1000);

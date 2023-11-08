@@ -6,6 +6,8 @@ import androidx.core.content.ContextCompat;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -16,6 +18,7 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +27,7 @@ public class activityExhaustProcess extends AppCompatActivity {
 
     private Handler handler = new Handler(Looper.getMainLooper());
     private boolean animationRunning = true;
+    private ImageButton imageHomeButton;
     private ConstraintLayout exhaustingLogoLayout;
     private TextView exhausting_Text, exhausting_duration;
     private String[] exhaust_Phrases;
@@ -52,6 +56,7 @@ public class activityExhaustProcess extends AppCompatActivity {
         exhaustingLogoLayout = findViewById(R.id.exhausting_logo);
         exhausting_duration = findViewById(R.id.exhausting_time);
         exhausting_Text = findViewById(R.id.exhausting_text);
+        imageHomeButton = findViewById(R.id.home_btn_onprocess);
 
         // Define phrases for text animation
         exhaust_Phrases = new String[] {
@@ -76,7 +81,7 @@ public class activityExhaustProcess extends AppCompatActivity {
         scaleAnimator.setRepeatMode(ObjectAnimator.REVERSE);
 
         // Initialize and start a countdown timer
-        countDownTimer = new CountDownTimer(1 * 60 * 100, 1000) {
+        countDownTimer = new CountDownTimer(10 * 60 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateTimerUI(millisUntilFinished);
@@ -96,7 +101,42 @@ public class activityExhaustProcess extends AppCompatActivity {
         startTextAnimation();
         scaleAnimator.start();
         startRotationAnimation();
+
+        imageHomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                returnHome();
+            }
+        });
     }
+
+    @Override
+    public void onBackPressed() {
+        returnHome();
+    }
+
+    public void returnHome() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Exit Confirmation")
+                .setMessage("Would you like the sanitization process to continue in the background?")
+                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(activityExhaustProcess.this, mainDashboard.class);
+                        intent.putExtra("selectedRoom", "Room01");
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
 
     private void updateTimerUI(long millisUntilFinished) {
         int seconds = (int) (millisUntilFinished / 1000);

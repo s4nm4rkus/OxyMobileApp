@@ -46,9 +46,10 @@ public class doneSanitation extends AppCompatActivity {
             public void run() {
                 // Create an intent to start the main_dashboard activity
                 Intent intent = new Intent(doneSanitation.this, mainDashboard.class);
+                intent.putExtra("selectedRoom", "Room01");
                 startActivity(intent);
                 finish(); // Finish the current activity to prevent going back to it
             }
-        }, 60000); // Delay in milliseconds (60 seconds)
+        }, 10000);
     }
 }

@@ -247,7 +247,6 @@
                 android:layout_height="40dp"
                 android:layout_margin="8dp"
                 android:background="@drawable/ripple_hover_otherbtn"
-                android:elevation="8dp"
                 android:fontFamily="@font/outfitbold"
                 android:paddingStart="20dp"
                 android:paddingTop="10dp"

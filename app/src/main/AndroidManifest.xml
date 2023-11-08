@@ -14,9 +14,43 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Oxy"
         tools:targetApi="33">
-
         <activity
-            android:name=".activity_register_newuser"
+            android:name=".Room2InitialDelay"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activityRoom2ExhaustProcess"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activityRoom2SoakingProcess"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activityRoom2Misting"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ListOfUserAccount"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activityRegisterNewuser"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -44,7 +78,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity_soaking"
+            android:name=".activitySoakingProcess"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -58,7 +92,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity_start_sanitation"
+            android:name=".activityInitialDelaySanitation"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

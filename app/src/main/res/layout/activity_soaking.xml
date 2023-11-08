@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".activity_soaking">
+    tools:context=".activitySoakingProcess">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/soaking_logo"
@@ -114,5 +114,19 @@
             android:textColor="@color/oxyblack"
             android:textSize="14sp"/>
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/home_btn_onprocess"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="36dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:scaleType="fitCenter"
+        android:src="@drawable/default_home_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

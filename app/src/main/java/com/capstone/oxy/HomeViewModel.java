@@ -14,12 +14,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class HomeViewModel extends ViewModel {
-    //room1
+
     private final DatabaseReference sensorDataCO, room2CO;
     private final DatabaseReference sensorDataTVOC, room2VOC;
     private final DatabaseReference sensorDataTank, room2Tank;
+    private final DatabaseReference isOngoingProcess, isOngoingProcessRoom2;
+    private final DatabaseReference initialDelay, mistingSanitation, initialDelayRoom2, mistingSanitationRoom2;
+    private final DatabaseReference globalProcessEstate, globalProcessEstateRoom2;
 
-    // Create LiveData objects for CO and TVOC (room1)
     private MutableLiveData<Long> coLiveData = new MutableLiveData<>();
     private MutableLiveData<Long> tvocLiveData = new MutableLiveData<>();
     private final MutableLiveData<Long> tankLevelLiveData = new MutableLiveData<>();
@@ -28,8 +30,8 @@ public class HomeViewModel extends ViewModel {
     private MutableLiveData<Long> tvocLiveData2 = new MutableLiveData<>();
     private final MutableLiveData<Long> tankLevelLiveData2 = new MutableLiveData<>();
 
-
-
+    private MutableLiveData<String> globalProcessEstateLiveData = new MutableLiveData<>();
+    private MutableLiveData<String> globalProcessEstateLiveDataRoom2 = new MutableLiveData<>();
 
     public HomeViewModel() {
         //room01
@@ -41,7 +43,45 @@ public class HomeViewModel extends ViewModel {
         room2VOC = FirebaseDatabase.getInstance().getReference("Room_2").child("TVOC");
         room2Tank = FirebaseDatabase.getInstance().getReference("Room_2").child("TANK-LEVEL");
 
-        // Add ValueEventListener to update LiveData (room01)
+        isOngoingProcess = FirebaseDatabase.getInstance().getReference("Room_1").child("isOngoing");
+        isOngoingProcessRoom2 = FirebaseDatabase.getInstance().getReference("Room_2").child("isOngoing");
+
+        initialDelay = FirebaseDatabase.getInstance().getReference("Room_1").child("EXEC-PROCESS").child("INITIAL-DELAY-STATE");
+        mistingSanitation = FirebaseDatabase.getInstance().getReference("Room_1").child("EXEC-PROCESS").child("ATOM-SANI-STATE");
+
+        initialDelayRoom2 = FirebaseDatabase.getInstance().getReference("Room_2").child("EXEC-PROCESS").child("INITIAL-DELAY-STATE");
+        mistingSanitationRoom2 = FirebaseDatabase.getInstance().getReference("Room_2").child("EXEC-PROCESS").child("ATOM-SANI-STATE");
+
+        globalProcessEstate = FirebaseDatabase.getInstance().getReference("Room_1").child("EXEC-PROCESS").child("GLOBAL-STATE");
+        globalProcessEstateRoom2 = FirebaseDatabase.getInstance().getReference("Room_2").child("EXEC-PROCESS").child("GLOBAL-STATE");
+
+
+        globalProcessEstate.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String globalEstate = snapshot.getValue(String.class);
+                globalProcessEstateLiveData.setValue(globalEstate);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle the error if needed
+            }
+        });
+
+        globalProcessEstateRoom2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String globalEstate = snapshot.getValue(String.class);
+                globalProcessEstateLiveDataRoom2.setValue(globalEstate);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle the error if needed
+            }
+        });
+
         sensorDataCO.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -123,9 +163,7 @@ public class HomeViewModel extends ViewModel {
             }
         });
 
-
     }
-    //room01
     public LiveData<Long> getCoLiveData() {
         return coLiveData;
     }
@@ -147,5 +185,34 @@ public class HomeViewModel extends ViewModel {
     }
 
 
+    public void setOnGoingProcessValue(String value) {
+        isOngoingProcess.setValue(value);
+    }
 
+    public void setOnGoingProcessValueRoom2(String value) {
+        isOngoingProcessRoom2.setValue(value);
+    }
+
+    public void setInitialDelayValue(String value) {
+        initialDelay.setValue(value);
+    }
+
+    public void setMistingSanitationValue(String value) {
+        mistingSanitation.setValue(value);
+    }
+
+    public void setInitialDelayRoom2Value(String value) {
+        initialDelayRoom2.setValue(value);
+    }
+
+    public void setMistingSanitationRoom2Value(String value) {
+        mistingSanitationRoom2.setValue(value);
+    }
+    public LiveData<String> getGlobalProcessEstateLiveData() {
+        return globalProcessEstateLiveData;
+    }
+
+    public LiveData<String> getGlobalProcessEstateLiveDataRoom2() {
+        return globalProcessEstateLiveDataRoom2;
+    }
 }

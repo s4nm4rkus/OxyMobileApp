@@ -47,6 +47,7 @@
                     android:layout_gravity="center">
 
                     <TextView
+                        android:visibility="gone"                        
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/outfitregular"
@@ -60,6 +61,7 @@
                         android:textColor="@color/grey"/>
 
                     <TextView
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/outfitregular"
@@ -73,6 +75,7 @@
                         android:textColor="@color/grey" />
 
                 <HorizontalScrollView
+                    android:visibility="gone"
                     android:layout_width="150dp"
                     android:layout_height="30dp"
                     android:background="@drawable/switchbg"

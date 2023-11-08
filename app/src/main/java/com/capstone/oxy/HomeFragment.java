@@ -3,7 +3,6 @@ package com.capstone.oxy;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
 
 
 public class HomeFragment extends Fragment {
@@ -139,25 +139,41 @@ public class HomeFragment extends Fragment {
 
         updateAQI();
 
-        //From Users decision, When the user needs to sanitize at any time
-        SanitizeBtn.setOnClickListener(new View.OnClickListener() {
+        homeViewModel.getGlobalProcessEstateLiveData().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), activity_start_sanitation.class);
-                startActivity(intent);
+            public void onChanged(String globalState) {
+                if (globalState.equals("OFF")) {
+                    SanitizeBtn.setElevation(8);
+                    SanitizeBtn.setText("Sanitize");
+                    SanitizeBtn.setTextSize(17);
+                    SanitizeBtn.setTextColor(getResources().getColor(R.color.oxyblack));
+                    SanitizeBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            homeViewModel.setOnGoingProcessValue("YES");
+                            Intent intent = new Intent(getActivity(), activityInitialDelaySanitation.class);
+                            startActivity(intent);
+                        }
+                    });
+                } else if (globalState.equals("ON")) {
+                    // Disable the button and display a message
+                    SanitizeBtn.setElevation(0);
+                    SanitizeBtn.setText("On Process...");
+                    SanitizeBtn.setTextSize(16);
+                    SanitizeBtn.setTextColor(getResources().getColor(R.color.grey));
+                    SanitizeBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(getActivity(), "The sanitation process is ongoing, please wait.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
-
-        //Unnecessary, naglagay lang po ako to stop the timer to prevent overlapping or error when i'm checking my UI
-        cardView_Aqi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
         return view;
     }
+
+
 
     private void updateAQI() {
         int coValue = 0;
@@ -195,7 +211,7 @@ public class HomeFragment extends Fragment {
             Aqi_lvl_desc.setPadding(0, 0, 0, 20);
             Aqi_lvl_subdesc.setVisibility(View.VISIBLE);
             Toast.makeText(getActivity(), "Warning: Indoor air quality is currently unhealthy.", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getActivity(), activity_start_sanitation.class);
+            Intent intent = new Intent(getActivity(), activityInitialDelaySanitation.class);
             intent.putExtra("progressValue", value);
             startActivity(intent);
 

@@ -7,7 +7,6 @@ import androidx.core.content.ContextCompat;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -30,7 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class activity_register_newuser extends AppCompatActivity {
+public class activityRegisterNewuser extends AppCompatActivity {
 
     TextView registerNewUser, cancelRegistration;
     TextInputEditText newEmail, newUserPass, confirmUserPass, userName;
@@ -94,12 +93,12 @@ public class activity_register_newuser extends AppCompatActivity {
 
                 // Create user with email and password
                 firebaseAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(activity_register_newuser.this, new OnCompleteListener<AuthResult>() {
+                        .addOnCompleteListener(activityRegisterNewuser.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     progressBar.setVisibility(View.VISIBLE);
-                                    Toast.makeText(activity_register_newuser.this, "User has been created", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(activityRegisterNewuser.this, "User has been created", Toast.LENGTH_SHORT).show();
                                     userAccountId = firebaseAuth.getCurrentUser().getUid();
                                     DocumentReference documentReference = firebaseFirestore.collection("users").document(userAccountId);
                                     Map<String, Object> users = new HashMap<>();
@@ -119,7 +118,7 @@ public class activity_register_newuser extends AppCompatActivity {
                                     finish();
                                 } else {
                                     progressBar.setVisibility(View.VISIBLE);
-                                    Toast.makeText(activity_register_newuser.this, "An error occurred while processing your request. Please check your input and try again. " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(activityRegisterNewuser.this, "An error occurred while processing your request. Please check your input and try again. " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -152,10 +151,7 @@ public class activity_register_newuser extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(activity_register_newuser.this, mainDashboard.class);
-                        startActivity(intent);
                         finish();
-                        finishAffinity();
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {

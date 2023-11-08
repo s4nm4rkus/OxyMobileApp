@@ -6,6 +6,8 @@ import androidx.core.content.ContextCompat;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -15,11 +17,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class activity_soaking extends AppCompatActivity {
+public class activitySoakingProcess extends AppCompatActivity {
 
     private Handler handler = new Handler(Looper.getMainLooper());
     private boolean animationRunning = true;
@@ -28,6 +31,7 @@ public class activity_soaking extends AppCompatActivity {
     private String[] soaking_Phrases;
     private CountDownTimer countDownTimer;
     private int currentPhraseIndex = 0;
+    private ImageButton imageHomeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class activity_soaking extends AppCompatActivity {
         );
 
         // Initialize UI elements
+        imageHomeButton = findViewById(R.id.home_btn_onprocess);
         soakingLogoLayout = findViewById(R.id.soaking_logo);
         soaking_duration = findViewById(R.id.soaking_time);
         soaking_Text = findViewById(R.id.soaking_text);
@@ -73,7 +78,7 @@ public class activity_soaking extends AppCompatActivity {
         scaleAnimator.setRepeatMode(ObjectAnimator.REVERSE);
 
         // Initialize and start a countdown timer
-        countDownTimer = new CountDownTimer(1 * 60 * 100, 100) {
+        countDownTimer = new CountDownTimer(10 * 60 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateTimerUI(millisUntilFinished);
@@ -83,9 +88,9 @@ public class activity_soaking extends AppCompatActivity {
             public void onFinish() {
                 stopTimer();
                 // Show a toast message when the timer finishes
-                Toast.makeText(activity_soaking.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activitySoakingProcess.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
                 // Navigate to the activity_exhausting activity
-                Intent intent = new Intent(activity_soaking.this, activityExhaustProcess.class);
+                Intent intent = new Intent(activitySoakingProcess.this, activityExhaustProcess.class);
                 startActivity(intent);
             }
         };
@@ -94,6 +99,13 @@ public class activity_soaking extends AppCompatActivity {
         startTimer();
         scaleAnimator.start();
         startTextAnimation();
+
+        imageHomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                returnHome();
+            }
+        });
     }
 
     private void updateTimerUI(long millisUntilFinished) {
@@ -130,6 +142,33 @@ public class activity_soaking extends AppCompatActivity {
                 handler.postDelayed(this, 700);
             }
         }, 700);
+    }
+
+    @Override
+    public void onBackPressed() {
+        returnHome();
+    }
+
+    public void returnHome() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Exit Confirmation")
+                .setMessage("Would you like the sanitization process to continue in the background?")
+                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(activitySoakingProcess.this, mainDashboard.class);
+                        intent.putExtra("selectedRoom", "Room01");
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
     }
 
     // Finish the activity when paused
