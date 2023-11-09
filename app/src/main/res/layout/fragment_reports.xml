@@ -25,7 +25,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="510dp"
             android:layout_marginStart="14dp"
             android:layout_marginTop="48dp"
             android:layout_marginEnd="14dp"
@@ -40,71 +40,48 @@
                 android:padding="10dp"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="24dp"
-                    android:layout_gravity="center">
+                    android:text="Indoor Air Quality"
+                    android:textSize="18sp"
+                    android:textColor="@color/oxyblack"
+                    android:fontFamily="@font/outfitsemibold"
+                    android:layout_gravity="center"
+                    android:padding="5dp"/>
 
-                    <TextView
-                        android:visibility="gone"                        
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <Button
+                        android:id="@+id/datePickerButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/outfitregular"
-                        android:layout_margin="3dp"
-                        android:paddingTop="3dp"
-                        android:paddingBottom="4dp"
-                        android:elevation="1dp"
-                        android:paddingRight="8dp"
-                        android:paddingLeft="8dp"
-                        android:text="Hour"
-                        android:textColor="@color/grey"/>
+                        android:backgroundTint="@color/tealmain"
+                        android:text="Select Date"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:visibility="gone"
+                        android:id="@+id/dateTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/outfitregular"
-                        android:layout_margin="3dp"
-                        android:paddingTop="3dp"
-                        android:paddingBottom="4dp"
-                        android:elevation="1dp"
-                        android:paddingRight="8dp"
-                        android:paddingLeft="8dp"
-                        android:text="Hour"
-                        android:textColor="@color/grey" />
+                        android:textColor="@color/oxyblack"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="4.5dp"
+                        android:text="Selected Date: " />
 
-                <HorizontalScrollView
-                    android:visibility="gone"
-                    android:layout_width="150dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/switchbg"
-                    android:layout_gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/outfitregular"
-                        android:layout_margin="3dp"
-                        android:paddingTop="3dp"
-                        android:paddingBottom="4dp"
-                        android:paddingRight="8dp"
-                        android:paddingLeft="8dp"
-                        android:background="@drawable/switch_optionbg"
-                        android:elevation="3dp"
-                        android:text="Hour"
-                        android:textColor="@color/oxyblack"/>
-
-                </HorizontalScrollView>
-                </RelativeLayout>
+                </LinearLayout>
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/line_chart_report"
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"/>
-                         </LinearLayout>
-
-
+                    android:layout_height="350dp"
+                    android:layout_marginBottom="120dp"/>
+            </LinearLayout>
 
         </ScrollView>
     </RelativeLayout>

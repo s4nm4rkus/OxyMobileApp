@@ -124,7 +124,7 @@ public class mainDashboard extends AppCompatActivity {
             room2Selected();
 
             navHome.setOnClickListener(new ToggleClickListener(new HomeFragmentRoom2(), navHome));
-            navReport.setOnClickListener(new ToggleClickListener(new ReportsFragment(), navReport));
+            navReport.setOnClickListener(new ToggleClickListener(new ReportFragmentRoom2(), navReport));
             navTank.setOnClickListener(new ToggleClickListener(new TankFragmentRoom2(), navTank));
             navGuide.setOnClickListener(new ToggleClickListener(new GuideFragment(), navGuide));
             navAbout.setOnClickListener(new ToggleClickListener(new AboutFragment(), navAbout));

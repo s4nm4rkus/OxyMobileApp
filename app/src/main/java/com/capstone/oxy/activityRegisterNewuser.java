@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ public class activityRegisterNewuser extends AppCompatActivity {
     FirebaseFirestore firebaseFirestore;
     String userAccountId;
     CircularProgressIndicator progressBar;
+    CheckBox adminChkbx;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -48,6 +50,8 @@ public class activityRegisterNewuser extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
                 WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
         );
+
+        adminChkbx = findViewById(R.id.checkBoxAdminSelect);
         userName = findViewById(R.id.userName);
         newEmail = findViewById(R.id.new_email);
         newUserPass = findViewById(R.id.new_userPassword);
@@ -104,6 +108,9 @@ public class activityRegisterNewuser extends AppCompatActivity {
                                     Map<String, Object> users = new HashMap<>();
                                     users.put("Username", username);
                                     users.put("Email", email);
+                                    if(adminChkbx.isChecked()){
+                                        users.put("USER-LEVEL", "Administrator");
+                                    }
                                     documentReference.set(users).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {

@@ -60,10 +60,10 @@ public class TankFragmentRoom2 extends Fragment {
         if (tankLevel <= 15) {
             liquidSanitizer.setBackgroundResource(R.drawable.liquid_sanitizer_low);
             sanitizerLevel.setTextColor(getResources().getColor(R.color.redoxy));
-        } else if (tankLevel <= 31) {
+        } else if (tankLevel >= 16 && tankLevel <=30 ) {
             liquidSanitizer.setBackgroundResource(R.drawable.liquid_sanitizer_mid);
             sanitizerLevel.setTextColor(getResources().getColor(R.color.yellow));
-        } else if (tankLevel <= 51) {
+        } else if (tankLevel >= 31) {
             liquidSanitizer.setBackgroundResource(R.drawable.liquid_sanitizer);
             sanitizerLevel.setTextColor(getResources().getColor(R.color.sanitizer_lvl_blue));
         }
