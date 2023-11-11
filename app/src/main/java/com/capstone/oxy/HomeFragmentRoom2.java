@@ -1,8 +1,11 @@
 package com.capstone.oxy;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -144,9 +147,7 @@ public class HomeFragmentRoom2 extends Fragment {
                     SanitizeBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            homeViewModel.setOnGoingProcessValueRoom2("YES");
-                            Intent intent = new Intent(getActivity(), Room2InitialDelay.class);
-                            startActivity(intent);
+                            confirmClick();
                         }
                     });
                 } else if (globalState.equals("ON")) {
@@ -174,6 +175,27 @@ public class HomeFragmentRoom2 extends Fragment {
         });
 
         return view;
+    }
+
+    private void confirmClick() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Start Sanitation")
+                .setMessage("Would you like to start the manual sanitization process? You cannot undo this action.")
+                .setPositiveButton("Start", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        homeViewModel.setOnGoingProcessValueRoom2("YES");
+                        Intent intent = new Intent(getActivity(), Room2InitialDelay.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
     }
 
     private void updateAQI() {
@@ -205,26 +227,45 @@ public class HomeFragmentRoom2 extends Fragment {
             setAqiLevel(R.color.tealmain, R.string.Aqi_lvl_desc);
         }else if (value > 50 && value <= 100) {
             setAqiLevel(R.color.yellow, R.string.Aqi_lvl_desc_moderate);
-        } else if (value >= 101 && value <= 200) {
-            setAqiLevel(R.color.orangeoxy, R.string.Aqi_lvl_desc_unhealthy1);
-            // Add the Toast and Intent code here
-            Aqi_lvl_desc.setTextSize(22);
-            Aqi_lvl_desc.setPadding(0, 0, 0, 20);
-            Aqi_lvl_subdesc.setVisibility(View.VISIBLE);
-            Toast.makeText(getActivity(), "Warning: Indoor air quality is currently unhealthy.", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getActivity(), Room2InitialDelay.class);
-            intent.putExtra("progressValue", value);
-            startActivity(intent);
+        } else {
 
-        } else if (value > 200 && value <= 300) {
-            setAqiLevel(R.color.redoxy, R.string.Aqi_lvl_desc_unhealthy2);
-        } else if (value > 300 && value <= 400) {
-            setAqiLevel(R.color.purpleoxy, R.string.Aqi_lvl_desc_veryunhealthy);
-        } else if (value > 400) {
-            setAqiLevel(R.color.oxybrown, R.string.Aqi_lvl_desc_hazardous);
+            homeViewModel.getIsOngoingProcessLiveDataRoom2().observe(getViewLifecycleOwner(), new Observer<String>() {
+                @Override
+                public void onChanged(String isOngoing) {
+                    if (isOngoing.equals("NO")){
+                        Toast.makeText(getActivity(), "Warning: Indoor air quality is currently unhealthy.", Toast.LENGTH_SHORT).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent intent = new Intent(getActivity(), Room2InitialDelay.class);
+                                intent.putExtra("progressValue", value);
+                                startActivity(intent);
+                            }
+                        }, 3000);
+                    }
+                }
+            });
+
+            if (value >= 101 && value <= 200) {
+
+                setAqiLevel(R.color.orangeoxy, R.string.Aqi_lvl_desc_unhealthy1);
+                Aqi_lvl_desc.setTextSize(22);
+                Aqi_lvl_desc.setPadding(0, 0, 0, 20);
+                Aqi_lvl_subdesc.setVisibility(View.VISIBLE);
+
+
+            } else if (value > 200 && value <= 300) {
+                setAqiLevel(R.color.redoxy, R.string.Aqi_lvl_desc_unhealthy2);
+            } else if (value > 300 && value <= 400) {
+                setAqiLevel(R.color.purpleoxy, R.string.Aqi_lvl_desc_veryunhealthy);
+            } else if (value > 400) {
+                setAqiLevel(R.color.oxybrown, R.string.Aqi_lvl_desc_hazardous);
+            }
+
         }
 
     }
+
 
     private void setAqiLevel(int colorResource, int descriptionResource) {
         progressIndicator.setIndicatorColor(getResources().getColor(colorResource));

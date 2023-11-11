@@ -2,6 +2,7 @@ package com.capstone.oxy;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
@@ -95,26 +96,33 @@ public class activityInitialDelaySanitation extends AppCompatActivity {
         }
 
         // Initialize and start a countdown timer
-        countDownTimer = new CountDownTimer(5 * 60 * 1000, 1000) {
+        countDownTimer = new CountDownTimer(2 * 60 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateTimerUI(millisUntilFinished);
 
-                int progress = (int) (100 * millisUntilFinished / (5 * 60 * 1000));
+                int progress = (int) (100 * millisUntilFinished / (2 * 60 * 1000));
 
                 timer_indicator.setProgress(progress);
             }
 
             @Override
             public void onFinish() {
-                homeViewModel.setMistingSanitationValue("ON");
                 stopTimer();
                 Toast.makeText(activityInitialDelaySanitation.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(activityInitialDelaySanitation.this, activityMistingProcess.class);
-                startActivity(intent);
-                finish();
             }
         };
+
+        homeViewModel.getMistingSanitationLiveData().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String mistingState) {
+                if(mistingState.equals("ON")){
+                    Intent intent = new Intent(activityInitialDelaySanitation.this, activityMistingProcess.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
 
         // Set a click listener for the proceed_sanitation_btn
         proceed_sanitation_btn.setOnClickListener(new View.OnClickListener() {
@@ -146,6 +154,11 @@ public class activityInitialDelaySanitation extends AppCompatActivity {
         seconds = seconds % 60;
         String timeLeftFormatted = String.format("%02d:%02d", minutes, seconds);
         countdown_before_sanitation.setText(timeLeftFormatted);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(activityInitialDelaySanitation.this, "You are unable to return from this state.", Toast.LENGTH_SHORT).show();
     }
 
     // Method to stop the countdown timer

@@ -3,6 +3,8 @@ package com.capstone.oxy;
         import androidx.appcompat.app.AppCompatActivity;
         import androidx.constraintlayout.widget.ConstraintLayout;
         import androidx.core.content.ContextCompat;
+        import androidx.lifecycle.Observer;
+        import androidx.lifecycle.ViewModelProvider;
 
         import android.animation.ObjectAnimator;
         import android.animation.PropertyValuesHolder;
@@ -34,11 +36,13 @@ public class activityRoom2ExhaustProcess extends AppCompatActivity {
     private CountDownTimer countDownTimer;
     private int currentPhraseIndex = 0;
     private ImageView exhaustFan;
+    private HomeViewModel homeViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         // Set the layout for this activity
         setContentView(R.layout.activity_exhausting);
 
@@ -81,7 +85,7 @@ public class activityRoom2ExhaustProcess extends AppCompatActivity {
         scaleAnimator.setRepeatMode(ObjectAnimator.REVERSE);
 
         // Initialize and start a countdown timer
-        countDownTimer = new CountDownTimer(10 * 60 * 1000, 1000) {
+        countDownTimer = new CountDownTimer(2 * 60 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateTimerUI(millisUntilFinished);
@@ -91,12 +95,21 @@ public class activityRoom2ExhaustProcess extends AppCompatActivity {
             public void onFinish() {
                 stopTimer();
                 Toast.makeText(activityRoom2ExhaustProcess.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(activityRoom2ExhaustProcess.this, doneRoom2Activity.class);
-                startActivity(intent);
             }
         };
 
-        // Start the timer, text animation, scale animation, and rotation animation
+        homeViewModel.getExhaustRoom2StateLiveData().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String exhausStateValue) {
+                if(exhausStateValue.equals("OFF")){
+                    Intent intent = new Intent(activityRoom2ExhaustProcess.this, doneRoom2Activity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+
+
         startTimer();
         startTextAnimation();
         scaleAnimator.start();

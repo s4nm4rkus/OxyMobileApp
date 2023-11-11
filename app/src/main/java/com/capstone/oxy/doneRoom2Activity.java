@@ -2,6 +2,7 @@ package com.capstone.oxy;
 
         import androidx.appcompat.app.AppCompatActivity;
         import androidx.core.content.ContextCompat;
+        import androidx.lifecycle.ViewModelProvider;
 
         import android.animation.AnimatorInflater;
         import android.animation.AnimatorSet;
@@ -15,10 +16,13 @@ public class doneRoom2Activity extends AppCompatActivity {
 
     private ImageView doneLogo;
     private AnimatorSet flipAnimation;
+    private HomeViewModel homeViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         // Set the content view to the sanitation_done layout
         setContentView(R.layout.activity_done_sanitation);

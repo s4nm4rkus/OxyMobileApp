@@ -2,6 +2,7 @@
 <resources>
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" >
     </style>
+
     
     <style name="colored_checkBox" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorAccent">@color/tealsecondary</item>

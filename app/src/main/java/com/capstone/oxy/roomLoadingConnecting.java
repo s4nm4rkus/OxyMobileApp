@@ -111,7 +111,7 @@ public class roomLoadingConnecting extends AppCompatActivity {
                     } else if (CurrentProgress == 50) {
                         connectinglbl.setText(R.string.connectingr2);
                     } else if (CurrentProgress == 60) {
-                        connectinglbl.setText(R.string.connecting1);
+                        connectinglbl.setText(R.string.connecting1r2);
                     } else if (CurrentProgress == 70) {
                         connectinglbl.setText(R.string.connecting2r2);
                     } else if (CurrentProgress == 80) {

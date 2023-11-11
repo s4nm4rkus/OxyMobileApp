@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -45,6 +46,18 @@ public class updateAccountFirst extends AppCompatActivity {
         setContentView(R.layout.activity_update_account_first);
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.tealmain));
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+
+        SharedPreferences preferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
+        String FirstTime = preferences.getString("FirstTimeInstall", "");
+
+        if (FirstTime.equals("Yes")){
+            Intent intent = new Intent(updateAccountFirst.this, activityRoomSelection.class);
+            startActivity(intent);
+        }else {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("FirstTimeInstall", "Yes");
+            editor.apply();
+        }
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();

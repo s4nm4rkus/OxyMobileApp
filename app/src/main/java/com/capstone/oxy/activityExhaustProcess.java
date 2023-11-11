@@ -3,6 +3,8 @@ package com.capstone.oxy;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
@@ -34,10 +36,14 @@ public class activityExhaustProcess extends AppCompatActivity {
     private CountDownTimer countDownTimer;
     private int currentPhraseIndex = 0;
     private ImageView exhaustFan;
+    private HomeViewModel homeViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
 
         // Set the layout for this activity
         setContentView(R.layout.activity_exhausting);
@@ -81,7 +87,7 @@ public class activityExhaustProcess extends AppCompatActivity {
         scaleAnimator.setRepeatMode(ObjectAnimator.REVERSE);
 
         // Initialize and start a countdown timer
-        countDownTimer = new CountDownTimer(10 * 60 * 1000, 1000) {
+        countDownTimer = new CountDownTimer(2 * 60 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateTimerUI(millisUntilFinished);
@@ -95,6 +101,17 @@ public class activityExhaustProcess extends AppCompatActivity {
                 startActivity(intent);
             }
         };
+
+        homeViewModel.getExhaustStateLiveData().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String exhaustStateValue) {
+                if(exhaustStateValue.equals("OFF")){
+                    Intent intent = new Intent(activityExhaustProcess.this, doneSanitation.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
 
         // Start the timer, text animation, scale animation, and rotation animation
         startTimer();
@@ -117,7 +134,7 @@ public class activityExhaustProcess extends AppCompatActivity {
 
     public void returnHome() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Exit Confirmation")
+        builder.setTitle("Background Process")
                 .setMessage("Would you like the sanitization process to continue in the background?")
                 .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override

@@ -8,6 +8,22 @@
     android:theme="@style/AppTheme"
     tools:context=".splashScreen">
 
+    <TextView
+        android:id="@+id/greetingsWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:fontFamily="@font/outfitregular"
+        android:text="Welcome!"
+        android:textColor="@color/tealmain"
+        android:textSize="38sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.382" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="248dp"
@@ -18,4 +34,54 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.523"
         app:srcCompat="@drawable/oxylogo3" />
+
+    <TextView
+        android:id="@+id/proceedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="112dp"
+        android:alpha="0.9"
+        android:background="@drawable/ripple_hover_otherbtn"
+        android:drawableRight="@drawable/ic_get_started"
+        android:fontFamily="@font/outfitregular"
+        android:gravity="center_horizontal"
+        android:paddingStart="60dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="40dp"
+        android:paddingBottom="10dp"
+        android:text="Proceed"
+        android:textColor="@color/tealmain"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    app:layout_constraintBottom_toTopOf="@+id/proceedButton"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent">
+
+    <CheckBox
+        android:visibility="invisible"
+        android:alpha="0.9"
+        android:id="@+id/termsCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:button="@drawable/check_box"
+        android:fontFamily="@font/outfitregular"
+        android:paddingLeft="7dp"
+        android:layout_marginRight="8dp"
+        android:paddingBottom="3dp"
+        android:text="Terms of Use"
+        android:textColor="@color/oxyblack"
+        android:textSize="14sp" />
+</LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

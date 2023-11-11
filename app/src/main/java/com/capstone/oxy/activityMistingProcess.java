@@ -3,6 +3,7 @@ package com.capstone.oxy;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.animation.ObjectAnimator;
@@ -92,7 +93,7 @@ public class activityMistingProcess extends AppCompatActivity {
         scaleAnimator.setRepeatCount(ObjectAnimator.INFINITE);
         scaleAnimator.setRepeatMode(ObjectAnimator.REVERSE);
 
-        countDownTimer = new CountDownTimer(10 * 60 * 1000, 1000) {
+        countDownTimer = new CountDownTimer(2 * 60 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateTimerUI(millisUntilFinished);
@@ -101,14 +102,20 @@ public class activityMistingProcess extends AppCompatActivity {
             @Override
             public void onFinish() {
                 stopTimer();
-                // Show a toast message when the timer finishes
                 Toast.makeText(activityMistingProcess.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
-                // Navigate to the activity_soaking activity
-                Intent intent = new Intent(activityMistingProcess.this, activitySoakingProcess.class);
-                startActivity(intent);
-                finish();
             }
         };
+
+        homeViewModel.getSoakingStateLiveData().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String soakingState) {
+                if(soakingState.equals("ON")){
+                    Intent intent = new Intent(activityMistingProcess.this, activitySoakingProcess.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
 
         // Start the timer, scale animation, and text animation
         startTimer();
@@ -130,7 +137,7 @@ public class activityMistingProcess extends AppCompatActivity {
 
     public void returnHome() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Exit Confirmation")
+        builder.setTitle("Background Process")
                 .setMessage("Would you like the sanitization process to continue in the background?")
                 .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override

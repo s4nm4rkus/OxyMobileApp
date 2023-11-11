@@ -3,6 +3,8 @@ package com.capstone.oxy;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
@@ -32,10 +34,13 @@ public class activitySoakingProcess extends AppCompatActivity {
     private CountDownTimer countDownTimer;
     private int currentPhraseIndex = 0;
     private ImageButton imageHomeButton;
+    HomeViewModel homeViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         // Set the layout for this activity
         setContentView(R.layout.activity_soaking);
@@ -78,7 +83,7 @@ public class activitySoakingProcess extends AppCompatActivity {
         scaleAnimator.setRepeatMode(ObjectAnimator.REVERSE);
 
         // Initialize and start a countdown timer
-        countDownTimer = new CountDownTimer(10 * 60 * 1000, 1000) {
+        countDownTimer = new CountDownTimer(2 * 60 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateTimerUI(millisUntilFinished);
@@ -87,13 +92,20 @@ public class activitySoakingProcess extends AppCompatActivity {
             @Override
             public void onFinish() {
                 stopTimer();
-                // Show a toast message when the timer finishes
                 Toast.makeText(activitySoakingProcess.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
-                // Navigate to the activity_exhausting activity
-                Intent intent = new Intent(activitySoakingProcess.this, activityExhaustProcess.class);
-                startActivity(intent);
             }
         };
+
+        homeViewModel.getExhaustStateLiveData().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String exhaustStateValue) {
+                if(exhaustStateValue.equals("ON")){
+                    Intent intent = new Intent(activitySoakingProcess.this, activityExhaustProcess.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
 
         // Start the timer, scale animation, and text animation
         startTimer();
@@ -151,7 +163,7 @@ public class activitySoakingProcess extends AppCompatActivity {
 
     public void returnHome() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Exit Confirmation")
+        builder.setTitle("Background Process")
                 .setMessage("Would you like the sanitization process to continue in the background?")
                 .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override

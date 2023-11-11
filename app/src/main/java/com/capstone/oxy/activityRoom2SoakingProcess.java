@@ -3,6 +3,8 @@ package com.capstone.oxy;
         import androidx.appcompat.app.AppCompatActivity;
         import androidx.constraintlayout.widget.ConstraintLayout;
         import androidx.core.content.ContextCompat;
+        import androidx.lifecycle.Observer;
+        import androidx.lifecycle.ViewModelProvider;
 
         import android.animation.ObjectAnimator;
         import android.animation.PropertyValuesHolder;
@@ -32,10 +34,13 @@ public class activityRoom2SoakingProcess extends AppCompatActivity {
     private CountDownTimer countDownTimer;
     private int currentPhraseIndex = 0;
     private ImageButton imageHomeButton;
+    private HomeViewModel homeViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         // Set the layout for this activity
         setContentView(R.layout.activity_soaking);
@@ -78,7 +83,7 @@ public class activityRoom2SoakingProcess extends AppCompatActivity {
         scaleAnimator.setRepeatMode(ObjectAnimator.REVERSE);
 
         // Initialize and start a countdown timer
-        countDownTimer = new CountDownTimer(10 * 60 * 1000, 1000) {
+        countDownTimer = new CountDownTimer(2 * 60 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateTimerUI(millisUntilFinished);
@@ -89,11 +94,20 @@ public class activityRoom2SoakingProcess extends AppCompatActivity {
                 stopTimer();
                 // Show a toast message when the timer finishes
                 Toast.makeText(activityRoom2SoakingProcess.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
-                // Navigate to the activity_exhausting activity
-                Intent intent = new Intent(activityRoom2SoakingProcess.this, activityRoom2ExhaustProcess.class);
-                startActivity(intent);
+
             }
         };
+
+        homeViewModel.getExhaustRoom2StateLiveData().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String exhaustStateValue) {
+                if(exhaustStateValue.equals("ON")){
+                    Intent intent = new Intent(activityRoom2SoakingProcess.this, activityRoom2ExhaustProcess.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
 
         // Start the timer, scale animation, and text animation
         startTimer();
