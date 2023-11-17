@@ -110,6 +110,7 @@ public class activityMistingProcess extends AppCompatActivity {
             @Override
             public void onChanged(String soakingState) {
                 if(soakingState.equals("ON")){
+                    homeViewModel.setMistingSanitationValue("OFF");
                     Intent intent = new Intent(activityMistingProcess.this, activitySoakingProcess.class);
                     startActivity(intent);
                     finish();
@@ -173,6 +174,7 @@ public class activityMistingProcess extends AppCompatActivity {
 
     private void stopTimer() {
         countDownTimer.cancel();
+        homeViewModel.setSoakingStateValue("ON");
     }
 
     private void startBubbleAnimation() {

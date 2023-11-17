@@ -9,7 +9,7 @@
     tools:context=".Login">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/loginLogo"
         android:layout_width="203dp"
         android:layout_height="203dp"
         android:layout_marginTop="25dp"
@@ -30,9 +30,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+        app:layout_constraintTop_toBottomOf="@+id/loginLogo">
 
         <LinearLayout
+            android:id="@+id/loginPage"
             android:layout_width="match_parent"
             android:layout_height="520dp"
             android:background="@drawable/rounded_background"
@@ -139,16 +140,20 @@
                     tools:layout_editor_absoluteY="1dp"/>
             </LinearLayout>
 
-            <TextView
+
+            <Button
+                android:id="@+id/forgotButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Forgot password?"
-                android:gravity="center"
-                android:textColor="@color/tealmain"
+                android:background="@drawable/bg_transparent"
+                android:clickable="true"
+                android:focusable="true"
                 android:fontFamily="@font/outfitregular"
-                android:textSize="14sp"
-                android:layout_marginTop="12dp"/>
-
+                android:gravity="center"
+                android:text="Forgot password?"
+                android:textAllCaps="false"
+                android:textColor="@color/tealmain"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/errorTextView"

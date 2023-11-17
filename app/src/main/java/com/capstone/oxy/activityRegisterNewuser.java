@@ -7,6 +7,8 @@ import androidx.core.content.ContextCompat;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -39,6 +41,8 @@ public class activityRegisterNewuser extends AppCompatActivity {
     String userAccountId;
     CircularProgressIndicator progressBar;
     CheckBox adminChkbx;
+    public static final String SHARED_PREPS = "sharedPrefs";
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -108,7 +112,8 @@ public class activityRegisterNewuser extends AppCompatActivity {
                                     Map<String, Object> users = new HashMap<>();
                                     users.put("Username", username);
                                     users.put("Email", email);
-                                    if(adminChkbx.isChecked()){
+                                    users.put("Password", password);
+                                    if (adminChkbx.isChecked()) {
                                         users.put("USER-LEVEL", "Administrator");
                                     }
                                     documentReference.set(users).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -122,13 +127,14 @@ public class activityRegisterNewuser extends AppCompatActivity {
                                             Log.d("TAG", "onFailure: " + e);
                                         }
                                     });
-                                    finish();
+                                    loginAgain();
                                 } else {
                                     progressBar.setVisibility(View.VISIBLE);
                                     Toast.makeText(activityRegisterNewuser.this, "An error occurred while processing your request. Please check your input and try again. " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
+
             }
         });
 
@@ -139,6 +145,39 @@ public class activityRegisterNewuser extends AppCompatActivity {
             }
         });
     }
+
+    private void loginAgain() {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Account Registered")
+                    .setMessage("New account has been Added successfully. Please login again.")
+                    .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREPS, MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            // Clear the stored username
+                            editor.putString("name", "");
+
+                            // Set a flag indicating that the checkbox should be enabled
+                            editor.putBoolean("enableCheckbox", true);
+
+                            // Set isLoggedIn to false to indicate that the user is no longer logged in
+                            editor.putBoolean("isLoggedIn", false);
+
+                            editor.apply();
+
+                            firebaseAuth.signOut();
+
+                            // Navigate back to the login activity
+                            Intent intent = new Intent(activityRegisterNewuser.this, Login.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    })
+                    .show();
+        }
+
 
 
     private boolean isValidEmail(String email) {

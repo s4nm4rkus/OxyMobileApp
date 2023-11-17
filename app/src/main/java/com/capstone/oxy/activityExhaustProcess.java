@@ -169,6 +169,12 @@ public class activityExhaustProcess extends AppCompatActivity {
 
     private void stopTimer() {
         countDownTimer.cancel();
+        homeViewModel.setExhaustStateValue("OFF");
+        homeViewModel.setGlobalProcessEstateValue("OFF");
+        homeViewModel.setOnGoingProcessValue("NO");
+        Intent intent = new Intent(activityExhaustProcess.this, doneSanitation.class);
+        startActivity(intent);
+        finish();
     }
 
     private void showMistingLogo() {

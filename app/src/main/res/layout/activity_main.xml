@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/splashScreen"
     android:background="@drawable/background"
     android:theme="@style/AppTheme"
     tools:context=".splashScreen">
@@ -78,7 +79,7 @@
         android:paddingLeft="7dp"
         android:layout_marginRight="8dp"
         android:paddingBottom="3dp"
-        android:text="Terms of Use"
+        android:text="Terms of Use and Conditions"
         android:textColor="@color/oxyblack"
         android:textSize="14sp" />
 </LinearLayout>

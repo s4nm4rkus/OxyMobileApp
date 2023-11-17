@@ -72,6 +72,7 @@ public class ListOfUserAccount extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ListOfUserAccount.this, activityRegisterNewuser.class);
                 startActivity(intent);
+                finish();
             }
         });
 

@@ -25,9 +25,9 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="510dp"
+            android:layout_height="495dp"
             android:layout_marginStart="14dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="14dp"
             android:layout_marginBottom="24dp">
 
@@ -51,10 +51,61 @@
                     android:padding="5dp"/>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="170dp"
+                    android:layout_height="37dp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:paddingStart="2dp"
+                    android:paddingRight="2dp"
+                    android:background="@drawable/report_buttons">
+
+                    <Button
+                        android:id="@+id/dayBtn"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/category_reports_btn"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/outfitsemibold"
+                        android:text="Day"
+                        android:textAllCaps="false"
+                        android:textColor="@color/tealmain" />
+
+                    <Button
+                        android:id="@+id/weekBtn"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/category_reports_btn"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/outfitsemibold"
+                        android:text="Week"
+                        android:textAllCaps="false"
+                        android:textColor="@color/tealmain" />
+
+                    <Button
+                        android:id="@+id/monthBtn"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/category_reports_btn"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/outfitsemibold"
+                        android:text="Month"
+                        android:textAllCaps="false"
+                        android:textColor="@color/tealmain" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:padding="10dp">
+                    android:paddingLeft="10dp">
 
                     <Button
                         android:id="@+id/datePickerButton"
@@ -79,8 +130,31 @@
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/line_chart_report"
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
-                    android:layout_marginBottom="120dp"/>
+                    android:layout_height="340dp"
+                    android:layout_marginBottom="5dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_dor_co"
+                    android:drawablePadding="3dp"
+                    android:textSize="14sp"
+                    android:text="CO - Carbon Monoxide"
+                    android:textColor="@color/oxyblack" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_voc"
+                    android:drawablePadding="3dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14sp"
+                    android:text="VOC - Volatile Organic Compound"
+                    android:textColor="@color/oxyblack"/>
+            </LinearLayout>
+
             </LinearLayout>
 
         </ScrollView>

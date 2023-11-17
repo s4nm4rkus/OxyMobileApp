@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.InsetDrawable;
@@ -55,6 +56,8 @@ public class mainDashboard extends AppCompatActivity {
     FirebaseUser currentUser;
     FirebaseFirestore db;
     TextView roomLabel;
+    public static final String SHARED_PREPS = "sharedPrefs";
+
 
 
     private boolean doubleBackToExitPressedOnce = false;
@@ -140,7 +143,53 @@ public class mainDashboard extends AppCompatActivity {
         });
 
         updateNavHeader();
+        checkIfAdminBeforeHidingUserList();
 
+    }
+
+    private void checkIfAdminBeforeHidingUserList() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user != null) {
+            String userId = user.getUid();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            DocumentReference userRef = db.collection("users").document(userId);
+
+            userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    try {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+
+                            if (document != null && document.exists()) {
+                                // Check if the "USER-LEVEL" field exists and its value is "Administrator"
+                                String userLevel = document.getString("USER-LEVEL");
+
+                                // Find the menu item by ID
+                                MenuItem menuItem = navigationView.getMenu().findItem(R.id.userAccountsList);
+
+                                if (userLevel != null && userLevel.equals("Administrator")) {
+                                    // The user is an admin, make the Users List option visible
+                                    menuItem.setVisible(true);
+                                } else {
+                                    // The user is not an admin, make the Users List option invisible
+                                    menuItem.setVisible(false);
+                                }
+                            }
+                        } else {
+                            // Handle errors here if needed
+                            Exception exception = task.getException();
+                            if (exception != null) {
+                                exception.printStackTrace();
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
 
     private void room2Selected() {
@@ -151,42 +200,53 @@ public class mainDashboard extends AppCompatActivity {
     }
 
     public void updateNavHeader() {
-            navigationView = (NavigationView) findViewById(R.id.drawer_nav);
-            View headerView = navigationView.getHeaderView(0);
-            TextView userName = headerView.findViewById(R.id.user_name_drawerLabel);
-            TextView userEmail = headerView.findViewById(R.id.email_drawerLabel);
+        navigationView = (NavigationView) findViewById(R.id.drawer_nav);
+        View headerView = navigationView.getHeaderView(0);
+        TextView userName = headerView.findViewById(R.id.user_name_drawerLabel);
+        TextView userEmail = headerView.findViewById(R.id.email_drawerLabel);
+        TextView adminLabel = headerView.findViewById(R.id.drawerLabel_admin);
 
-            userEmail.setText(currentUser.getEmail());
+        userEmail.setText(currentUser.getEmail());
 
-            String userID = firebaseAuth.getUid();
+        String userID = firebaseAuth.getUid();
 
-            if (userID != null) {
-                CollectionReference collection = db.collection("users");
-                DocumentReference document = collection.document(userID);
+        if (userID != null) {
+            CollectionReference collection = db.collection("users");
+            DocumentReference document = collection.document(userID);
 
-                document.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot documentSnapshot = task.getResult();
-                            if (documentSnapshot.exists()) {
-                                String text = documentSnapshot.getString("Username");
-                                userName.setText(text);
+            document.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot documentSnapshot = task.getResult();
+                        if (documentSnapshot.exists()) {
+                            String text = documentSnapshot.getString("Username");
+                            userName.setText(text);
+
+                            // Check if the user is an admin
+                            String userLevel = documentSnapshot.getString("USER-LEVEL");
+                            if (userLevel != null && userLevel.equals("Administrator")) {
+                                adminLabel.setText(" (" + userLevel + ")");
+                                adminLabel.setVisibility(View.VISIBLE);
                             } else {
-                                // Document doesn't exist
-                                // Handle this case if needed
+                                adminLabel.setVisibility(View.GONE);
                             }
                         } else {
-                            // Handle errors, e.g., network issues or permissions problems
-                            Exception exception = task.getException();
-                            if (exception != null) {
-                                exception.printStackTrace();
-                            }
+                            // Document doesn't exist
+                            // Handle this case if needed
+                        }
+                    } else {
+                        // Handle errors, e.g., network issues or permissions problems
+                        Exception exception = task.getException();
+                        if (exception != null) {
+                            exception.printStackTrace();
                         }
                     }
-                });
-            }
+                }
+            });
         }
+    }
+
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -204,12 +264,17 @@ public class mainDashboard extends AppCompatActivity {
         }
     }
 
-    private boolean handleNavigationItemSelected(MenuItem menuItem){
+    private boolean handleNavigationItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.room_name:
                 break;
+            case R.id.accountSetting:
+                Intent intent = new Intent(mainDashboard.this, accountProfileSetting.class);
+                startActivity(intent);
+                break;
+
             case R.id.userAccountsList:
-                Intent intent = new Intent(mainDashboard.this, ListOfUserAccount.class);
+                intent = new Intent(mainDashboard.this, ListOfUserAccount.class);
                 startActivity(intent);
                 break;
             case R.id.logout:
@@ -220,6 +285,7 @@ public class mainDashboard extends AppCompatActivity {
         return true;
     }
 
+
     private void showLogoutConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mainDashboard.this);
         builder.setTitle("Logout Confirmation")
@@ -227,7 +293,23 @@ public class mainDashboard extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREPS, MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        // Clear the stored username
+                        editor.putString("name", "");
+
+                        // Set a flag indicating that the checkbox should be enabled
+                        editor.putBoolean("enableCheckbox", true);
+
+                        // Set isLoggedIn to false to indicate that the user is no longer logged in
+                        editor.putBoolean("isLoggedIn", false);
+
+                        editor.apply();
+
                         FirebaseAuth.getInstance().signOut();
+
+                        // Navigate back to the login activity
                         Intent intent = new Intent(mainDashboard.this, Login.class);
                         startActivity(intent);
                         finish();
@@ -239,28 +321,19 @@ public class mainDashboard extends AppCompatActivity {
 
     // Method to show the switch room dialog
     private void showSwitchRoomDialog() {
-        Dialog switchpopupDialog = new Dialog(mainDashboard.this);
-        switchpopupDialog.setContentView(R.layout.changeroom_popup);
-
-        ImageButton icClose = switchpopupDialog.findViewById(R.id.closePopup);
-        TextView switchRoomBtn = switchpopupDialog.findViewById(R.id.leaveRoom);
-
-        switchRoomBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mainDashboard.this, activityRoomSelection.class);
-                startActivity(intent);
-            }
-        });
-
-        icClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switchpopupDialog.dismiss();
-            }
-        });
-
-        switchpopupDialog.show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(mainDashboard.this);
+            builder.setTitle("Switch Room")
+                    .setMessage("Do you really want to leave this room?")
+                    .setPositiveButton("Leave", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(mainDashboard.this, activityRoomSelection.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
     }
 
     // Inner class for handling button clicks and fragment navigation

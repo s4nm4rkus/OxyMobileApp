@@ -50,6 +50,6 @@ public class doneSanitation extends AppCompatActivity {
                 startActivity(intent);
                 finish(); // Finish the current activity to prevent going back to it
             }
-        }, 10000);
+        }, 2000);
     }
 }

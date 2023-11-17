@@ -1,10 +1,14 @@
 package com.capstone.oxy;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,20 +29,25 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 public class ReportsFragment extends Fragment {
 
     private LineChart linechart_report;
-    private Button datePickerButton;
+    private Button datePickerButton, dayBtn, weekBtn, monthBtn;
     private TextView dateTextView;
     private Calendar calendar;
 
@@ -50,18 +59,30 @@ public class ReportsFragment extends Fragment {
         return new ReportsFragment();
     }
 
+    @SuppressLint({"MissingInflatedId", "UseCompatLoadingForDrawables"})
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reports, container, false);
 
+        dayBtn = view.findViewById(R.id.dayBtn);
+        weekBtn = view.findViewById(R.id.weekBtn);
+        monthBtn = view.findViewById(R.id.monthBtn);
         linechart_report = view.findViewById(R.id.line_chart_report);
         datePickerButton = view.findViewById(R.id.datePickerButton);
         dateTextView = view.findViewById(R.id.dateTextView);
         calendar = Calendar.getInstance();
 
+
+        dayBtn.setBackground(getResources().getDrawable(R.drawable.category_reportbtn_disabled));
+        dayBtn.setTextColor(getResources().getColor(R.color.white));
+        dayBtn.setEnabled(false);
+        weekBtn.setEnabled(true);
+        monthBtn.setEnabled(true);
+
         // Firestore data retrieval for the current date
-        setupChart(calendar.getTime());
+
+
 
         datePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +111,59 @@ public class ReportsFragment extends Fragment {
                         day
                 );
                 datePickerDialog.show();
+            }
+        });
+
+        dayBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
+            @Override
+            public void onClick(View v) {
+                dayBtn.setEnabled(false);
+                weekBtn.setEnabled(true);
+                monthBtn.setEnabled(true);
+                dayBtn.setBackground(getResources().getDrawable(R.drawable.category_reportbtn_disabled));
+                dayBtn.setTextColor(getResources().getColor(R.color.white));
+                weekBtn.setBackground(getResources().getDrawable(R.drawable.category_reports_btn));
+                weekBtn.setTextColor(getResources().getColor(R.color.tealmain));
+                monthBtn.setBackground(getResources().getDrawable(R.drawable.category_reports_btn));
+                monthBtn.setTextColor(getResources().getColor(R.color.tealmain));
+                setupChart(calendar.getTime());
+
+
+            }
+        });
+
+        weekBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
+            @Override
+            public void onClick(View v) {
+                dayBtn.setEnabled(true);
+                weekBtn.setEnabled(false);
+                monthBtn.setEnabled(true);
+                weekBtn.setBackground(getResources().getDrawable(R.drawable.category_reportbtn_disabled));
+                weekBtn.setTextColor(getResources().getColor(R.color.white));
+                monthBtn.setBackground(getResources().getDrawable(R.drawable.category_reports_btn));
+                monthBtn.setTextColor(getResources().getColor(R.color.tealmain));
+                dayBtn.setTextColor(getResources().getColor(R.color.tealmain));
+                dayBtn.setBackground(getResources().getDrawable(R.drawable.category_reports_btn));
+
+            }
+        });
+
+        monthBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
+            @Override
+            public void onClick(View v) {
+                dayBtn.setEnabled(true);
+                weekBtn.setEnabled(true);
+                monthBtn.setEnabled(false);
+                monthBtn.setBackground(getResources().getDrawable(R.drawable.category_reportbtn_disabled));
+                monthBtn.setTextColor(getResources().getColor(R.color.white));
+                weekBtn.setTextColor(getResources().getColor(R.color.tealmain));
+                dayBtn.setTextColor(getResources().getColor(R.color.tealmain));
+                weekBtn.setBackground(getResources().getDrawable(R.drawable.category_reports_btn));
+                dayBtn.setBackground(getResources().getDrawable(R.drawable.category_reports_btn));
+
             }
         });
 
@@ -194,5 +268,5 @@ public class ReportsFragment extends Fragment {
                         Log.e("FirestoreError", "Error getting documents: " + task.getException());
                     }
                 });
-    }
-}
+            }
+        }

@@ -80,4 +80,18 @@
 
     <string name="store_text">%1$s</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="oxy_about_desc">Oxy is a cutting-edge Smart Air Sanitizer and Real-time Indoor Air Pollution Monitoring System designed specifically for the College of Sciences Technology and Communication Inc. Senior High School classrooms. </string>
+    <string name="oxy_about_desc_p2">The objective of Oxy is to develop a smart air sanitation system with mobile application, equipped with an indoor air pollution monitoring system specifically design for school classrooms to reduce indoor air contaminants and pollutants that can help maintain a healthy environment and better indoor air quality.</string>
+    <string name="oxy_kf_1">Oxy provides continuous monitoring of indoor air quality parameters such as particulate such as Volatile Organic compounds (VOC) and Carbon Monoxide (CO). </string>
+    <string name="oxy_kf_2">Oxy is equipped with smart air sanitization technology to eliminate pollutants, presence of harmful air pollutants like bacteria, viruses in air. </string>
+    <string name="oxy_guide_p1">The AQI or Air Quality Index is an index for reporting daily air quality. It tells you how clean or polluted your air is, and what associated health effects might be a concern for you. The AQI focuses on health effects you may experience within a few hours or days after breathing polluted air.</string>
+    <string name="oxy_guide_50p">| Air quality is satisfactory, and air pollution poses little or no risk.</string>
+    <string name="oxy_guide_100p">| Air quality is acceptable. However, there may be a risk for some people, particularly those who unusually sensible to air pollution.</string>
+    <string name="oxy_guide_150p">| Members of sensitive groups may experience health effect. The general public is less like to be affected. </string>
+    <string name="oxy_guide_151p">| Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.</string>
+    <string name="oxy_guide_201p">| Health warnings of emergency conditions. The entire population is more likely affected.</string>
+    <string name="oxy_guide_301p">| Health alert: everyone may experience more serious health effects.</string>
+    <string name="termsAndcon">By using the Oxy - Smart Air Sanitizer and Real-time Indoor Air Pollution Monitoring System, you agree to the specified terms and conditions. The Institution has the right to manage access, and unauthorized attempts to tamper with the system are strictly prohibited. The Oxy device is intended for improving indoor air quality in designated classrooms, and any misuse or tampering may lead to account termination. Thank you for your cooperation!</string>
+    <string name="devideInstall">Ensure proper placement of Oxy units within each classroom for optimal air circulation.</string>
+    <string name="mobileSetup">The administrator will provide the application along with the account that has also been furnished by the admin. Download and install the Oxy mobile application that was given by the administrator. Connect the application to the Oxy system using the provided credentials. Follow the on-screen instructions for initial setup.</string>
 </resources>

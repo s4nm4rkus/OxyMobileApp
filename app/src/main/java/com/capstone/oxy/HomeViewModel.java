@@ -354,17 +354,26 @@ public class HomeViewModel extends ViewModel {
         isOngoingProcessRoom2.setValue(value);
     }
 
-    public void setInitialDelayValue(String value) {
-        initialDelay.setValue(value);
-    }
+    public void setMistingSanitationValueRoom2(String value) {mistingSanitationRoom2.setValue(value);}
     public void setMistingSanitationValue(String value) {
         mistingSanitation.setValue(value);
     }
 
-    public void setMistingSanitationValueRoom2(String value) {mistingSanitationRoom2.setValue(value);}
+    public void setInitialDelayValue(String value) {
+        initialDelay.setValue(value);
+    }
     public void setInitialDelayRoom2Value(String value) {
         initialDelayRoom2.setValue(value);
     }
+
+    public void setSoakingStateValueRoom2(String value) {soakingRoom2State.setValue(value);}
+    public void setSoakingStateValue(String value) {soakingState.setValue(value);}
+
+    public void setExhaustStateValueRoom2(String value) {exhaustRoom2State.setValue(value);}
+    public void setExhaustStateValue(String value) {exhaustState.setValue(value);}
+
+    public void setGlobalProcessEstateValue(String value){globalProcessEstate.setValue(value);}
+    public void setGlobalProcessEstateRoom2Value(String value){globalProcessEstateRoom2.setValue(value);}
 
     //isOngoingProcess
     public LiveData<String> getIsOngoingProcessLiveData() {return isOngoingProcessLiveData;}

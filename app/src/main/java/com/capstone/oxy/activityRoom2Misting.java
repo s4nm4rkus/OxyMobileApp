@@ -174,6 +174,9 @@ public class activityRoom2Misting extends AppCompatActivity {
 
     private void stopTimer() {
         countDownTimer.cancel();
+        homeViewModel.setMistingSanitationValueRoom2("OFF");
+        homeViewModel.setSoakingStateValueRoom2("ON");
+
     }
 
     private void startBubbleAnimation() {

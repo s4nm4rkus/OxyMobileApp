@@ -164,6 +164,12 @@ public class activityRoom2ExhaustProcess extends AppCompatActivity {
 
     private void stopTimer() {
         countDownTimer.cancel();
+        homeViewModel.setExhaustStateValueRoom2("OFF");
+        homeViewModel.setGlobalProcessEstateRoom2Value("OFF");
+        homeViewModel.setOnGoingProcessValueRoom2("NO");
+        Intent intent = new Intent(activityRoom2ExhaustProcess.this, doneRoom2Activity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void showMistingLogo() {

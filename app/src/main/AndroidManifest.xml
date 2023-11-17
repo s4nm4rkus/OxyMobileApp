@@ -15,6 +15,13 @@
         android:theme="@style/Theme.Oxy"
         tools:targetApi="33">
         <activity
+            android:name=".forgotPassword"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".doneRoom2Activity"
             android:exported="false">
             <meta-data

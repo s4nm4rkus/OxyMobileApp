@@ -185,6 +185,7 @@ public class HomeFragmentRoom2 extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         homeViewModel.setOnGoingProcessValueRoom2("YES");
+                        homeViewModel.setGlobalProcessEstateRoom2Value("ON");
                         Intent intent = new Intent(getActivity(), Room2InitialDelay.class);
                         startActivity(intent);
                     }

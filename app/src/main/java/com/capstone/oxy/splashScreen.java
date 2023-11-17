@@ -1,6 +1,8 @@
 package com.capstone.oxy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 
 import android.animation.AnimatorInflater;
@@ -11,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
@@ -25,7 +28,7 @@ import android.widget.Toast;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class splashScreen extends AppCompatActivity {
-
+    ConstraintLayout constraintLayout;
     private AnimatorSet flipAnimation;
     private TextView proceedButton, greetingsWelcome;
     private CheckBox termsCheck;
@@ -51,6 +54,8 @@ public class splashScreen extends AppCompatActivity {
         // Find the ImageView for the logo
         ImageView logoImageView = findViewById(R.id.imageView);
 
+        constraintLayout = findViewById(R.id.splashScreen);
+
         termsCheck = findViewById(R.id.termsCheck);
         proceedButton = findViewById(R.id.proceedButton);
         greetingsWelcome = findViewById(R.id.greetingsWelcome);
@@ -62,7 +67,6 @@ public class splashScreen extends AppCompatActivity {
 
         proceedButton.setEnabled(false);
         proceedButton.setAlpha(0.5f);
-
 
         // Create a delayed handler to navigate to the Login activity after the splash delay
         new Handler().postDelayed(new Runnable() {
@@ -104,27 +108,31 @@ public class splashScreen extends AppCompatActivity {
     }
 
     private void showTermsAlertDialog() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Terms of Use")
-                    .setMessage("It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, " +
-                            "as opposed to using 'Content here, content here', making it look like readable English.")
-                    .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            proceedButton.setEnabled(true);
-                            proceedButton.setAlpha(1f);
-                        }
-                    })
-                    .setNegativeButton("Decline", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            termsCheck.setChecked(false);
-                            proceedButton.setAlpha(0.5f);
-                            dialog.dismiss();
-                            Toast.makeText(splashScreen.this, "Note: Terms of Use should be Accepted to continue.", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.customdialog, null);
+        TextView textView = dialogView.findViewById(R.id.dialogText);
+        textView.setText(getText(R.string.termsAndcon));
+
+        builder.setView(dialogView)
+                .setTitle("Terms of Use and Conditions")
+                .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        proceedButton.setEnabled(true);
+                        proceedButton.setAlpha(1f);
+                    }
+                })
+                .setNegativeButton("Decline", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        termsCheck.setChecked(false);
+                        proceedButton.setAlpha(0.5f);
+                        dialog.dismiss();
+                        Toast.makeText(splashScreen.this, "Note: Terms of Use should be Accepted to continue.", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .show();
     }
 
     private void fadeInViews(View view) {
