@@ -7,85 +7,120 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:paddingTop="24dp"
 tools:context=".ReportFragmentRoom2">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/outfitextrabold"
-        android:gravity="center_horizontal"
-        android:text="@string/reports"
-        android:textAllCaps="true"
-        android:textColor="@color/oxyblack"
-        android:textSize="20sp" />
+        android:layout_height="match_parent">
 
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="510dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="24dp">
-
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_ic_profile"
-            android:elevation="8dp"
-            android:layout_margin="10dp"
-            android:padding="10dp"
-            android:orientation="vertical">
+            android:fontFamily="@font/outfitextrabold"
+            android:gravity="center_horizontal"
+            android:text="@string/reports"
+            android:textAllCaps="true"
+            android:textColor="@color/oxyblack"
+            android:textSize="20sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Indoor Air Quality"
-                android:textSize="18sp"
-                android:textColor="@color/oxyblack"
-                android:fontFamily="@font/outfitsemibold"
-                android:layout_gravity="center"
-                android:padding="5dp"/>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="495dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="24dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-
-                <Button
-                    android:id="@+id/datePickerButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/tealmain"
-                    android:text="Select Date"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold" />
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_ic_profile"
+                android:elevation="8dp"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/dateTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="4.5dp"
-                    android:text="Selected Date: "
+                    android:text="Indoor Air Quality"
+                    android:textSize="18sp"
                     android:textColor="@color/oxyblack"
-                    android:textSize="15sp" />
+                    android:fontFamily="@font/outfitsemibold"
+                    android:layout_gravity="center"
+                    android:padding="5dp"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_dor_co"
+                        android:drawablePadding="3dp"
+                        android:textSize="14sp"
+                        android:text="CO"
+                        android:fontFamily="@font/outfitsemibold"
+                        android:textColor="@color/oxyblack" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_voc"
+                        android:drawablePadding="3dp"
+                        android:fontFamily="@font/outfitsemibold"
+                        android:textSize="14sp"
+                        android:layout_marginStart="5dp"
+
+                        android:text="VOC"
+                        android:textColor="@color/oxyblack"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp">
+
+                    <Button
+                        android:id="@+id/datePickerButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/tealmain"
+                        android:text="Select Date"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/dateTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/oxyblack"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="4.5dp"
+                        android:text="Selected Date: " />
+
+                </LinearLayout>
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/line_chart_report"
+                    android:layout_width="match_parent"
+                    android:layout_height="340dp"
+                    android:layout_marginBottom="5dp"/>
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/line_chart_reportWeek"
+                    android:layout_marginTop="24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="340dp"
+                    android:layout_marginBottom="5dp"/>
 
             </LinearLayout>
 
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/line_chart_report"
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:layout_marginBottom="120dp"/>
-        </LinearLayout>
-
-    </ScrollView>
-</RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
 
 
 </FrameLayout>

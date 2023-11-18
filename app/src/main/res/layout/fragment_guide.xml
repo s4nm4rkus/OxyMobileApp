@@ -48,6 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/outfitsemibold"
                     android:text="What is AQI?"
                     android:textColor="@color/tealmain"
@@ -449,6 +450,7 @@
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/outfitsemibold"
                     android:text="How to use Oxy?"
+                    android:layout_gravity="center"
                     android:textColor="@color/tealmain"
                     android:textSize="20sp"/>
 
@@ -526,7 +528,7 @@
                     android:layout_height="200dp"
                     android:layout_gravity="center"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/installoxy"/>
+                    android:src="@drawable/oxylogo1"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -544,22 +546,34 @@
                 android:layout_marginBottom="5dp"
                 android:padding="10dp">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/outfitsemibold"
-                    android:text="1. Oxy Dashboard"
+                    android:text="Circular Indicator"
                     android:textColor="@color/oxyblack"
                     android:textSize="14sp" />
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
+                    android:text="@string/circularProg"
+                    android:textColor="@color/oxyblack" />
+
+                </LinearLayout>
+
                 <ImageView
                     android:layout_width="200dp"
-                    android:layout_height="100dp"
+                    android:layout_height="200dp"
                     android:layout_gravity="right"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/installoxy"/>
+                    android:src="@drawable/dashboard"/>
             </LinearLayout>
-
 
             </LinearLayout>
 
