@@ -51,6 +51,8 @@ public class activityRoomSelection extends AppCompatActivity {
                 Intent intent = new Intent(activityRoomSelection.this, roomLoadingConnecting.class);
                 intent.putExtra("selectedRoom", "Room01");
                 startActivity(intent);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
             }
         });
 
@@ -59,6 +61,7 @@ public class activityRoomSelection extends AppCompatActivity {
             public void onClick(View v) {
                 // Create an intent to navigate to the connecting_screen activity
                 Intent intent = new Intent(activityRoomSelection.this, roomLoadingConnecting.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         });

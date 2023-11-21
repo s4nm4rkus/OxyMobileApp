@@ -226,8 +226,14 @@ public class HomeFragment extends Fragment {
 
         if (value >= 0 && value <=50){
             setAqiLevel(R.color.tealmain, R.string.Aqi_lvl_desc);
+            Aqi_lvl_desc.setTextSize(25);
+            Aqi_lvl_desc.setPadding(0, 0, 0, 0);
+            Aqi_lvl_subdesc.setVisibility(View.GONE);
         }else if (value > 50 && value <= 100) {
             setAqiLevel(R.color.yellow, R.string.Aqi_lvl_desc_moderate);
+            Aqi_lvl_desc.setTextSize(25);
+            Aqi_lvl_desc.setPadding(0, 0, 0, 0);
+            Aqi_lvl_subdesc.setVisibility(View.GONE);
         } else {
             homeViewModel.getIsOngoingProcessLiveData().observe(getViewLifecycleOwner(), new Observer<String>() {
                 @Override
@@ -257,10 +263,19 @@ public class HomeFragment extends Fragment {
 
             } else if (value > 200 && value <= 300) {
                 setAqiLevel(R.color.redoxy, R.string.Aqi_lvl_desc_unhealthy2);
+                Aqi_lvl_desc.setTextSize(25);
+                Aqi_lvl_desc.setPadding(0, 0, 0, 0);
+                Aqi_lvl_subdesc.setVisibility(View.GONE);
             } else if (value > 300 && value <= 400) {
                 setAqiLevel(R.color.purpleoxy, R.string.Aqi_lvl_desc_veryunhealthy);
+                Aqi_lvl_desc.setTextSize(22);
+                Aqi_lvl_desc.setPadding(0, 0, 0, 0);
+                Aqi_lvl_subdesc.setVisibility(View.GONE);
             } else if (value > 400) {
                 setAqiLevel(R.color.oxybrown, R.string.Aqi_lvl_desc_hazardous);
+                Aqi_lvl_desc.setTextSize(25);
+                Aqi_lvl_desc.setPadding(0, 0, 0, 0);
+                Aqi_lvl_subdesc.setVisibility(View.GONE);
             }
 
         }

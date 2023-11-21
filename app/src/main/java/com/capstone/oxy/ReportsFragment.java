@@ -42,7 +42,7 @@ public class ReportsFragment extends Fragment {
 
     private LineChart linechart_report, linechart_reportweek, linechart_reportmonth;
     private Button datePickerButton;
-    private TextView dateTextView;
+    private TextView dateTextView, dayFrag, weekFrag, monthFrag;
     private Calendar calendar;
 
     public ReportsFragment() {
@@ -65,6 +65,49 @@ public class ReportsFragment extends Fragment {
         datePickerButton = view.findViewById(R.id.datePickerButton);
         dateTextView = view.findViewById(R.id.dateTextView);
         calendar = Calendar.getInstance();
+        dayFrag = view.findViewById(R.id.dayBtn);
+        weekFrag = view.findViewById(R.id.weekBtn);
+        monthFrag = view.findViewById(R.id.monthBtn);
+
+        dayFrag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linechart_report.setVisibility(View.VISIBLE);
+                linechart_reportweek.setVisibility(View.GONE);
+                linechart_reportmonth.setVisibility(View.GONE);
+                dayFrag.setBackground(getResources().getDrawable(R.drawable.save_button));
+                weekFrag.setBackground(getResources().getDrawable(R.drawable.bg_transparent));
+                monthFrag.setBackground(getResources().getDrawable(R.drawable.bg_transparent));
+
+
+            }
+        });
+
+        weekFrag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linechart_reportweek.setVisibility(View.VISIBLE);
+                linechart_report.setVisibility(View.GONE);
+                linechart_reportmonth.setVisibility(View.GONE);
+                weekFrag.setBackground(getResources().getDrawable(R.drawable.save_button));
+                dayFrag.setBackground(getResources().getDrawable(R.drawable.bg_transparent));
+                monthFrag.setBackground(getResources().getDrawable(R.drawable.bg_transparent));
+
+            }
+        });
+
+        monthFrag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linechart_report.setVisibility(View.GONE);
+                linechart_reportmonth.setVisibility(View.GONE);
+                linechart_reportmonth.setVisibility(View.VISIBLE);
+                monthFrag.setBackground(getResources().getDrawable(R.drawable.save_button));
+                weekFrag.setBackground(getResources().getDrawable(R.drawable.bg_transparent));
+                dayFrag.setBackground(getResources().getDrawable(R.drawable.bg_transparent));
+            }
+        });
+
 
         datePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override

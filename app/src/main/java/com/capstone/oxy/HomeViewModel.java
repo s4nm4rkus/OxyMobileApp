@@ -7,11 +7,16 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.github.mikephil.charting.data.Entry;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.List;
 
 public class HomeViewModel extends ViewModel {
 
@@ -79,8 +84,6 @@ public class HomeViewModel extends ViewModel {
 
         globalProcessEstate = FirebaseDatabase.getInstance().getReference("Room_1").child("EXEC-PROCESS").child("GLOBAL-STATE");
         globalProcessEstateRoom2 = FirebaseDatabase.getInstance().getReference("Room_2").child("EXEC-PROCESS").child("GLOBAL-STATE");
-
-
 
         //globalState
         isOngoingProcess.addValueEventListener(new ValueEventListener() {

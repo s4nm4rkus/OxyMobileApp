@@ -94,7 +94,6 @@
     <string name="termsAndcon">Welcome to the Oxy - Smart Air Sanitizer and Real-time Indoor Air Pollution Monitoring System! These terms govern the usage of the System and incorporate provisions addressing human error or intervention.</string>
 
 
-
     <string name="devideInstall">Ensure proper placement of Oxy units within each classroom for optimal air circulation.</string>
     <string name="mobileSetup">The administrator will provide the application along with the account that has also been furnished by the admin. Download and install the Oxy mobile application that was given by the administrator. Connect the application to the Oxy system using the provided credentials. Follow the on-screen instructions for initial setup.</string>
     <string name="circularProg">Open the Oxy mobile application to view real-time air quality data. Monitor parameters Volatile Organic compounds (VOC) and Carbon Monoxide (CO).</string>
