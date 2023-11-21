@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -39,7 +41,7 @@ public class updateAccountFirst extends AppCompatActivity {
     CircularProgressIndicator progressBar;
     String userDocumentId;
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +70,59 @@ public class updateAccountFirst extends AppCompatActivity {
         btn_save = findViewById(R.id.btn_save);
         progressBar = findViewById(R.id.progressBar);
         btn_save.setVisibility(View.VISIBLE);
+
+        editTextPassword.setOnTouchListener(new View.OnTouchListener() {
+            boolean passwordVisible = false;
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (editTextPassword.getRight() - editTextPassword.getCompoundDrawables()[2].getBounds().width())) {
+                        // The touch was within the bounds of the drawableEnd (drawable at the end of EditText)
+
+                        passwordVisible = !passwordVisible;
+                        if (passwordVisible) {
+                            editTextPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            editTextPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_show_pass, 0);
+                        } else {
+                            editTextPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            editTextPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_unshow_pass, 0);
+                        }
+
+                        // Move the cursor to the end of the text
+                        editTextPassword.setSelection(editTextPassword.getText().length());
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+        editTextConfirm.setOnTouchListener(new View.OnTouchListener() {
+            boolean passwordVisible = false;
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (editTextConfirm.getRight() - editTextConfirm.getCompoundDrawables()[2].getBounds().width())) {
+
+                        passwordVisible = !passwordVisible;
+                        if (passwordVisible) {
+                            editTextConfirm.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            editTextConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_show_pass, 0);
+                        } else {
+                            editTextConfirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            editTextConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_unshow_pass, 0);
+                        }
+
+                        editTextConfirm.setSelection(editTextConfirm.getText().length());
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
 
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override

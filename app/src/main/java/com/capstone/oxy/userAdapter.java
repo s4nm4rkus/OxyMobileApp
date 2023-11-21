@@ -16,51 +16,54 @@ import java.util.ArrayList;
 import java.util.List;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-public class userAdapter extends RecyclerView.Adapter<userAdapter.MyViewHolder> {
-
+public class userAdapter extends RecyclerView.Adapter<userAdapter.UserViewHolder> {
 
     private Context context;
-    private List<QueryDocumentSnapshot> list;
+    private List<QueryDocumentSnapshot> userList;
 
-    public userAdapter (Context context, List<QueryDocumentSnapshot> list) {
+    public userAdapter(Context context, List<QueryDocumentSnapshot> userList) {
         this.context = context;
-        this.list = list;
+        this.userList = userList;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.items_userslist, parent, false);
-        return new MyViewHolder(v);
+    public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.items_userslist, parent, false);
+        return new UserViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        QueryDocumentSnapshot document = list.get(position);
-        String userName = document.getString("Username");
-        String email = document.getString("Email");
-        holder.userName.setText(userName);
-        holder.eMail.setText(email);
+    public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
+        if (position >= 0 && position < userList.size()) {
+            QueryDocumentSnapshot userSnapshot = userList.get(position);
 
+            String username = userSnapshot.getString("Username");
+            String email = userSnapshot.getString("Email");
+
+            // Check for null before setting values
+            if (username != null) {
+                holder.userName.setText(username);
+            }
+
+            if (email != null) {
+                holder.email.setText(email);
+            }
+        }
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return userList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class UserViewHolder extends RecyclerView.ViewHolder {
+        TextView userName, email;
 
-        TextView userName, eMail;
-
-
-        public MyViewHolder(@NonNull View itemView) {
+        public UserViewHolder(@NonNull View itemView) {
             super(itemView);
-
             userName = itemView.findViewById(R.id.userName);
-            eMail = itemView.findViewById(R.id.email);
+            email = itemView.findViewById(R.id.email);
         }
     }
-
-
 }

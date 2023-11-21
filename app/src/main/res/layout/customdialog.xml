@@ -5,7 +5,18 @@
     android:layout_height="wrap_content"
     android:padding="16dp">
 
-    <TextView
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+        <TextView
         android:id="@+id/dialogText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,6 +26,427 @@
         android:textSize="16sp"
         android:justificationMode="inter_word"
         android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:id="@+id/dialogText2"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. ACCEPTANCE OF TERMS"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textColor="@color/tealmain"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/dialogText3"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/termsAndcon2"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:id="@+id/dialogText2_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2. USE OF THE SYSTEM"
+            android:textStyle="bold"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textColor="@color/tealmain"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+            <TextView
+            android:id="@+id/dialogText4"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2.1 Eligibility"
+            android:textColor="@color/oxyblack"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/dialogText5"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/termsAndCo"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/dialogText6"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2.2 User Account"
+            android:textColor="@color/oxyblack"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/dialogText7"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/termsAndCon"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/dialogText8"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2.3 System Access"
+            android:textColor="@color/oxyblack"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/dialogText8.1"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/termAndCon2"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+
+        <TextView
+            android:id="@+id/dialogText8.3"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2.4 Unauthorized Access"
+            android:textColor="@color/oxyblack"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/dialogText8.4"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/termsAndCon3"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:id="@+id/dialogText2_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3. OXY - SMART AIR SANITIZER USAGE"
+            android:textStyle="bold"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textColor="@color/tealmain"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/dialogText3.1"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3.1 Authorized Usage"
+            android:textColor="@color/oxyblack"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+        <TextView
+            android:id="@+id/dialogText3.2"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/termAndCon3_1"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/dialogText3.3"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3.2 Prohibited Activities"
+            android:textColor="@color/oxyblack"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/termAndCon3_2"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/_4_real_time_indoor_air_pollution_monitoring"
+            android:textStyle="bold"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textColor="@color/tealmain"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4.1. Data Collection"
+            android:textColor="@color/oxyblack"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/the_oxy_smart_air_sanitizer_collects_real_time_indoor_air_pollution_data_for_monitoring_purposes_users_acknowledge_that_errors_inaccuracies_or_discrepancies_may_arise_due_to_human_intervention_or_system_malfunctions"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4.2 Privacy"
+            android:textColor="@color/oxyblack"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/the_institution_is_committed_to_protecting_user_privacy_personal_information_collected_will_be_handled_in_accordance_with_applicable_data_protection_laws_and_the_institution_s_privacy_policy"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5. RESPONSIBILITIES OF USERS"
+            android:layout_marginLeft="12dp"
+            android:textStyle="bold"
+            android:textColor="@color/tealmain"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5.1 Compliance"
+            android:textColor="@color/oxyblack"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="12dp"
+            android:justificationMode="inter_word"
+            android:text="@string/users_must_adhere_to_all_applicable_laws_and_regulations_while_using_the_system"
+            android:textAlignment="textStart"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5.2 Reporting Issues"
+            android:textColor="@color/oxyblack"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="12dp"
+            android:justificationMode="inter_word"
+            android:text="@string/users_are_encouraged_to_promptly_report_any_issues_concerns_or_malfunctions_related_to_the_oxy_smart_air_sanitizer_including_those_arising_from_human_error_to_the_relevant_authorities_such_as_the_administrator"
+            android:textAlignment="textStart"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="6. DISCLAIMERS"
+            android:layout_marginLeft="12dp"
+            android:textStyle="bold"
+            android:textColor="@color/tealmain"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="6.1 Limitation of Liability"
+            android:textColor="@color/oxyblack"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="12dp"
+            android:justificationMode="inter_word"
+            android:text="@string/the_institution_and_developers_shall_not_be_liable_for_any_indirect_incidental_special_consequential_or_punitive_damages_arising_out_of_or_in_connection_with_the_use_of_the_system_including_those_resulting_from_human_error_or_intervention"
+            android:textAlignment="textStart"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="7. CHANGES TO TERMS"
+            android:layout_marginLeft="12dp"
+            android:textStyle="bold"
+            android:textColor="@color/tealmain"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="12dp"
+            android:justificationMode="inter_word"
+            android:text="@string/the_cstc_institution_reserves_the_right_to_modify_or_revise_these_terms_at_any_time_users_will_be_notified_of_significant_changes_through_appropriate_channels"
+            android:textAlignment="textStart"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="8. TERMINATION"
+            android:layout_marginLeft="12dp"
+            android:textStyle="bold"
+            android:textColor="@color/tealmain"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="12dp"
+            android:justificationMode="inter_word"
+            android:text="@string/the_institution_may_terminate_user_access_to_the_system_at_any_time_for_violation_of_these_terms_or_any_other_reason_deemed_appropriate_by_the_institution"
+            android:textAlignment="textStart"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="12dp"
+            android:justificationMode="inter_word"
+            android:text="@string/by_using_the_oxy_you_acknowledge_and_agree_to_the_terms_and_conditions_outlined_above_recognizing_the_potential_for_errors_or_interventions_whether_intentional_or_unintentional_failure_to_comply_with_these_terms_may_result_in_the_suspension_or_termination_of_your_access_to_the_system"
+            android:textAlignment="textStart"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+
+    </ScrollView>
 
 
 </LinearLayout>

@@ -2,6 +2,7 @@ package com.capstone.oxy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,6 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -35,6 +38,14 @@ public class ListOfUserAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_user_account);
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.tealmain));
+
+        // Make the navigation bar translucent
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
+        );
 
         recyclerView = findViewById(R.id.usersList);
         recyclerView.setHasFixedSize(true);
@@ -67,6 +78,7 @@ public class ListOfUserAccount extends AppCompatActivity {
         adduserBtn = findViewById(R.id.add_user_btn);
         backBtn = findViewById(R.id.back_button);
 
+
         adduserBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +94,7 @@ public class ListOfUserAccount extends AppCompatActivity {
                 finish();
             }
         });
+
 
     }
 

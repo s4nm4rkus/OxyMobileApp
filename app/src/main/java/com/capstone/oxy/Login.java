@@ -12,7 +12,9 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -52,7 +54,7 @@ public class Login extends AppCompatActivity {
     FirebaseFirestore usersData;
     public static final String SHARED_PREPS = "sharedPrefs";
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "UseCompatLoadingForDrawables", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +75,6 @@ public class Login extends AppCompatActivity {
         // Set the layout for this activity
         setContentView(R.layout.activity_login);
 
-        // Initialize Firebase Authentication
         checkBox = findViewById(R.id.checkBox);
         cardView = findViewById(R.id.cardView);
         loginLogo = findViewById(R.id.loginLogo);
@@ -95,6 +96,33 @@ public class Login extends AppCompatActivity {
 
         loginLogo.startAnimation(slideDownAnimation);
         cardView.startAnimation(slideUpAnimation);
+
+        editTextPassword.setOnTouchListener(new View.OnTouchListener() {
+            boolean passwordVisible = false;
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (editTextPassword.getRight() - editTextPassword.getCompoundDrawables()[2].getBounds().width())) {
+                        // The touch was within the bounds of the drawableEnd (drawable at the end of EditText)
+
+                        passwordVisible = !passwordVisible;
+                        if (passwordVisible) {
+                            editTextPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            editTextPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_password, 0, R.drawable.ic_show_pass, 0); // Change the drawable
+                        } else {
+                            editTextPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            editTextPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_password, 0, R.drawable.ic_unshow_pass, 0); // Change the drawable
+                        }
+
+                        // Move the cursor to the end of the text
+                        editTextPassword.setSelection(editTextPassword.getText().length());
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
 
         forgotBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +156,7 @@ public class Login extends AppCompatActivity {
                 }
                 // Check if email is empty
                 else if (TextUtils.isEmpty(email)) {
-                    editTextUsername.setError("Oops! Your email is missing. Please enter your username to log in.");
+                    Toast.makeText(Login.this, "Oops! Your email is missing. Please enter your username to log in.", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                     editTextUsername.setBackgroundResource(R.drawable.error_login_background);
                     editTextUsername.setHintTextColor(getResources().getColor(R.color.redoxy));

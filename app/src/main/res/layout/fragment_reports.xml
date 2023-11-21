@@ -105,14 +105,58 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Report for a DAY"
+                    android:layout_margin="5dp"
+                    android:padding="3dp"
+                    android:fontFamily="@font/outfitsemibold"
+                    android:textColor="@color/tealmain"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/bg_search_bar"/>
+
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/line_chart_report"
                     android:layout_width="match_parent"
                     android:layout_height="340dp"
                     android:layout_marginBottom="5dp"/>
+                <TextView
+                    android:layout_marginTop="24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Report for a WEEK"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/outfitsemibold"
+                    android:textColor="@color/tealmain"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/bg_search_bar"
+                    android:padding="3dp"/>
+
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/line_chart_reportWeek"
+                    android:layout_width="match_parent"
+                    android:layout_height="340dp"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
                     android:layout_marginTop="24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Report for a Month"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/outfitsemibold"
+                    android:textColor="@color/tealmain"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/bg_search_bar"
+                    android:padding="3dp"/>
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/line_chart_reportMonth"
                     android:layout_width="match_parent"
                     android:layout_height="340dp"
                     android:layout_marginBottom="5dp"/>

@@ -81,7 +81,6 @@
             android:layout_height="45dp"
             android:background="@drawable/edittext_login"
             android:elevation="3dp"
-            android:fontFamily="@font/outfitlight"
             android:hint="@string/username"
             android:paddingStart="10pt"
             android:paddingEnd="10pt"
@@ -137,8 +136,8 @@
             android:layout_height="45dp"
             android:background="@drawable/edittext_login"
             android:elevation="3dp"
-            android:fontFamily="@font/outfitlight"
             android:hint="@string/new_password"
+            android:drawableEnd="@drawable/ic_unshow_pass"
             android:inputType="textPassword"
             android:paddingStart="10pt"
             android:paddingEnd="10pt"
@@ -190,15 +189,15 @@
             android:layout_height="45dp"
             android:background="@drawable/edittext_login"
             android:elevation="3dp"
-            android:fontFamily="@font/outfitlight"
             android:hint="Confirm password"
+            android:drawableEnd="@drawable/ic_unshow_pass"
             android:inputType="textPassword"
             android:paddingStart="10pt"
             android:paddingEnd="10pt"
             android:singleLine="true"
             android:textColor="@color/oxyblack"
             android:textColorHint="@color/grey"
-            android:textSize="16sp"></EditText>
+            android:textSize="16sp"/>
 
         <LinearLayout
             android:layout_width="154dp"

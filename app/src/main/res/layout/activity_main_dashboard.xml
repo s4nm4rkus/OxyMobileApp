@@ -56,18 +56,19 @@
 
             <ImageButton
                 android:id="@+id/switch_room_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="87dp"
+                android:layout_gravity="right"
+                android:layout_marginEnd="24dp"
                 android:background="@drawable/bg_transparent"
                 android:contentDescription="Change Room"
                 android:elevation="5dp"
                 android:gravity="center"
                 android:onClick="switch_room_btn"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_switch_room"
+                android:src="@drawable/enter_new_room"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="UsingOnClickInXml" />

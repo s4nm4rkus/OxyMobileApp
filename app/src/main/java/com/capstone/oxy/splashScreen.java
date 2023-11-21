@@ -11,17 +11,21 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -88,52 +92,140 @@ public class splashScreen extends AppCompatActivity {
                 finish();
             }
         });
-
-        termsCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        termsCheck.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (isChecked) {
-                            showTermsAlertDialog();
-                        } else {
-                            proceedButton.setEnabled(false);
-                            proceedButton.setAlpha(0.5f);
-                        }
-                    }
-                });
+            public void onClick(View v) {
+                showTermsAlertDialog();
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Check if terms were previously accepted
+        SharedPreferences preferences = getSharedPreferences("TermsPrefs", MODE_PRIVATE);
+        boolean termsAccepted = preferences.getBoolean("TermsAccepted", false);
+
+        if (!termsAccepted) {
+            termsCheck.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showTermsAlertDialog();
+                }
+            });
+        } else {
+            updateUIAfterTermsAccepted();
+        }
+    }
+
+    private void updateUIAfterTermsAccepted() {
+        proceedButton.setEnabled(true);
+        proceedButton.setAlpha(1f);
+        termsCheck.setChecked(true);
+
+        termsCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTermsAlertDialog();
             }
         });
     }
 
     private void showTermsAlertDialog() {
+        SharedPreferences preferences = getSharedPreferences("TermsPrefs", MODE_PRIVATE);
+        boolean termsAccepted = preferences.getBoolean("TermsAccepted", false);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.customdialog, null);
+
         TextView textView = dialogView.findViewById(R.id.dialogText);
         textView.setText(getText(R.string.termsAndcon));
 
+        ScrollView scrollView = dialogView.findViewById(R.id.scrollView);
+
         builder.setView(dialogView)
                 .setTitle("Terms of Use and Conditions")
-                .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        proceedButton.setEnabled(true);
-                        proceedButton.setAlpha(1f);
-                    }
-                })
+                .setPositiveButton("Accept", null)
                 .setNegativeButton("Decline", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         termsCheck.setChecked(false);
                         proceedButton.setAlpha(0.5f);
+                        proceedButton.setEnabled(false);
                         dialog.dismiss();
                         Toast.makeText(splashScreen.this, "Note: Terms of Use should be Accepted to continue.", Toast.LENGTH_SHORT).show();
                     }
-                })
-                .show();
+                });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+
+                termsCheck.setChecked(termsAccepted);
+
+                if (termsAccepted) {
+                    positiveButton.setEnabled(true);
+                    proceedButton.setEnabled(true);
+                    proceedButton.setAlpha(1f);
+                } else {
+                    positiveButton.setEnabled(false);
+                    proceedButton.setEnabled(false);
+                    proceedButton.setAlpha(0.5f);
+                }
+
+                if (isScrolledToBottom(scrollView)) {
+                    positiveButton.setEnabled(true);
+                    positiveButton.setAlpha(1f);
+                } else {
+                    positiveButton.setEnabled(false);
+                    positiveButton.setAlpha(0.7f);
+                }
+
+                scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+                    @Override
+                    public void onScrollChanged() {
+                        if (isScrolledToBottom(scrollView)) {
+                            positiveButton.setEnabled(true);
+                            positiveButton.setAlpha(1f);
+                        }
+                    }
+                });
+
+                positiveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (isScrolledToBottom(scrollView)) {
+                            proceedButton.setEnabled(true);
+                            proceedButton.setAlpha(1f);
+                            preferences.edit().putBoolean("TermsAccepted", true).apply();
+                            alertDialog.dismiss();
+                            termsCheck.setChecked(true);
+                        } else {
+                            Toast.makeText(splashScreen.this, "Make sure to read all the terms.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+
+        alertDialog.show();
     }
+
+
+    // Function to check if scrolled to the bottom
+    private boolean isScrolledToBottom(ScrollView scrollView) {
+        int scrollY = scrollView.getScrollY();
+        int scrollViewHeight = scrollView.getHeight();
+        int contentHeight = scrollView.getChildAt(0).getHeight();
+
+        return (scrollY + scrollViewHeight) >= contentHeight;
+    }
+
 
     private void fadeInViews(View view) {
         AlphaAnimation fadeInAnimation = new AlphaAnimation(0.0f, 1.0f);

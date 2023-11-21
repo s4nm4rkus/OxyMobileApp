@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -39,7 +41,7 @@ public class accountProfileSetting extends AppCompatActivity {
 
     private String originalUsername;
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +60,87 @@ public class accountProfileSetting extends AppCompatActivity {
         currentPassword = findViewById(R.id.accountCurrentPassword);
         backBtn = findViewById(R.id.back_button);
         saveChanges = findViewById(R.id.accountSave);
+
+        passwordEditText.setOnTouchListener(new View.OnTouchListener() {
+            boolean passwordVisible = false;
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (passwordEditText.getRight() - passwordEditText.getCompoundDrawables()[2].getBounds().width())) {
+                        // The touch was within the bounds of the drawableEnd (drawable at the end of EditText)
+
+                        passwordVisible = !passwordVisible;
+                        if (passwordVisible) {
+                            passwordEditText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            passwordEditText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_account_setting, 0, R.drawable.ic_show_pass, 0);
+                        } else {
+                            passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            passwordEditText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_account_setting, 0, R.drawable.ic_unshow_pass, 0);
+                        }
+
+                        // Move the cursor to the end of the text
+                        passwordEditText.setSelection(passwordEditText.getText().length());
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+        confirmPassword.setOnTouchListener(new View.OnTouchListener() {
+            boolean passwordVisible = false;
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (confirmPassword.getRight() - confirmPassword.getCompoundDrawables()[2].getBounds().width())) {
+                        // The touch was within the bounds of the drawableEnd (drawable at the end of EditText)
+
+                        passwordVisible = !passwordVisible;
+                        if (passwordVisible) {
+                            confirmPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            confirmPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_account_setting, 0, R.drawable.ic_show_pass, 0);
+                        } else {
+                            confirmPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            confirmPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_account_setting, 0, R.drawable.ic_unshow_pass, 0);
+                        }
+
+                        // Move the cursor to the end of the text
+                        confirmPassword.setSelection(confirmPassword.getText().length());
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+        currentPassword.setOnTouchListener(new View.OnTouchListener() {
+            boolean passwordVisible = false;
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (currentPassword.getRight() - currentPassword.getCompoundDrawables()[2].getBounds().width())) {
+                        // The touch was within the bounds of the drawableEnd (drawable at the end of EditText)
+
+                        passwordVisible = !passwordVisible;
+                        if (passwordVisible) {
+                            currentPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            currentPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_password, 0, R.drawable.ic_show_pass, 0);
+                        } else {
+                            currentPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            currentPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_password, 0, R.drawable.ic_unshow_pass, 0);
+                        }
+
+                        // Move the cursor to the end of the text
+                        currentPassword.setSelection(currentPassword.getText().length());
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
 
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
