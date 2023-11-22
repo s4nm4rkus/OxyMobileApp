@@ -100,7 +100,7 @@ public class ReportFragmentRoom2 extends Fragment {
             @Override
             public void onClick(View v) {
                 linechart_report.setVisibility(View.GONE);
-                linechart_reportmonth.setVisibility(View.GONE);
+                linechart_reportweek.setVisibility(View.GONE);
                 linechart_reportmonth.setVisibility(View.VISIBLE);
                 monthFrag.setBackground(getResources().getDrawable(R.drawable.save_button));
                 weekFrag.setBackground(getResources().getDrawable(R.drawable.bg_transparent));
