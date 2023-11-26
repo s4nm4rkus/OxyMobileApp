@@ -59,10 +59,7 @@
                 android:layout_margin="20dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_delete"
-                android:background="@drawable/ripple_hover_otherbtn"
-                android:contentDescription="Delete"
-                android:onClick="onDeleteButtonClick"
-                android:visibility="invisible"/>
+                android:background="@drawable/ripple_hover_otherbtn" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

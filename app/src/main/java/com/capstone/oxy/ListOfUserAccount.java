@@ -77,8 +77,6 @@ public class ListOfUserAccount extends AppCompatActivity {
 
         adduserBtn = findViewById(R.id.add_user_btn);
         backBtn = findViewById(R.id.back_button);
-
-
         adduserBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,8 +92,6 @@ public class ListOfUserAccount extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
 
     @Override

@@ -102,7 +102,6 @@ public class activityRoom2SoakingProcess extends AppCompatActivity {
             @Override
             public void onChanged(String exhaustStateValue) {
                 if(exhaustStateValue.equals("ON")){
-                    homeViewModel.setSoakingStateValueRoom2("OFF");
                     Intent intent = new Intent(activityRoom2SoakingProcess.this, activityRoom2ExhaustProcess.class);
                     startActivity(intent);
                     finish();
@@ -137,8 +136,6 @@ public class activityRoom2SoakingProcess extends AppCompatActivity {
 
     private void stopTimer() {
         countDownTimer.cancel();
-        homeViewModel.setExhaustStateValueRoom2("ON");
-        homeViewModel.setSoakingStateValueRoom2("OFF");
     }
 
     private void showMistingLogo() {

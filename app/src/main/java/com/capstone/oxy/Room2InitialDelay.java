@@ -114,20 +114,23 @@ public class Room2InitialDelay extends AppCompatActivity {
             }
         };
 
+
         homeViewModel.getMistingSanitationLiveDataRoom2().observe(this, new Observer<String>() {
             @Override
-            public void onChanged(String mistingState) {
-                if(mistingState.equals("ON")){
-                    Intent intent = new Intent(Room2InitialDelay.this, activityRoom2Misting.class);
-                    startActivity(intent);
-                    finish();
+            public void onChanged(String MistingState) {
+                    if (MistingState.equals("ON")) {
+                        Intent intent = new Intent(Room2InitialDelay.this, activityRoom2Misting.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
-            }
-        });
+             });
 
         proceed_sanitation_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                homeViewModel.setOnGoingProcessValueRoom2("YES");
+                homeViewModel.setGlobalProcessEstateRoom2Value("ON");
                 homeViewModel.setInitialDelayRoom2Value("OFF");
                 homeViewModel.setMistingSanitationValueRoom2("ON");
                 Toast.makeText(Room2InitialDelay.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();

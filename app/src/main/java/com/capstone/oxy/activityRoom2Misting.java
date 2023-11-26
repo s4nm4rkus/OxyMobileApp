@@ -108,9 +108,8 @@ public class activityRoom2Misting extends AppCompatActivity {
 
         homeViewModel.getSoakingRoom2StateLiveData().observe(this, new Observer<String>() {
             @Override
-            public void onChanged(String soakingEstate) {
-                if(soakingEstate.equals("ON")){
-                    homeViewModel.setMistingSanitationValueRoom2("OFF");
+            public void onChanged(String soakingState) {
+                if(soakingState.equals("ON")){
                     Intent intent = new Intent(activityRoom2Misting.this, activityRoom2SoakingProcess.class);
                     startActivity(intent);
                     finish();
@@ -174,8 +173,6 @@ public class activityRoom2Misting extends AppCompatActivity {
 
     private void stopTimer() {
         countDownTimer.cancel();
-        homeViewModel.setMistingSanitationValueRoom2("OFF");
-        homeViewModel.setSoakingStateValueRoom2("ON");
 
     }
 

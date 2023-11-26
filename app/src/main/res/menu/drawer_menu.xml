@@ -4,11 +4,6 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/room_name"
-            android:title="@string/rooms"
-            android:icon="@drawable/ic_rooms"/>
-
-        <item
             android:id="@+id/accountSetting"
             android:title="Account Settings"
             android:icon="@drawable/ic_account_setting" />

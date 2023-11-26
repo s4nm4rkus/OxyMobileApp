@@ -3,6 +3,7 @@ package com.capstone.oxy;
         import androidx.appcompat.app.AppCompatActivity;
         import androidx.constraintlayout.widget.ConstraintLayout;
         import androidx.core.content.ContextCompat;
+        import androidx.lifecycle.LifecycleOwner;
         import androidx.lifecycle.Observer;
         import androidx.lifecycle.ViewModelProvider;
 
@@ -37,6 +38,7 @@ public class activityRoom2ExhaustProcess extends AppCompatActivity {
     private int currentPhraseIndex = 0;
     private ImageView exhaustFan;
     private HomeViewModel homeViewModel;
+    LifecycleOwner lifecycleOwner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,10 +100,13 @@ public class activityRoom2ExhaustProcess extends AppCompatActivity {
             }
         };
 
+
         homeViewModel.getExhaustRoom2StateLiveData().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String exhausStateValue) {
                 if(exhausStateValue.equals("OFF")){
+                    homeViewModel.setGlobalProcessEstateRoom2Value("OFF");
+                    homeViewModel.setOnGoingProcessValueRoom2("NO");
                     Intent intent = new Intent(activityRoom2ExhaustProcess.this, doneRoom2Activity.class);
                     startActivity(intent);
                     finish();
@@ -164,12 +169,6 @@ public class activityRoom2ExhaustProcess extends AppCompatActivity {
 
     private void stopTimer() {
         countDownTimer.cancel();
-        homeViewModel.setExhaustStateValueRoom2("OFF");
-        homeViewModel.setGlobalProcessEstateRoom2Value("OFF");
-        homeViewModel.setOnGoingProcessValueRoom2("NO");
-        Intent intent = new Intent(activityRoom2ExhaustProcess.this, doneRoom2Activity.class);
-        startActivity(intent);
-        finish();
     }
 
     private void showMistingLogo() {

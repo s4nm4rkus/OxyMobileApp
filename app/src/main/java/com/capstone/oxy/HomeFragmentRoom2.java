@@ -136,35 +136,60 @@ public class HomeFragmentRoom2 extends Fragment {
 
         updateAQI();
 
-        homeViewModel.getGlobalProcessEstateLiveDataRoom2().observe(getViewLifecycleOwner(), new Observer<String>() {
+        homeViewModel.getTank2LevelLiveData().observe(getViewLifecycleOwner(), new Observer<Long>() {
             @Override
-            public void onChanged(String globalState) {
-                if (globalState.equals("OFF")) {
-                    SanitizeBtn.setElevation(8);
-                    SanitizeBtn.setText("Sanitize");
-                    SanitizeBtn.setTextSize(17);
-                    SanitizeBtn.setTextColor(getResources().getColor(R.color.oxyblack));
+            public void onChanged(Long tankValue) {
+                if(tankValue == 0){
                     SanitizeBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            confirmClick();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("Warning!")
+                                    .setMessage("The sanitizer is empty. You should refill the sanitizer tank first.")
+                                    .setPositiveButton("I Understand", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Toast.makeText(getActivity(), "Refill your tank to avoid inaccurate sanitation process.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .show();
                         }
                     });
-                } else if (globalState.equals("ON")) {
-                    // Disable the button and display a message
-                    SanitizeBtn.setElevation(0);
-                    SanitizeBtn.setText("On Process...");
-                    SanitizeBtn.setTextSize(16);
-                    SanitizeBtn.setTextColor(getResources().getColor(R.color.grey));
-                    SanitizeBtn.setOnClickListener(new View.OnClickListener() {
+                }else{
+                    homeViewModel.getGlobalProcessEstateLiveDataRoom2().observe(getViewLifecycleOwner(), new Observer<String>() {
                         @Override
-                        public void onClick(View v) {
-                            Toast.makeText(getActivity(), "The sanitation process is ongoing, please wait.", Toast.LENGTH_SHORT).show();
+                        public void onChanged(String globalState) {
+                            if (globalState.equals("OFF")) {
+                                SanitizeBtn.setElevation(8);
+                                SanitizeBtn.setText("Sanitize");
+                                SanitizeBtn.setTextSize(17);
+                                SanitizeBtn.setTextColor(getResources().getColor(R.color.oxyblack));
+                                SanitizeBtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        confirmClick();
+                                    }
+                                });
+                            } else if (globalState.equals("ON")) {
+                                // Disable the button and display a message
+                                SanitizeBtn.setElevation(0);
+                                SanitizeBtn.setText("On Process...");
+                                SanitizeBtn.setTextSize(16);
+                                SanitizeBtn.setTextColor(getResources().getColor(R.color.grey));
+                                SanitizeBtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Toast.makeText(getActivity(), "The sanitation process is ongoing, please wait.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
                         }
                     });
+
                 }
             }
         });
+
 
         cardView_Aqi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,6 +211,7 @@ public class HomeFragmentRoom2 extends Fragment {
                         homeViewModel.setOnGoingProcessValueRoom2("YES");
                         homeViewModel.setGlobalProcessEstateRoom2Value("ON");
                         Intent intent = new Intent(getActivity(), Room2InitialDelay.class);
+                        intent.putExtra("sanitizeButton", "btnClicked");
                         startActivity(intent);
                     }
                 })
@@ -234,20 +260,37 @@ public class HomeFragmentRoom2 extends Fragment {
             Aqi_lvl_desc.setPadding(0, 0, 0, 0);
             Aqi_lvl_subdesc.setVisibility(View.GONE);
         } else {
-
-            homeViewModel.getIsOngoingProcessLiveDataRoom2().observe(getViewLifecycleOwner(), new Observer<String>() {
+            homeViewModel.getTank2LevelLiveData().observe(getViewLifecycleOwner(), new Observer<Long>() {
                 @Override
-                public void onChanged(String isOngoing) {
-                    if (isOngoing.equals("NO")){
-                        Toast.makeText(getActivity(), "Warning: Indoor air quality is currently unhealthy.", Toast.LENGTH_SHORT).show();
-                        new Handler().postDelayed(new Runnable() {
+                public void onChanged(Long tankValue) {
+                    if(tankValue <= 0){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setTitle("Warning!")
+                                .setMessage("Cannot start the sanitation, the sanitizer is empty. You should refill the sanitizer tank first.")
+                                .setPositiveButton("I Understand", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Toast.makeText(getActivity(), "Refill your tank to avoid inaccurate sanitation process.", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .show();
+                    }else{
+                        homeViewModel.getIsOngoingProcessLiveDataRoom2().observe(getViewLifecycleOwner(), new Observer<String>() {
                             @Override
-                            public void run() {
-                                Intent intent = new Intent(getActivity(), Room2InitialDelay.class);
-                                intent.putExtra("progressValue", value);
-                                startActivity(intent);
+                            public void onChanged(String isOngoing) {
+                                if (isOngoing.equals("NO")){
+                                    Toast.makeText(getActivity(), "Warning: Indoor air quality is currently unhealthy.", Toast.LENGTH_SHORT).show();
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Intent intent = new Intent(getActivity(), Room2InitialDelay.class);
+                                            intent.putExtra("progressValue", value);
+                                            startActivity(intent);
+                                        }
+                                    }, 3000);
+                                }
                             }
-                        }, 3000);
+                        });
                     }
                 }
             });

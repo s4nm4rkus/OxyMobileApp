@@ -166,7 +166,7 @@
                         android:drawableStart="@drawable/ic_voc"
                         android:drawablePadding="3dp"
                         android:textSize="14sp"
-                        android:text="VOC - Volatile Organig Compound"
+                        android:text="VOC - Volatile Organic Compound"
                         android:textColor="@color/oxyblack"/>
                 </LinearLayout>
 

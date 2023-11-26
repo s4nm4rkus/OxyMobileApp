@@ -2,6 +2,7 @@ package com.capstone.oxy;
 
         import androidx.appcompat.app.AppCompatActivity;
         import androidx.core.content.ContextCompat;
+        import androidx.lifecycle.Observer;
         import androidx.lifecycle.ViewModelProvider;
 
         import android.animation.AnimatorInflater;
@@ -53,6 +54,6 @@ public class doneRoom2Activity extends AppCompatActivity {
                 startActivity(intent);
                 finish(); // Finish the current activity to prevent going back to it
             }
-        }, 10000); // Delay in milliseconds (60 seconds)
+        }, 3000); // Delay in milliseconds (60 seconds)
     }
 }

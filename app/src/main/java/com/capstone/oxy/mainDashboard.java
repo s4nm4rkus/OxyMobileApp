@@ -266,8 +266,6 @@ public class mainDashboard extends AppCompatActivity {
 
     private boolean handleNavigationItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.room_name:
-                break;
             case R.id.accountSetting:
                 Intent intent = new Intent(mainDashboard.this, accountProfileSetting.class);
                 startActivity(intent);

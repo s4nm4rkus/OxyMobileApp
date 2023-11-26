@@ -169,6 +169,7 @@
                 android:id="@+id/checkBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="left"
                 android:layout_gravity="center"
                 android:layout_marginLeft="118dp"
                 android:layout_marginTop="38pt"
@@ -204,13 +205,12 @@
                 android:background="@drawable/ripple_hover_loginbtn"
                 android:elevation="3dp"
                 android:fontFamily="@font/outfitbold"
-                android:paddingLeft="17pt"
-                android:paddingTop="8dp"
                 android:text="@string/login"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
+                android:gravity="center"
                 android:textSize="16sp"
-                android:visibility="gone" />
+                android:visibility="gone"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
