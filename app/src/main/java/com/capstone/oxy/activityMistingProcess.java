@@ -174,7 +174,6 @@ public class activityMistingProcess extends AppCompatActivity {
 
     private void stopTimer() {
         countDownTimer.cancel();
-        homeViewModel.setSoakingStateValue("ON");
     }
 
     private void startBubbleAnimation() {

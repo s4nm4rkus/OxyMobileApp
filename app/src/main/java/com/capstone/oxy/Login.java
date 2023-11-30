@@ -186,8 +186,7 @@ public class Login extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     checkIfAdmin();
                                 } else {
-                                    // If login fails, show an error message
-                                    Toast.makeText(Login.this, "Login Failed.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Login.this, "Login Failed. Please check your input.", Toast.LENGTH_SHORT).show();
                                     progressBar.setVisibility(View.GONE);
                                     editTextUsername.setBackgroundResource(R.drawable.error_login_background);
                                     editTextPassword.setBackgroundResource(R.drawable.error_login_background);
@@ -226,10 +225,11 @@ public class Login extends AppCompatActivity {
                                 finish();
                             }
                         } else {
-                            // Handle the case where the document does not exist
+                            Toast.makeText(getApplicationContext(), "User data not found", Toast.LENGTH_SHORT).show();
+
                         }
                     } else {
-                        // Handle errors here if needed
+                        Toast.makeText(getApplicationContext(), "Error occurred. Please check your input", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

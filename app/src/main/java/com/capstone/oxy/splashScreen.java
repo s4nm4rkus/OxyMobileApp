@@ -38,6 +38,8 @@ public class splashScreen extends AppCompatActivity {
     private CheckBox termsCheck;
     private static final long SPLASH_DELAY = 5000; // Splash screen delay in milliseconds
     private static final long FADE_IN_DURATION = 1000; // Duration for the fade-in animation in milliseconds
+    private static final String PREF_FIRST_TIME = "FirstTime";
+    private boolean isFirstTime;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -73,14 +75,24 @@ public class splashScreen extends AppCompatActivity {
         proceedButton.setAlpha(0.5f);
 
         // Create a delayed handler to navigate to the Login activity after the splash delay
+        SharedPreferences preferences = getSharedPreferences("FirstTimePrefs", MODE_PRIVATE);
+        isFirstTime = preferences.getBoolean(PREF_FIRST_TIME, true);
+
+        // Create a delayed handler to navigate to the appropriate activity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                fadeInViews(greetingsWelcome);
-                fadeInViews(proceedButton);
-                fadeInViews(termsCheck);
-                Toast.makeText(splashScreen.this, "Note: Terms of Use should be Accepted to continue.", Toast.LENGTH_SHORT).show();
+                if (isFirstTime) {
+                    fadeInViews(greetingsWelcome);
+                    fadeInViews(proceedButton);
+                    fadeInViews(termsCheck);
 
+                    preferences.edit().putBoolean(PREF_FIRST_TIME, false).apply();
+                } else {
+                    Intent intent = new Intent(splashScreen.this, Login.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         }, SPLASH_DELAY);
 
@@ -228,6 +240,7 @@ public class splashScreen extends AppCompatActivity {
 
 
     private void fadeInViews(View view) {
+
         AlphaAnimation fadeInAnimation = new AlphaAnimation(0.0f, 1.0f);
         fadeInAnimation.setInterpolator(new DecelerateInterpolator());
         fadeInAnimation.setDuration(FADE_IN_DURATION);

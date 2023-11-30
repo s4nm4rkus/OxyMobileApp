@@ -45,7 +45,10 @@
                 android:background="@drawable/bg_forgot_password"
                 android:elevation="8dp"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="24dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -63,17 +66,18 @@
 
                     <ImageView
                         android:layout_width="100dp"
-                        android:layout_height="150dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="140dp"
                         android:src="@drawable/oxylogo" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:justificationMode="inter_word"
                         android:text="@string/oxy_about_desc"
-                        android:textAlignment="textStart"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <TextView
@@ -83,7 +87,7 @@
                     android:text="@string/oxy_about_desc_p2"
                     android:textAlignment="textStart"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -99,6 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
+                    android:layout_marginBottom="5dp"
                     android:justificationMode="inter_word"
                     android:text="1. Real-time Monitoring:"
                     android:textAlignment="textStart"
@@ -118,11 +123,12 @@
                         android:text="@string/oxy_kf_1"
                         android:textAlignment="textStart"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="15sp" />
 
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="5dp"
                         android:src="@drawable/img_realtime" />
@@ -131,7 +137,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
                     android:justificationMode="inter_word"
                     android:text="2. Smart Air Sanitization"
                     android:textAlignment="textStart"
@@ -149,6 +156,7 @@
                         android:layout_height="80dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
+                        android:layout_gravity="center_vertical"
                         android:src="@drawable/img_smart" />
 
                     <TextView
@@ -158,8 +166,188 @@
                         android:text="@string/oxy_kf_2"
                         android:textAlignment="textStart"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="15sp" />
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="5dp"
+                    android:justificationMode="inter_word"
+                    android:text="3. Mobile Application Integration"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:justificationMode="inter_word"
+                        android:text="@string/the_android_mobile_application_allows_user_to_monitor_and_control_the_oxy_system_users_can_receive_real_time_notifications_view_historical_data_and_conduct_sanitation_monitor_the_quality_of_indoor_air_the_oxy_application_allow_users_to_clearly_understand_the_transmitted_data_from_oxy_smart_device"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/integration_phone" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:justificationMode="inter_word"
+                    android:text="4. User-Friendly Interface"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/good_ui" />
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:justificationMode="inter_word"
+                        android:text="@string/oxy_s_mobile_application_features_an_intuitive_interface_with_easy_to_understand_visualizations_of_air_quality_data"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="5dp"
+                    android:justificationMode="inter_word"
+                    android:text="5. Oxy Smart Device"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:justificationMode="inter_word"
+                        android:text="@string/the_oxy_smart_device_is_composed_of_sensors_that_is_capable_of_detecting_indoor_air_quality_within_the_smart_device_there_is_also_a_smart_air_sanitizer_with_the_ability_to_release_mist_for_sanitation_an_exhaust_fan_is_also_attached_to_expel_the_sanitized_air_or_remove_contaminated_air_after_the_sanitation_process"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/airquality" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/outfitsemibold"
+                    android:text="Oxy Developer"
+                    android:textColor="@color/tealmain"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:justificationMode="inter_word"
+                        android:text="San Mark Morcoso"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:justificationMode="inter_word"
+                        android:text="John Jushua Rago"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jennel Pasoot"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="3dp"
+                        android:justificationMode="inter_word"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:justificationMode="inter_word"
+                        android:text="Contact:"
+                        android:layout_marginEnd="2dp"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:justificationMode="inter_word"
+                        android:text="oxyd3v@gmail.com"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/tealmain"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

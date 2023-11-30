@@ -104,8 +104,10 @@ public class activityExhaustProcess extends AppCompatActivity {
 
         homeViewModel.getExhaustStateLiveData().observe(this, new Observer<String>() {
             @Override
-            public void onChanged(String exhaustStateValue) {
-                if(exhaustStateValue.equals("OFF")){
+            public void onChanged(String exhausStateValue) {
+                if(exhausStateValue.equals("OFF")){
+                    homeViewModel.setGlobalProcessEstateValue("OFF");
+                    homeViewModel.setOnGoingProcessValue("NO");
                     Intent intent = new Intent(activityExhaustProcess.this, doneSanitation.class);
                     startActivity(intent);
                     finish();
@@ -169,12 +171,6 @@ public class activityExhaustProcess extends AppCompatActivity {
 
     private void stopTimer() {
         countDownTimer.cancel();
-        homeViewModel.setExhaustStateValue("OFF");
-        homeViewModel.setGlobalProcessEstateValue("OFF");
-        homeViewModel.setOnGoingProcessValue("NO");
-        Intent intent = new Intent(activityExhaustProcess.this, doneSanitation.class);
-        startActivity(intent);
-        finish();
     }
 
     private void showMistingLogo() {

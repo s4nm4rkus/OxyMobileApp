@@ -264,6 +264,8 @@ public class HomeFragmentRoom2 extends Fragment {
                 @Override
                 public void onChanged(Long tankValue) {
                     if(tankValue <= 0){
+                        homeViewModel.setGlobalProcessEstateRoom2Value("OFF");
+                        homeViewModel.setOnGoingProcessValueRoom2("NO");
                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                         builder.setTitle("Warning!")
                                 .setMessage("Cannot start the sanitation, the sanitizer is empty. You should refill the sanitizer tank first.")

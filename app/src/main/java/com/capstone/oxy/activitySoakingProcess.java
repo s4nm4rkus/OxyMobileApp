@@ -135,7 +135,6 @@ public class activitySoakingProcess extends AppCompatActivity {
 
     private void stopTimer() {
         countDownTimer.cancel();
-        homeViewModel.setExhaustStateValue("ON");
     }
 
     private void showMistingLogo() {

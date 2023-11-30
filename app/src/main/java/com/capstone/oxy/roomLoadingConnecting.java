@@ -45,7 +45,7 @@ public class roomLoadingConnecting extends AppCompatActivity {
 // If the progress reaches 110, start the main_dashboard activity
 // When the timer finishes, start the main_dashboard activity
         if (selectedRoom != null) {
-            countDownTimer = new CountDownTimer(5 * 1000, 1000) {
+            countDownTimer = new CountDownTimer(2 * 1000, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     // Update the current progress and set the maximum progress
@@ -93,7 +93,7 @@ public class roomLoadingConnecting extends AppCompatActivity {
             // Start the countdown timer
         }
         else{
-            countDownTimer = new CountDownTimer(5 * 1000, 1000) {
+            countDownTimer = new CountDownTimer(2 * 1000, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     // Update the current progress and set the maximum progress

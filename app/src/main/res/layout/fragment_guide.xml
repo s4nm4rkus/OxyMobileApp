@@ -66,7 +66,7 @@
                         android:justificationMode="inter_word"
                         android:text="@string/oxy_guide_p1"
                         android:textColor="@color/oxyblack"
-                        android:textSize="16sp" />
+                        android:textSize="15sp" />
 
                 </LinearLayout>
 
@@ -467,7 +467,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:fontFamily="@font/outfitsemibold"
                     android:text="Device Installation"
                     android:textColor="@color/oxyblack"
                     android:textSize="14sp" />
@@ -486,22 +485,21 @@
                         android:justificationMode="inter_word"
                         android:text="@string/devideInstall"
                         android:textColor="@color/oxyblack"
-                        android:textSize="16sp" />
+                        android:textSize="15sp" />
 
                 </LinearLayout>
 
                 <ImageView
-                    android:layout_width="300dp"
+                    android:layout_width="250dp"
                     android:layout_height="200dp"
                     android:layout_gravity="center"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/oxydevice"/>
+                    android:src="@drawable/oxysmartdevice"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:fontFamily="@font/outfitsemibold"
                     android:text="Mobile Application Setup"
                     android:textColor="@color/oxyblack"
                     android:textSize="14sp" />
@@ -520,12 +518,12 @@
                         android:justificationMode="inter_word"
                         android:text="@string/mobileSetup"
                         android:textColor="@color/oxyblack"
-                        android:textSize="16sp" />
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <ImageView
-                    android:layout_width="300dp"
-                    android:layout_height="200dp"
+                    android:layout_width="200dp"
+                    android:layout_height="150dp"
                     android:layout_gravity="center"
                     android:scaleType="fitCenter"
                     android:src="@drawable/oxylogo1"/>
@@ -542,25 +540,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:orientation="vertical"
+                android:layout_marginBottom="5dp"
+                android:padding="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="3dp"
+                    android:text="Circular Indicator"
+                    android:textColor="@color/tealmain"
+                    android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal"
                 android:layout_marginBottom="5dp"
-                android:padding="10dp">
+                android:padding="5dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/outfitsemibold"
-                    android:text="Circular Indicator"
-                    android:textColor="@color/oxyblack"
-                    android:textSize="14sp" />
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
                     android:justificationMode="inter_word"
                     android:text="@string/circularProg"
                     android:textColor="@color/oxyblack" />
@@ -568,13 +578,14 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
                     android:layout_gravity="right"
                     android:scaleType="fitCenter"
                     android:src="@drawable/dashboard"/>
             </LinearLayout>
 
+            </LinearLayout>
             </LinearLayout>
 
 

@@ -128,6 +128,8 @@ public class activityInitialDelaySanitation extends AppCompatActivity {
         proceed_sanitation_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                homeViewModel.setOnGoingProcessValue("YES");
+                homeViewModel.setGlobalProcessEstateValue("ON");
                 homeViewModel.setInitialDelayValue("OFF");
                 homeViewModel.setMistingSanitationValue("ON");
                 Toast.makeText(activityInitialDelaySanitation.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
@@ -137,7 +139,6 @@ public class activityInitialDelaySanitation extends AppCompatActivity {
                 finish();
             }
         });
-
         // Start the countdown timer
         startTimer();
     }
