@@ -96,9 +96,6 @@ public class activityExhaustProcess extends AppCompatActivity {
             @Override
             public void onFinish() {
                 stopTimer();
-                Toast.makeText(activityExhaustProcess.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(activityExhaustProcess.this, doneSanitation.class);
-                startActivity(intent);
             }
         };
 

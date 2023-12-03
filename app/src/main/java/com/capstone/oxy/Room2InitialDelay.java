@@ -97,12 +97,12 @@ public class Room2InitialDelay extends AppCompatActivity {
         }
 
         // Initialize and start a countdown timer
-        countDownTimer = new CountDownTimer(2 * 60 * 1000, 1000) {
+        countDownTimer = new CountDownTimer(1 * 60 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateTimerUI(millisUntilFinished);
 
-                int progress = (int) (100 * millisUntilFinished / (2 * 60 * 1000));
+                int progress = (int) (100 * millisUntilFinished / (1 * 60 * 1000));
 
                 timer_indicator.setProgress(progress);
             }
@@ -110,7 +110,6 @@ public class Room2InitialDelay extends AppCompatActivity {
             @Override
             public void onFinish() {
                 stopTimer();
-                Toast.makeText(Room2InitialDelay.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -119,6 +118,7 @@ public class Room2InitialDelay extends AppCompatActivity {
             @Override
             public void onChanged(String MistingState) {
                     if (MistingState.equals("ON")) {
+                        Toast.makeText(Room2InitialDelay.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Room2InitialDelay.this, activityRoom2Misting.class);
                         startActivity(intent);
                         finish();
@@ -129,15 +129,9 @@ public class Room2InitialDelay extends AppCompatActivity {
         proceed_sanitation_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                homeViewModel.setOnGoingProcessValueRoom2("YES");
-                homeViewModel.setGlobalProcessEstateRoom2Value("ON");
                 homeViewModel.setInitialDelayRoom2Value("OFF");
                 homeViewModel.setMistingSanitationValueRoom2("ON");
-                Toast.makeText(Room2InitialDelay.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Room2InitialDelay.this, activityRoom2Misting.class);
-                startActivity(intent);
                 countDownTimer.cancel();
-                finish();
             }
         });
         // Start the countdown timer

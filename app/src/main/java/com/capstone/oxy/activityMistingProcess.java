@@ -102,7 +102,6 @@ public class activityMistingProcess extends AppCompatActivity {
             @Override
             public void onFinish() {
                 stopTimer();
-                Toast.makeText(activityMistingProcess.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -110,6 +109,7 @@ public class activityMistingProcess extends AppCompatActivity {
             @Override
             public void onChanged(String soakingState) {
                 if(soakingState.equals("ON")){
+                    Toast.makeText(activityMistingProcess.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
                     homeViewModel.setMistingSanitationValue("OFF");
                     Intent intent = new Intent(activityMistingProcess.this, activitySoakingProcess.class);
                     startActivity(intent);

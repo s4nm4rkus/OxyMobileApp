@@ -96,12 +96,12 @@ public class activityInitialDelaySanitation extends AppCompatActivity {
         }
 
         // Initialize and start a countdown timer
-        countDownTimer = new CountDownTimer(2 * 60 * 1000, 1000) {
+        countDownTimer = new CountDownTimer(1 * 60 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateTimerUI(millisUntilFinished);
 
-                int progress = (int) (100 * millisUntilFinished / (2 * 60 * 1000));
+                int progress = (int) (100 * millisUntilFinished / (1 * 60 * 1000));
 
                 timer_indicator.setProgress(progress);
             }
@@ -109,7 +109,6 @@ public class activityInitialDelaySanitation extends AppCompatActivity {
             @Override
             public void onFinish() {
                 stopTimer();
-                Toast.makeText(activityInitialDelaySanitation.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -117,6 +116,7 @@ public class activityInitialDelaySanitation extends AppCompatActivity {
             @Override
             public void onChanged(String mistingState) {
                 if(mistingState.equals("ON")){
+                    Toast.makeText(activityInitialDelaySanitation.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(activityInitialDelaySanitation.this, activityMistingProcess.class);
                     startActivity(intent);
                     finish();
@@ -128,15 +128,9 @@ public class activityInitialDelaySanitation extends AppCompatActivity {
         proceed_sanitation_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                homeViewModel.setOnGoingProcessValue("YES");
-                homeViewModel.setGlobalProcessEstateValue("ON");
                 homeViewModel.setInitialDelayValue("OFF");
                 homeViewModel.setMistingSanitationValue("ON");
-                Toast.makeText(activityInitialDelaySanitation.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(activityInitialDelaySanitation.this, activityMistingProcess.class);
-                startActivity(intent);
                 countDownTimer.cancel();
-                finish();
             }
         });
         // Start the countdown timer

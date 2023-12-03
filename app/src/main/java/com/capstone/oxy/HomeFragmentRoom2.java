@@ -281,10 +281,10 @@ public class HomeFragmentRoom2 extends Fragment {
                             @Override
                             public void onChanged(String isOngoing) {
                                 if (isOngoing.equals("NO")){
-                                    Toast.makeText(getActivity(), "Warning: Indoor air quality is currently unhealthy.", Toast.LENGTH_SHORT).show();
                                     new Handler().postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
+                                            Toast.makeText(getActivity(), "Warning: Indoor air quality is currently unhealthy.", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(getActivity(), Room2InitialDelay.class);
                                             intent.putExtra("progressValue", value);
                                             startActivity(intent);

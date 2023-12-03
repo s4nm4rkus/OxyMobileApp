@@ -96,7 +96,6 @@ public class activityRoom2ExhaustProcess extends AppCompatActivity {
             @Override
             public void onFinish() {
                 stopTimer();
-                Toast.makeText(activityRoom2ExhaustProcess.this, "Warning: The sanitation has started. Wait until it is done.", Toast.LENGTH_SHORT).show();
             }
         };
 
