@@ -208,6 +208,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         homeViewModel.setOnGoingProcessValue("YES");
+                        homeViewModel.setInitialDelayValue("ON");
                         homeViewModel.setGlobalProcessEstateValue("ON");
                         Intent intent = new Intent(getActivity(), activityInitialDelaySanitation.class);
                         startActivity(intent);
